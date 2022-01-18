@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "1afd3956-452b-4c68-a461-e6c205078129"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "City-Influencers-Website": {
+    "app-challenge": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/City-Influencers-Website",
+            "outputPath": "dist/app-challenge",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -36,13 +39,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "9mb",
+                  "maximumError": "6mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "5kb",
+                  "maximumError": "6kb"
                 }
               ],
               "fileReplacements": [
@@ -68,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "City-Influencers-Website:build:production"
+              "browserTarget": "app-challenge:build:production"
             },
             "development": {
-              "browserTarget": "City-Influencers-Website:build:development"
+              "browserTarget": "app-challenge:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "City-Influencers-Website:build"
+            "browserTarget": "app-challenge:build"
           }
         },
         "test": {
@@ -104,3 +107,5 @@
   },
   "defaultProject": "City-Influencers-Website"
 }
+
+
