@@ -10,3 +10,7 @@
 .buttonColor {
     background-color: #27DFEB;
 }
+
+.customHeight {
+    height: 67vh;
+}
