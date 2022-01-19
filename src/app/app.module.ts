@@ -8,12 +8,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
+import { HowItWorksComponent } from './home/how-it-works/how-it-works.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { NavigationComponent } from './admin/dashboard/navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    HowItWorksComponent,
+    FooterComponent,
+    DashboardComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
