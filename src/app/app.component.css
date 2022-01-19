@@ -1,3 +1,12 @@
 .bg_gradient {
-    background: linear-gradient(180deg, #E5EFFF 0%, rgba(229, 239, 255, 0.262661) 83.7%, rgba(229, 239, 255, 0) 100%);
+   /* bg_gradient */
+
+position: absolute;
+width: auto;
+height: 800px;
+left: -9px;
+top: -37px;
+z-index: -2;
+background: linear-gradient(180deg, #E5EFFF 0%, rgba(229, 239, 255, 0) 83.7%, rgba(229, 239, 255, 0) 100%);
+
 }

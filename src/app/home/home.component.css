@@ -1,0 +1,12 @@
+.image {
+    height: 400px;
+}
+
+.banner {
+    z-index: -2;
+    height: 2s00px;
+}
+
+.buttonColor {
+    background-color: #27DFEB;
+}
