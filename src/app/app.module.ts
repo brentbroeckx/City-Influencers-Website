@@ -12,6 +12,7 @@ import { HowItWorksComponent } from './home/how-it-works/how-it-works.component'
 import { FooterComponent } from './shared/footer/footer.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { NavigationComponent } from './admin/dashboard/navigation/navigation.component';
+import { AppDownloadPageComponent } from './app-download-page/app-download-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NavigationComponent } from './admin/dashboard/navigation/navigation.com
     HowItWorksComponent,
     FooterComponent,
     DashboardComponent,
-    NavigationComponent
+    NavigationComponent,
+    AppDownloadPageComponent
   ],
   imports: [
     BrowserModule,
