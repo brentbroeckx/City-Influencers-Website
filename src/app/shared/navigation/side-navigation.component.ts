@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  selector: 'app-side-navigation',
+  templateUrl: './side-navigation.component.html',
+  styleUrls: ['./side-navigation.component.css']
 })
-export class NavigationComponent implements OnInit {
+export class SideNavigationComponent implements OnInit {
 
   navHidden: Boolean = true;
 

@@ -11,9 +11,10 @@ import { HeaderComponent } from './header/header.component';
 import { HowItWorksComponent } from './home/how-it-works/how-it-works.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { NavigationComponent } from './admin/dashboard/navigation/navigation.component';
+import { SideNavigationComponent } from './shared/navigation/side-navigation.component';
 import { AppDownloadPageComponent } from './app-download-page/app-download-page.component';
 import { OverviewComponent } from './admin/dashboard/overview/overview.component';
+import { DashboardHeaderComponent } from './admin/dashboard/dashboard-header/dashboard-header.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,10 @@ import { OverviewComponent } from './admin/dashboard/overview/overview.component
     HowItWorksComponent,
     FooterComponent,
     DashboardComponent,
-    NavigationComponent,
+    SideNavigationComponent,
     AppDownloadPageComponent,
-    OverviewComponent
+    OverviewComponent,
+    DashboardHeaderComponent
   ],
   imports: [
     BrowserModule,

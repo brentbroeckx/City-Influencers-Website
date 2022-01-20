@@ -10,8 +10,9 @@ const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'dashboard', component: DashboardComponent},
   { path: 'download-page', component: AppDownloadPageComponent},
-  { path: 'dashboard/overview', component: OverviewComponent}
+
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
