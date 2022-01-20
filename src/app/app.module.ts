@@ -13,6 +13,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { NavigationComponent } from './admin/dashboard/navigation/navigation.component';
 import { AppDownloadPageComponent } from './app-download-page/app-download-page.component';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AppDownloadPageComponent } from './app-download-page/app-download-page.
     FooterComponent,
     DashboardComponent,
     NavigationComponent,
-    AppDownloadPageComponent
+    AppDownloadPageComponent,
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

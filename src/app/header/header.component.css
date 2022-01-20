@@ -1,3 +1,18 @@
 .navigation-index {
     z-index: 105;
 }
+.button_animation {
+    
+}
+.theme_button_color {
+   background-color: #27DFEB ;
+   transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+
+.theme_button_color:hover{
+    background-color:#FFDA47;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+
