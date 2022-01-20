@@ -29,7 +29,7 @@ import { OverviewComponent } from './admin/dashboard/overview/overview.component
     NavigationComponent,
     AppDownloadPageComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
     OverviewComponent
 
   ],
