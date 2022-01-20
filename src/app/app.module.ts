@@ -15,6 +15,8 @@ import { NavigationComponent } from './admin/dashboard/navigation/navigation.com
 import { AppDownloadPageComponent } from './app-download-page/app-download-page.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { OverviewComponent } from './admin/dashboard/overview/overview.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     AppDownloadPageComponent,
     LoginComponent,
     SignUpComponent
+    OverviewComponent
+
   ],
   imports: [
     BrowserModule,

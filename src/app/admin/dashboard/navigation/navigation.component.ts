@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
+  navHidden: Boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changeNav(value: Boolean) {
+    this.navHidden = value;
   }
 
 }
