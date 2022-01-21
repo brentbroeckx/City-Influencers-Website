@@ -13,3 +13,7 @@
 .inputshadow:hover {
     box-shadow: 2px 2px #FFDA47;
 }
+
+.index-2 {
+    z-index: 2;
+ }
