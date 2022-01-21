@@ -32,7 +32,8 @@ import { DashboardHeaderComponent } from './admin/dashboard/dashboard-header/das
     OverviewComponent,
     DashboardHeaderComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,
