@@ -17,6 +17,8 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { OverviewComponent } from './admin/dashboard/overview/overview.component';
 import { DashboardHeaderComponent } from './admin/dashboard/dashboard-header/dashboard-header.component';
+import { MyInfluencersComponent } from './admin/dashboard/my-influencers/my-influencers.component';
+import { InfluencerCardComponent } from './admin/dashboard/my-influencers/influencer-card/influencer-card.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { DashboardHeaderComponent } from './admin/dashboard/dashboard-header/das
     DashboardHeaderComponent,
     LoginComponent,
     SignUpComponent,
-    OverviewComponent
+    OverviewComponent,
+    MyInfluencersComponent,
+    InfluencerCardComponent
   ],
   imports: [
     BrowserModule,
