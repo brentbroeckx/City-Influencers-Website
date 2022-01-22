@@ -17,6 +17,9 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { OverviewComponent } from './admin/dashboard/overview/overview.component';
 import { DashboardHeaderComponent } from './admin/dashboard/dashboard-header/dashboard-header.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+
+
 
 
 @NgModule({
@@ -42,6 +45,9 @@ import { DashboardHeaderComponent } from './admin/dashboard/dashboard-header/das
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
