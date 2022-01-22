@@ -1,1 +1,17 @@
+<div class="flex flex-col md:flex-row">
+    <div>
+        <app-side-navigation></app-side-navigation>
+    </div>
+    <div class="w-full">
+        <app-dashboard-header [headerTitle]="'Overview'"></app-dashboard-header>
+        
+        <div class="ml-5 mt-5">
+            <router-outlet name="admin"></router-outlet>>
+
+        </div>
+        
+
+    </div>
+
+</div>
 

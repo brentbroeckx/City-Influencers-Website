@@ -19,6 +19,7 @@ import { OverviewComponent } from './admin/dashboard/overview/overview.component
 import { DashboardHeaderComponent } from './admin/dashboard/dashboard-header/dashboard-header.component';
 import { MyInfluencersComponent } from './admin/dashboard/my-influencers/my-influencers.component';
 import { InfluencerCardComponent } from './admin/dashboard/my-influencers/influencer-card/influencer-card.component';
+import { AuthGuard } from './auth/authGuard';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { InfluencerCardComponent } from './admin/dashboard/my-influencers/influe
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

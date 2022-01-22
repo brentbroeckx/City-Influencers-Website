@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Login } from '../models/login';
+import { AuthService } from '../auth/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -7,9 +12,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', Validators.required)
+  })
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+
+  onSubmit() {
+    const loginCredentials: Login = {
+      type: "stad",
+      username: this.loginForm.controls.username.value,
+      password: this.loginForm.controls.password.value
+    }
+
+    this.authService.authenticate(loginCredentials).subscribe(res => {
+      if (res.data.token != null) {
+        localStorage.setItem('token', res.data.token)
+        this.router.navigateByUrl('/dashboard');
+      } else {
+        //show error message (wrong username/password/...)
+      }
+    })
+
   }
 
 }
