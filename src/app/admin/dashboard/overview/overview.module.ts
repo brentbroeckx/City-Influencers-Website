@@ -1,31 +1,32 @@
 import { NgModule } from "@angular/core";
+import { NgxEchartsModule } from 'ngx-echarts';
 import { SharedModule } from "src/app/shared/shared.module";
 import { DashboardHeaderComponent } from "../dashboard-header/dashboard-header.component";
 import { DashboardModule } from "../dashboard-header/dashboard.module";
 import { SideNavigationComponent } from "../navigation/side-navigation.component";
 import { SidenavigationModule } from "../navigation/side-navigation.module";
-import { InfluencerCardComponent } from "./influencer-card/influencer-card.component";
-import { MyInfluencersRoutingModule } from "./my-influencers-routing.module";
-import { MyInfluencersComponent } from "./my-influencers-tab/my-influencers.component";
+import { OverviewRoutingModule } from "./overview-routing.module";
+import { OverviewComponent } from "./overview-tab/overview.component";
 
 @NgModule({
     declarations: [
-        MyInfluencersComponent,
-        InfluencerCardComponent,
+        OverviewComponent,
     ],
     imports: [
         SharedModule,
-        MyInfluencersRoutingModule,
+        OverviewRoutingModule,
         DashboardModule,
-        SidenavigationModule
+        SidenavigationModule,
+        NgxEchartsModule.forRoot({
+            echarts: () => import('echarts')
+        }),
     ],
     exports: [
-        MyInfluencersComponent,
-        InfluencerCardComponent,
+        OverviewComponent,
     ],
     providers: []
 })
 
-export class MyInfluencersModule {
+export class OverviewModule {
 
 }

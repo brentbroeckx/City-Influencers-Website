@@ -2,7 +2,7 @@
     <div class="container flex flex-wrap lg:justify-around lg:items-center lg:mx-auto">
         <div class="flex w-full justify-between lg:w-auto lg:order-1">
             
-            <a href="#" class="flex justify-start w-1/4">
+            <a [routerLink]="['/']" class="flex justify-start w-1/4">
                 <img src="../../assets/images/CILogo.png" alt="Logo City Influencers" class="w-10 mr-4">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">City Influencers</span>
             </a>
@@ -13,27 +13,25 @@
                 <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
             </button>
         </div>
-        <div [ngClass]="navHidden ? 'hidden' : ' text-center block shadow-xl mt-3 bg-white pl-5 pr-5'" class="lg:shadow-none lg:mt-0 lg:bg-transparent lg:pl-0 lg:pr-0 justify-center items-center w-full lg:flex lg:justify-end lg:w-2/4 lg:order-1 navigation-index" id="mobile-menu-2">
+        <div [ngClass]="navHidden ? 'hidden' : ' text-center block shadow-xl mt-3 bg-white pl-5 pr-5'" class="flex flex-col justify-center items-center w-full lg:flex lg:flex-row lg:justify-center lg:w-2/4 lg:order-1 lg:shadow-none lg:mt-0 lg:bg-transparent lg:pl-0 lg:pr-0  navigation-index">
             <ul class="flex flex-col mt-4 lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium">
                 <li>
-                    <a href="#" router class="text-lg block py-2 pr-4 text-gray-700 lg:border-0" aria-current="page">Browse Cities</a>
+                    <a [routerLink]="['/browse-cities']" router class="text-lg block py-2 pr-4 text-gray-700 lg:border-0" aria-current="page">Browse Cities</a>
                 </li>
                 <li>
                     <a href="#" class="text-lg block py-2 pr-4 text-gray-700 lg:border-0">How it works</a>
                 </li>
-                <li>
-                    <a href="#" class="text-lg block py-2 pr-4 text-gray-700 lg:border-0 ">Become a City Influencer</a>
-                </li>
+
             </ul>
             <hr class="mt-5">
         </div>
-        <div [ngClass]="navHidden ? 'hidden' : '  block text-center bg-white shadow-md pl-5 pr-5'" class="lg:shadow-none lg:mt-0 lg:bg-transparent lg:pl-0 lg:pr-0 pb-5 lg:pb-0 justify-center items-center w-full lg:flex lg:w-1/4 lg:justify-end lg:order-1 navigation-index" id="mobile-menu-2">
+        <div [ngClass]="navHidden ? 'hidden' : '  block text-center bg-white shadow-md pl-5 pr-5'" class="flex flex-col justify-center items-center w-full lg:flex lg:flex-row lg:justify-center lg:w-1/4 lg:order-1 lg:shadow-none lg:mt-0 lg:bg-transparent lg:pl-0 lg:pr-0  navigation-index">
             <ul class="flex flex-col justify-center items-center mt-4 lg:flex-row lg:space-x-4 lg:mt-0 lg:text-sm lg:font-medium">
                 <li class=" text-center">
-                    <a routerLink="/login" class=" w-32 block px-x py-1 text-gray-700 lg:border-0" aria-current="page">Login</a>
+                    <a [routerLink]="['/login']" class=" w-32 block px-x py-1 text-gray-700 lg:border-0" aria-current="page">Login</a>
                 </li>
                 <li class=" text-center">
-                    <a routerLink="/sign-up" class=" w-32 rounded-full theme_button_color block px-x py-1 text-gray-700 lg:border-0 ">Sign up </a>
+                    <a [routerLink]="['/sign-up']" class=" w-32 rounded-full theme_button_color block px-x py-1 text-gray-700 lg:border-0 ">Sign up </a>
                 </li>
             </ul>
         </div>
