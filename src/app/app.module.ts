@@ -18,8 +18,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { OverviewComponent } from './admin/dashboard/overview/overview.component';
 import { DashboardHeaderComponent } from './admin/dashboard/dashboard-header/dashboard-header.component';
 import { NgxEchartsModule } from 'ngx-echarts';
-
-
+import { MyInfluencersComponent } from './admin/dashboard/my-influencers/my-influencers.component';
+import { InfluencerCardComponent } from './admin/dashboard/my-influencers/influencer-card/influencer-card.component';
+import { AuthGuard } from './auth/authGuard';
 
 
 @NgModule({
@@ -36,7 +37,9 @@ import { NgxEchartsModule } from 'ngx-echarts';
     DashboardHeaderComponent,
     LoginComponent,
     SignUpComponent,
-    OverviewComponent
+    OverviewComponent,
+    MyInfluencersComponent,
+    InfluencerCardComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
       echarts: () => import('echarts')
     }),
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
