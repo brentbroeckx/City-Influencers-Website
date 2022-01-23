@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { OverviewComponent } from './admin/dashboard/overview/overview.component';
 import { DashboardHeaderComponent } from './admin/dashboard/dashboard-header/dashboard-header.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 import { MyInfluencersComponent } from './admin/dashboard/my-influencers/my-influencers.component';
 import { InfluencerCardComponent } from './admin/dashboard/my-influencers/influencer-card/influencer-card.component';
 import { AuthGuard } from './auth/authGuard';
@@ -47,6 +48,9 @@ import { AuthGuard } from './auth/authGuard';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
