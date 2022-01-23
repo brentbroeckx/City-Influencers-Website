@@ -10,15 +10,15 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { HowItWorksComponent } from './home/how-it-works/how-it-works.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { SideNavigationComponent } from './admin/dashboard/navigation/side-navigation.component';
 import { AppDownloadPageComponent } from './app-download-page/app-download-page.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { OverviewComponent } from './admin/dashboard/overview/overview.component';
-import { DashboardHeaderComponent } from './admin/dashboard/dashboard-header/dashboard-header.component';
-import { MyInfluencersComponent } from './admin/dashboard/my-influencers/my-influencers.component';
-import { InfluencerCardComponent } from './admin/dashboard/my-influencers/influencer-card/influencer-card.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { AuthGuard } from './auth/authGuard';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from './shared/shared.module';
+import { BrowseCitiesComponent } from './browse-cities/browse-cities.component';
+import { CityCardComponent } from './browse-cities/city-card/city-card.component';
 
 
 @NgModule({
@@ -28,26 +28,20 @@ import { InfluencerCardComponent } from './admin/dashboard/my-influencers/influe
     HeaderComponent,
     HowItWorksComponent,
     FooterComponent,
-    DashboardComponent,
-    SideNavigationComponent,
     AppDownloadPageComponent,
-    OverviewComponent,
-    DashboardHeaderComponent,
     LoginComponent,
     SignUpComponent,
-    OverviewComponent,
-    MyInfluencersComponent,
-    InfluencerCardComponent
+    BrowseCitiesComponent,
+    CityCardComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
     RouterModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
