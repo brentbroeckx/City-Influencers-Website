@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Influencer } from 'src/app/models/influencer';
+import { InfluencerService } from 'src/app/services/influencer.service';
 
 @Component({
   selector: 'app-my-influencers',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyInfluencersComponent implements OnInit {
 
-  constructor() { }
+  influencers: Influencer[] | undefined;
+
+  constructor(private influencerService: InfluencerService) { }
 
   ngOnInit(): void {
+
+    this.influencerService.getAllInfluencers().subscribe(res => {
+      this.influencers = res.data;
+    })
+
   }
 
 }
