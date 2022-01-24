@@ -6,47 +6,47 @@
         <app-dashboard-header [headerTitle]="'Overview'"></app-dashboard-header>
         
         <div class="m-8">
-            <div class="flex flex-row justify-around text-center  items-center">
-                <div class=" flex flex-col justify-between border border-gray-300 bg-gray-100 rounded-xl h-20 w-1/6 md:h-24">
-                   <div class=" text-sm md:text-xl">
+            <div class="flex flex-row justify-around text-center  items-stretch">
+                <div class=" flex flex-col justify-between border border-gray-300 bg-gray-100 rounded-xl h-20 w-1/6 lg:h-full">
+                   <div class=" text-sm lg:text-xl lg:h-auto">
                        Total Influencers
                    </div> 
-                   <div class=" bottom-0 font-bold text-2xl md:text-5xl ">
+                   <div class=" bottom-0 font-bold text-2xl lg:text-5xl ">
                        10
                    </div>
                 </div>
-                <div class="flex flex-col justify-between border border-gray-300 bg-gray-100 rounded-xl h-20 w-1/6 md:h-24">
-                    <div class=" text-sm md:text-xl">
+                <div class="flex flex-col justify-between border border-gray-300 bg-gray-100 rounded-xl h-20 w-1/6 lg:h-full">
+                    <div class=" text-sm lg:text-xl">
                         Total Posts
                     </div> 
-                    <div class=" bottom-0 font-bold text-2xl md:text-5xl ">
+                    <div class=" bottom-0 font-bold text-2xl lg:text-5xl ">
                         120
                     </div>
                 </div>
-                <div class="flex flex-col justify-between border border-gray-300 bg-gray-100 rounded-xl h-20 w-1/6 md:h-24">
-                    <div class=" text-sm md:text-xl">
+                <div class="flex flex-col justify-between border border-gray-300 bg-gray-100 rounded-xl h-20 w-1/6 lg:h-full">
+                    <div class=" text-sm lg:text-xl">
                         Open Tasks
                     </div> 
-                    <div class=" bottom-0 font-bold text-2xl md:text-5xl ">
+                    <div class=" bottom-0 font-bold text-2xl lg:text-5xl ">
                         43
                     </div>
                 </div>
-                <div class="flex flex-col justify-between border border-gray-300 bg-gray-100 rounded-xl h-20 w-1/6 md:h-24">
-                    <div class=" text-sm md:text-xl">
+                <div class="flex flex-col justify-between border border-gray-300 bg-gray-100 rounded-xl h-20 w-1/6 lg:h-full">
+                    <div class=" text-sm lg:text-xl">
                         Completed Tasks
                     </div> 
-                    <div class=" bottom-0 font-bold text-2xl md:text-5xl ">
+                    <div class=" bottom-0 font-bold text-2xl lg:text-5xl ">
                         64
                     </div>
                 </div>
             </div>
         </div>
 
-        <div echarts [options]="options" class="demo-chart"></div>
+        <div echarts [options]="options" class="demo-chart hidden md:block "></div>
         
 
-        <div class="flex flex-col md:flex-row justify-center items-center md:m-50 ">
-            <div class="flex flex-col justify-between border border-gray-300 bg-gray-50 rounded-xl w-3/4 md:w-1/2 m-5 md:mx-20">
+        <div class="flex flex-col lg:flex-row justify-center items-center lg:m-50 ">
+            <div class="flex flex-col justify-between border border-gray-300 bg-gray-50 rounded-xl w-3/4 lg:w-1/2 m-5 lg:mx-20">
                 <div>
                     <table class="table-auto w-full">
                         <thead>
@@ -76,7 +76,7 @@
                       </table>
                 </div>
             </div>
-            <div class="flex flex-col justify-between border border-gray-300 bg-gray-50 rounded-xl w-3/4 md:w-1/2 m-5 md:mx-20">
+            <div class="flex flex-col justify-between border border-gray-300 bg-gray-50 rounded-xl w-3/4 lg:w-1/2 m-5 lg:mx-20">
                 <div>
                     <table class="table-auto w-full">
                         <thead>
