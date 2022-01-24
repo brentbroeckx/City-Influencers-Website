@@ -38,7 +38,6 @@ import { CityCardComponent } from './browse-cities/city-card/city-card.component
     AppRoutingModule,
     SharedModule,
     RouterModule,
-
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
