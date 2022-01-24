@@ -1,1 +1,212 @@
-<p>my-tasks works!</p>
+<div class="flex flex-col md:flex-row">
+    <div>
+        <app-side-navigation></app-side-navigation>
+    </div>
+    <div class="w-full">
+        <app-dashboard-header [headerTitle]="'Tasks'"></app-dashboard-header>
+
+        <div class="">
+            <div class="mx-5 mt-5">
+            
+                <div class="border-2 border-gray-200 rounded-md bg-white">
+                    <div class="flex flex-col h-2/3 mx-4">
+                        <div class="flex flex-row justify-between py-5 border-b-2 border-gray-200">
+                            <div class="font-bold">
+                                All Tasks
+                            </div>
+                            <div class="flex flex-row space-x-4">
+                                <div class="flex flex-row items-center space-x-1">
+                                    <div>
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1.12857 4.26839L3.31563 2.12548C3.48647 1.95815 3.7636 1.9582 3.93434 2.12548L6.12132 4.26839C6.39667 4.53812 6.20059 5.00001 5.81195 5.00001H4.5V13.5714C4.5 13.8081 4.30414 14 4.0625 14H3.1875C2.94586 14 2.75 13.8081 2.75 13.5714V5.00001H1.43794C1.04853 5.00001 0.853791 4.53758 1.12857 4.26839ZM7.5625 3.7143H14.5625C14.8041 3.7143 15 3.52243 15 3.28573V2.42858C15 2.19188 14.8041 2.00001 14.5625 2.00001H7.5625C7.32086 2.00001 7.125 2.19188 7.125 2.42858V3.28573C7.125 3.52243 7.32086 3.7143 7.5625 3.7143ZM7.125 6.71429V5.85715C7.125 5.62045 7.32086 5.42858 7.5625 5.42858H12.8125C13.0541 5.42858 13.25 5.62045 13.25 5.85715V6.71429C13.25 6.951 13.0541 7.14287 12.8125 7.14287H7.5625C7.32086 7.14287 7.125 6.951 7.125 6.71429ZM7.125 13.5714V12.7143C7.125 12.4776 7.32086 12.2857 7.5625 12.2857H9.3125C9.55414 12.2857 9.75 12.4776 9.75 12.7143V13.5714C9.75 13.8081 9.55414 14 9.3125 14H7.5625C7.32086 14 7.125 13.8081 7.125 13.5714ZM7.125 10.1429V9.28572C7.125 9.04901 7.32086 8.85715 7.5625 8.85715H11.0625C11.3041 8.85715 11.5 9.04901 11.5 9.28572V10.1429C11.5 10.3796 11.3041 10.5714 11.0625 10.5714H7.5625C7.32086 10.5714 7.125 10.3796 7.125 10.1429Z" fill="#C5C7CD"/>
+                                        </svg>                                                                   
+                                    </div>
+                                    <span>Sort</span>
+                                </div>
+                                <div class="flex flex-row items-center space-x-1">
+                                    <div>
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.4369 2H2.56315C2.06351 2 1.8114 2.60623 2.16542 2.96026L6.5 7.29549V12.125C6.5 12.3085 6.58955 12.4805 6.73993 12.5858L8.61493 13.8979C8.98484 14.1568 9.5 13.8944 9.5 13.437V7.29549L13.8347 2.96026C14.188 2.60694 13.9376 2 13.4369 2Z" fill="#C5C7CD"/>
+                                        </svg>
+                                    </div>
+                                    <span>Filter</span>
+                                </div>
+                                <div class=" text-center theme_button_color flex flex-row justify-center items-center space-x-1 w-32 h-9 rounded-xl">
+                                    <div class="">
+
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 22C6.47967 21.994 2.00606 17.5204 2 12V11.8C2.10993 6.30455 6.63459 1.92797 12.1307 2.0009C17.6268 2.07382 22.0337 6.5689 21.9978 12.0654C21.9619 17.5618 17.4966 21.9989 12 22ZM7 11V13H11V17H13V13H17V11H13V7.00002H11V11H7Z" fill="#2E3A59"/>
+                                            </svg>
+                                           
+                                    </div>
+                                    <span class="font-bold">Add task</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex md:flex-row mx-auto justify-center md:justify-start height-80 md:h-2/3 w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
+                            <table class="table-auto w-full">
+                                <thead class="border-b border-yellow-300 h-12">
+                                    <tr class="">
+                                        <th class=" text-left">Task details</th>
+                                        <th>Influencer amount</th>
+                                        <th>Date</th>
+                                        <th>Reward</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr class=" border-b border-yellow-300">
+                                    <td class=" p-4 md:p-6 ">Take Photo of the main church</td>
+                                    <td class=" p-4 md:p-6 text-center">2</td>
+                                    <td class=" p-4 md:p-6 text-center">May 26, 2021</td>
+                                    <td class=" p-4 md:p-6 flex justify-center items-center">
+                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold items-center">
+                                            <div class="flex flex-row items-center space-x-1">
+                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>                                                                
+                                                <span>25</span>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr class="border-b border-yellow-300">
+                                    <td class=" p-4 md:p-6 ">Dog photo in the main park</td>
+                                    <td class=" p-4 md:p-6 text-center">4</td>
+                                    <td class=" p-4 md:p-6 text-center">april 18, 2021</td>
+                                    <td class=" p-4 md:p-6 flex justify-center items-center">
+                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold text-center">
+                                            <div class="flex flex-row items-center space-x-1">
+                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>                                                                
+                                                <span>25</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-yellow-300">
+                                    <td class=" p-4 md:p-6 ">Jogging photo</td>
+                                    <td class=" p-4 md:p-6 text-center">5</td>
+                                    <td class=" p-4 md:p-6 text-center">june 30, 2021</td>
+                                    <td class=" p-4 md:p-6 flex justify-center items-center">
+                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold text-center">
+                                            <div class="flex flex-row items-center space-x-1">
+                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>                                                                
+                                                <span>25</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-yellow-300">
+                                    <td class=" p-4 md:p-6 ">Selfie in the city café</td>
+                                    <td class=" p-4 md:p-6 text-center">7</td>
+                                    <td class=" p-4 md:p-6 text-center">May 25, 2019</td>
+                                    <td class=" p-4 md:p-6 flex justify-center items-center">
+                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold text-center">
+                                            <div class="flex flex-row items-center space-x-1">
+                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>                                                                
+                                                <span>25</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-yellow-300">
+                                    <td class=" p-4 md:p-6 ">Running photo</td>
+                                    <td class=" p-4 md:p-6 text-center">0</td>
+                                    <td class=" p-4 md:p-6 text-center">May 25, 2019</td>
+                                    <td class=" p-4 md:p-6 flex justify-center items-center">
+                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold text-center">
+                                            <div class="flex flex-row items-center space-x-1">
+                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>                                                                
+                                                <span>25</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-yellow-300">
+                                    <td class=" p-4 md:p-6 ">Dancing on terrain photo</td>
+                                    <td class=" p-4 md:p-6 text-center">1</td>
+                                    <td class=" p-4 md:p-6 text-center">May 24, 2019</td>
+                                    <td class=" p-4 md:p-6 flex justify-center items-center">
+                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold text-center">
+                                            <div class="flex flex-row items-center space-x-1">
+                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>                                                                
+                                                <span>25</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-yellow-300">
+                                    <td class=" p-4 md:p-6 ">Helping someone photo</td>
+                                    <td class=" p-4 md:p-6 text-center">3</td>
+                                    <td class=" p-4 md:p-6 text-center">May 24, 2019</td>
+                                    <td class=" p-4 md:p-6 flex justify-center items-center">
+                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold text-center">
+                                            <div class="flex flex-row items-center space-x-1">
+                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>                                                                
+                                                <span>25</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+
+
+                                </tbody>
+                            </table>
+    
+                        </div>
+                    </div>
+                    
+                </div>
+    
+            </div>
+            <!-- <table class="table-auto">
+                <thead class="border-b border-yellow-300">
+                  <tr>
+                    <th>Song</th>
+                    <th>Artist</th>
+                    <th>Year</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-yellow-300">
+                    <td class=" md:p-6 ">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+                    <td class=" md:p-6 ">Malcolm Lockyer</td>
+                    <td class=" md:p-6 ">1961</td>
+                  </tr>
+                  <tr class="border-b border-yellow-300">
+                    <td class=" md:p-6 ">Witchy Woman</td>
+                    <td class=" md:p-6 ">The Eagles</td>
+                    <td class=" md:p-6 ">1972</td>
+                  </tr>
+                  <tr class="border-b border-yellow-300">
+                    <td class=" md:p-6 ">Shining Star</td>
+                    <td class=" md:p-6 ">Earth, Wind, and Fire</td>
+                    <td class=" md:p-6 ">1975</td>
+                  </tr>
+                </tbody>
+              </table> -->
+        </div>
+
+    </div>
+
+</div>
