@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
-    console.log("submitbutton")
     const loginCredentials: Login = {
       type: "stad",
       username: this.loginForm.controls.username.value,
@@ -33,7 +32,6 @@ export class LoginComponent implements OnInit {
 
     this.authService.authenticate(loginCredentials).subscribe(res => {
       if (res.data.token != null) {
-        console.log("logging in")
         localStorage.setItem('token', res.data.token)
         this.router.navigateByUrl('/dashboard/overview');
       } else {

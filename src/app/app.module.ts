@@ -13,9 +13,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { AppDownloadPageComponent } from './app-download-page/app-download-page.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { NgxEchartsModule } from 'ngx-echarts';
 import { AuthGuard } from './auth/authGuard';
-import { CommonModule } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { BrowseCitiesComponent } from './browse-cities/browse-cities.component';
 import { CityCardComponent } from './browse-cities/city-card/city-card.component';
@@ -40,6 +38,7 @@ import { CityCardComponent } from './browse-cities/city-card/city-card.component
     AppRoutingModule,
     SharedModule,
     RouterModule,
+
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
