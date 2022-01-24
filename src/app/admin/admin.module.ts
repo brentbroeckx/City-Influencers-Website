@@ -4,11 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from '../shared/shared.module';
 import {AdminRoutingModule} from './admin-routing.module';
-import { DashboardHeaderComponent } from './dashboard/dashboard-header/dashboard-header.component';
 import { DashboardModule } from './dashboard/dashboard-header/dashboard.module';
 import { MyInfluencersModule } from './dashboard/my-influencers/my-influencers.module';
 import { MyTasksModule } from './dashboard/my-tasks/my-tasks.module';
-import { SideNavigationComponent } from './dashboard/navigation/side-navigation.component';
 import { OverviewModule } from './dashboard/overview/overview.module';
 
 @NgModule({
@@ -24,6 +22,7 @@ import { OverviewModule } from './dashboard/overview/overview.module';
     OverviewModule,
     MyInfluencersModule,
     MyTasksModule,
+    DashboardModule,
   ]
 })
 export class AdminModule {
