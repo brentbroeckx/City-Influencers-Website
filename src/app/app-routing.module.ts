@@ -9,13 +9,12 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'dashboard', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
+  { path: 'dashboard', loadChildren: () => import('./admin/city-dashboard.module').then(m => m.CityDashboardModule)},
+  { path: 'admin', loadChildren: () => import('./admin/admin-dashboard.module').then(m => m.AdminModule)},
   { path: 'download-page', component: AppDownloadPageComponent},
   { path: 'login', component: LoginComponent},
   { path: 'sign-up', component: SignUpComponent},
   { path: 'browse-cities', component: BrowseCitiesComponent},
-  //{ path: 'dashboard/overview', component: OverviewComponent, canActivate: [AuthGuard]},
-  //{ path: 'dashboard/my-influencers', component: MyInfluencersComponent, canActivate: [AuthGuard]},
 
 ];
 
