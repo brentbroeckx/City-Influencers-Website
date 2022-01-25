@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from '../shared/shared.module';
-import {AdminRoutingModule} from './admin-routing.module';
+import {CityDashboardRoutingModule} from './city-dashboard-routing.module';
 import { DashboardModule } from './dashboard/dashboard-header/dashboard.module';
 import { MyInfluencersModule } from './dashboard/my-influencers/my-influencers.module';
 import { MyTasksModule } from './dashboard/my-tasks/my-tasks.module';
@@ -15,7 +15,7 @@ import { OverviewModule } from './dashboard/overview/overview.module';
   ],
   imports: [
     SharedModule,
-    AdminRoutingModule,
+    CityDashboardRoutingModule,
     
   ],
   exports: [
@@ -25,5 +25,5 @@ import { OverviewModule } from './dashboard/overview/overview.module';
     DashboardModule,
   ]
 })
-export class AdminModule {
+export class CityDashboardModule {
 }

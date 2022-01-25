@@ -9,6 +9,18 @@
     "test": "ng test",
     "compodoc": "npx compodoc -p tsconfig.doc.json"
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false,
+    "crypto": false,
+    "stream": false,
+    "http": false,
+    "tls": false,
+    "zlib": false,
+    "https": false,
+    "net": false
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.2.0",
@@ -22,6 +34,7 @@
     "@swimlane/ngx-charts": "^20.0.1",
     "angular2-cookie": "^1.2.6",
     "autoprefixer": "^10.4.0",
+    "bcryptjs": "^2.4.3",
     "echarts": "^5.2.2",
     "jwt-decode": "^3.1.2",
     "ng2-cookies": "^1.0.12",
@@ -38,6 +51,7 @@
     "@angular-devkit/build-angular": "~12.2.6",
     "@angular/cli": "~12.2.6",
     "@angular/compiler-cli": "~12.2.0",
+    "@types/bcryptjs": "^2.4.2",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.20.37",
     "jasmine-core": "~3.8.0",
