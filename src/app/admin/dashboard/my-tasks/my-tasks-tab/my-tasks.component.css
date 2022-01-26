@@ -4,8 +4,11 @@
      transition-timing-function: ease-in-out; */
  }
  
- /* .theme_button_color:hover{
-     background-color:#FFDA47;
-     transition-duration: 0.5s;
-     transition-timing-function: ease-in-out;
- } */
+ .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar{
+    display: none;
+}
