@@ -27,6 +27,8 @@ export class BrowseCitiesComponent implements OnInit {
       this.cities = res.data;
     })
 
+
+
   }
 
 }

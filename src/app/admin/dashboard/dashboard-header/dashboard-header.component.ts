@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
+import { City } from 'src/app/models/city';
+import { CityService } from 'src/app/services/city.service';
 
 @Component({
   selector: 'app-dashboard-header',
@@ -7,12 +10,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DashboardHeaderComponent implements OnInit {
 
-  @Input() headerTitle: string = "";
+  @Input() headerTitle: String = "";
+  city: City = {id: "", naam: "", postcode: "", image: ""};
 
-  constructor() { }
+  constructor(private authService: AuthService, private cityService: CityService) { }
 
   ngOnInit(): void {
-    console.log(this.headerTitle)
+    this.authService.validateToken().subscribe(res =>{
+      this.cityService.getCityById(res.data.id).subscribe(res => {
+        this.city = res.data[0];
+      })
+    })
   }
 
 }

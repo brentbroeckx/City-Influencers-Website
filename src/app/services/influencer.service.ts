@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { Influencer } from '../models/influencer';
 import { InfluencerApiResponse } from '../models/influencerApiResponse';
 
 @Injectable({
@@ -16,6 +18,17 @@ export class InfluencerService {
       'Authorization': `Bearer ${bearer}`
     })
 
-    return this.httpClient.get<InfluencerApiResponse>("http://192.168.56.101:8080/api/influencers", {headers: headers});
+    return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "influencers", {headers: headers});
   }
+
+  getInfluencerById(id: String) {
+    const bearer = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${bearer}`
+    })
+
+    return this.httpClient.get<InfluencerApiResponse>(environment.API_URL + "influencers/" + id, {headers: headers})
+  }
+
 }
