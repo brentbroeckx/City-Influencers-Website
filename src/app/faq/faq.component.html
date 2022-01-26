@@ -1,0 +1,117 @@
+<div class="container mx-auto w-full px-8">
+    <app-header></app-header>
+    <div>
+      <section class="text-gray-700">
+        <div class="container px-5 py-10 mx-auto">
+          <div class="text-center mb-20">
+            <h1 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl title-font mb-4 font-bold ">
+              Frequently Asked Questions
+            </h1>
+            <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
+              The most common questions about the City Influencer platform and what we can do for you.
+            </p>
+          </div>
+          <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+            <div class="w-full lg:w-1/2 px-4 py-2">
+              <details class="mb-4">
+                <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  What is the City Influencer platform?
+                </summary>
+
+                <span>
+                  City Influencers is a platform where one can immediately promote their city with local influencers. They are rewarded for this and local business gets a boost.
+                </span>
+              </details>
+              <details class="mb-4">
+                <summary class="font-semibold bg-gray-200 rounded-md py-2 px-4">
+                  How can I, as a city, sign up to participate?
+                </summary>
+
+                <span>
+                  As a city you can apply through the <a [routerLink]="['/sign-up']">sign up page</a>, after this the application will be forwarded to us. You will be notified via email when you can log in to the system.
+                </span>
+              </details>
+              <details class="mb-4">
+                <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  How can I, as a person, sign up to participate?
+                </summary>
+
+                <span>
+                  Potential new influencers can download the app <a [routerLink]="['/download-page']">here</a>. In the app, they can then register.
+                </span>
+              </details>
+            </div>
+            <div class="w-full lg:w-1/2 px-4 py-2">
+              <details class="mb-4">
+                <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  How are influencers rewarded?
+                </summary>
+
+                <span>
+                  There is a point system for the influencers, they earn points by the posts they make for a city/ for cities. They can then later convert these points into vouchers to spend at local merchants.
+                </span>
+              </details>
+              <details class="mb-4">
+                <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  How can I, as a city, request a demo?
+                </summary>
+
+                <span>
+                  You can make a request through the <a [routerLink]="['/contact-us']">contact form</a>, by <a href="mailto:info@fairville.be">mail (info@fairville.be)</a> or by <a href="tel:093627125">phone (09 362 71 25)</a>.
+                </span>
+              </details>
+              <details class="mb-4">
+                <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                  How can I communicate with you?
+                </summary>
+
+                <span>
+                  You can contact us through the <a [routerLink]="['/contact-us']">contact form</a>, by <a href="mailto:info@fairville.be">mail (info@fairville.be)</a> or by <a href="tel:093627125">phone (09 362 71 25)</a>.
+                </span>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="mt-9 md:mt-11 lg:mt-16">
+        <div class="text-center">
+            <h1 class="text-3xl font-medium leading-loose text-gray-800">Didn’t find an answer?</h1>
+            <p class="mx-4 md:mx-0 mb-4 text-base leading-none text-gray-600 mt-4">Our team is just an email away and ready to answer your questions!</p>
+        </div>
+        <div role="list" aria-label="Our Team mates" class="flex flex-wrap items-center justify-around mt-2">
+            <div role="listitem" class="focus:outline-none" class="flex flex-col items-center justify-center m-6">
+                <img src="../../assets/images/team/brent.png" alt="Display avatar of Brent Broeckx" role="img" />
+                <p class="text-base font-semibold leading-none text-gray-800 mt-2">Brent Broeckx</p>
+                <p class="text-base leading-none text-gray-600 mt-2">APP</p>
+            </div>
+            <div role="listitem" class="focus:outline-none" class="flex flex-col items-center justify-center m-6">
+                <img src="../../assets/images/team/ben.png" alt="Display avatar of Ben Janssen" role="img" />
+                <p class="text-base font-semibold leading-none text-gray-800 mt-2">Ben Janssen</p>
+                <p class="text-base leading-none text-gray-600 mt-2">IoT</p>
+            </div>
+            <div role="listitem" class="focus:outline-none" class="flex flex-col items-center justify-center m-6">
+                <img src="../../assets/images/team/warre.png" alt="Display avatar of Warre Kiekens" role="img" />
+                <p class="text-base font-semibold leading-none text-gray-800 mt-2">Warre Kiekens</p>
+                <p class="text-base leading-none text-gray-600 mt-2">CCS</p>
+            </div>
+            <div role="listitem" class="focus:outline-none" class="flex flex-col items-center justify-center m-6">
+                <img src="../../assets/images/team/stef.png" alt="Display Avatar of Stef Scharre" role="img" />
+                <p class="text-base font-semibold leading-none text-gray-800 mt-2">Stef Scharre</p>
+                <p class="text-base leading-none text-gray-600 mt-2">APP</p>
+            </div>
+            <div role="listitem" class="focus:outline-none" class="flex flex-col items-center justify-center m-6">
+                <img src="../../assets/images/team/britt.png" alt="Display avatar of Britt Theunis" role="img" />
+                <p class="text-base font-semibold leading-none text-gray-800 mt-2">Britt Theunis</p>
+                <p class="text-base leading-none text-gray-600 mt-2">AI</p>
+            </div>
+        </div>
+        <div class="flex justify-center items-center">
+          <p class=" text-center">
+            <a [routerLink]="['/contact-us']" class=" w-32 rounded-full theme_button_color block px-x py-1 text-gray-700 lg:border-0 ">Contact us </a>   
+          </p>     
+        </div>
+         
+    </div>
+    <app-footer></app-footer>
+</div>
+

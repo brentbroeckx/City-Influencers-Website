@@ -23,6 +23,7 @@ import { ServerErrorComponent } from './error-pages/server-error/server-error.co
 import { BadGatewayComponent } from './error-pages/bad-gateway/bad-gateway.component';
 import { ServiceUnavailableComponent } from './error-pages/service-unavailable/service-unavailable.component';
 import { TimeOutComponent } from './error-pages/time-out/time-out.component';
+import { FaqComponent } from './faq/faq.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { TimeOutComponent } from './error-pages/time-out/time-out.component';
     BadGatewayComponent,
     ServiceUnavailableComponent,
     TimeOutComponent,
+    FaqComponent,
 
   ],
   imports: [
