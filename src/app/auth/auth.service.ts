@@ -27,10 +27,40 @@ export class AuthService {
 
   validateToken() {
     const bearer = localStorage.getItem('token')
+
+    if (bearer == null) {
+      this.router.navigateByUrl('/login')
+    }
+
     let headers = new HttpHeaders({
       'Authorization': `Bearer ${bearer}`
     })
     return this.httpClient.get<TokenValidationResponse>(environment.API_URL + "me", {headers: headers})
+  }
+
+  reRouteNonAuth(type: string): any {
+    this.validateToken().subscribe(res => {
+      if (res.error == "AuthTokenExpire") {
+        console.log("token expired")
+        this.router.navigateByUrl('/login')
+        return true;
+      } else if (res.error == "AuthTokenWrong") {
+        console.log("Wrong Auth Token!")
+        this.router.navigateByUrl('/login')
+        return true;
+      }
+      else if (res.data.type != type) {
+        console.log("Trying to access route not meant for" + type)
+        this.router.navigateByUrl('/')
+        return true;
+      } else {
+        console.log("Verified!")
+        return false;
+      }
+
+      
+    })
+
   }
 
   deleteToken(): void {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-overview',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
   options: any;
+
+  constructor(private authService: AuthService) {}
   
 
   ngOnInit(): void {
+
+    this.authService.reRouteNonAuth("stad");
+
+
+
     const xAxisData = [];
     const data1 = [];
     const data2 = [];
