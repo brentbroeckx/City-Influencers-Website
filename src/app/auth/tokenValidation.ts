@@ -1,4 +1,4 @@
 export interface TokenValidation {
-    id: String;
-    type: String;
+    id: string;
+    type: string;
 }

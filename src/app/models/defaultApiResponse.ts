@@ -1,4 +1,4 @@
 export interface DefaultApiResponse {
     code: number;
-    message: String;
+    message: string;
 }

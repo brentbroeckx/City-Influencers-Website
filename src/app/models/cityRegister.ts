@@ -1,8 +1,8 @@
 export interface CityRegister {
-    username: String;
-    password: String;
-    name: String;
+    username: string;
+    password: string;
+    name: string;
     postcode: number;
-    email: String;
-    type: String;
+    email: string;
+    type: string;
 }

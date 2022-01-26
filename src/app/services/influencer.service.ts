@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../auth/auth.service';
 import { Influencer } from '../models/influencer';
 import { InfluencerApiResponse } from '../models/influencerApiResponse';
 
@@ -9,16 +11,19 @@ import { InfluencerApiResponse } from '../models/influencerApiResponse';
 })
 export class InfluencerService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
-  getAllInfluencers() {
+  getAllInfluencers(): Observable<InfluencerApiResponse> {
     const bearer = localStorage.getItem('token');
+    let id = localStorage.getItem('id');
 
     let headers = new HttpHeaders({
       'Authorization': `Bearer ${bearer}`
     })
 
-    return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "influencers", {headers: headers});
+    return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers", {headers: headers});
+    
+
   }
 
   getInfluencerById(id: String) {
