@@ -17,9 +17,14 @@ export class DashboardHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.validateToken().subscribe(res =>{
-      this.cityService.getCityById(res.data.id).subscribe(res => {
-        this.city = res.data[0];
-      })
+      if (this.authService.reRouteNonAuth("stad") == false) {
+        console.log("auth verified")
+        this.cityService.getCityById(res.data.id).subscribe(res => {
+          this.city = res.data[0];
+        })
+      }
+
+      
     })
   }
 
