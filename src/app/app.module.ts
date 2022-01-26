@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
 import { BrowseCitiesComponent } from './browse-cities/browse-cities.component';
 import { CityCardComponent } from './browse-cities/city-card/city-card.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { FaqComponent } from './faq/faq.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     BrowseCitiesComponent,
     CityCardComponent,
     ContactUsComponent,
+    FaqComponent,
 
   ],
   imports: [
