@@ -8,7 +8,7 @@ import { City } from 'src/app/models/city';
 })
 export class CityCardComponent implements OnInit {
 
-  @Input() city: City = { id: 0, naam: "", postcode: "", image: ""};
+  @Input() city: City = { id: "", naam: "", postcode: "", image: ""};
 
   constructor() { }
 

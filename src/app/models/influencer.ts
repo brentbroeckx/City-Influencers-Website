@@ -14,9 +14,12 @@ export interface Influencer {
     gebruikersnaaminstagram: String;
     gebruikersnaamfacebook: String;
     gebruikersnaamtiktok: String;
+    aantalvolgersinstagram: String;
+    aantalvolgersfacebook: String;
+    aantalvolgerstiktok: String;
     infoovervolgers: String;
     badge: String;
-    aantalPunten: String; // MUST BE A NUMBER ! HAS TO BE CHANGED
+    aantalPunten: String;
     categories: [];
 
 }

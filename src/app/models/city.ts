@@ -1,5 +1,5 @@
 export interface City {
-    id: number;
+    id: String;
     naam: String;
     postcode: String;
     image: String;

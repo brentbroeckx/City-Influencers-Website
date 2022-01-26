@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { CityRegister } from '../models/cityRegister';
 import { DefaultApiResponse } from '../models/defaultApiResponse';
 
@@ -14,7 +15,7 @@ export class SignUpService {
 
   processLogin(city: CityRegister): Observable<DefaultApiResponse> {
 
-    return this.httpClient.post<DefaultApiResponse>("http://192.168.56.101:8080/api/register", city);
+    return this.httpClient.post<DefaultApiResponse>(environment.API_URL + "register", city);
 
   }
 

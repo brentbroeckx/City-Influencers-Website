@@ -7,11 +7,14 @@ import { SidenavigationModule } from "../navigation/side-navigation.module";
 import { InfluencerCardComponent } from "./influencer-card/influencer-card.component";
 import { MyInfluencersRoutingModule } from "./my-influencers-routing.module";
 import { MyInfluencersComponent } from "./my-influencers-tab/my-influencers.component";
+import { InfluencerDetailComponent } from './my-influencers-tab/influencer-detail/influencer-detail.component';
 
 @NgModule({
     declarations: [
         MyInfluencersComponent,
         InfluencerCardComponent,
+        InfluencerDetailComponent,
+        InfluencerDetailComponent
     ],
     imports: [
         SharedModule,
@@ -22,6 +25,7 @@ import { MyInfluencersComponent } from "./my-influencers-tab/my-influencers.comp
     exports: [
         MyInfluencersComponent,
         InfluencerCardComponent,
+        InfluencerDetailComponent
     ],
     providers: []
 })
