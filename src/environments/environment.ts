@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: "http://192.168.56.101:8080/api/"
+  API_URL: "http://api-ci.westeurope.cloudapp.azure.com:8080/api/"
 };
 
 /*
