@@ -16,6 +16,13 @@ import { SharedModule } from './shared/shared.module';
 import { BrowseCitiesComponent } from './browse-cities/browse-cities.component';
 import { CityCardComponent } from './browse-cities/city-card/city-card.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { PageNotFoundComponent } from './error-pages/page-not-found/page-not-found.component';
+import { UnauthorizedComponent } from './error-pages/unauthorized/unauthorized.component';
+import { ForbiddenComponent } from './error-pages/forbidden/forbidden.component';
+import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
+import { BadGatewayComponent } from './error-pages/bad-gateway/bad-gateway.component';
+import { ServiceUnavailableComponent } from './error-pages/service-unavailable/service-unavailable.component';
+import { TimeOutComponent } from './error-pages/time-out/time-out.component';
 import { FaqComponent } from './faq/faq.component';
 
 
@@ -32,6 +39,13 @@ import { FaqComponent } from './faq/faq.component';
     BrowseCitiesComponent,
     CityCardComponent,
     ContactUsComponent,
+    PageNotFoundComponent,
+    UnauthorizedComponent,
+    ForbiddenComponent,
+    ServerErrorComponent,
+    BadGatewayComponent,
+    ServiceUnavailableComponent,
+    TimeOutComponent,
     FaqComponent,
 
   ],

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppDownloadPageComponent } from './app-download-page/app-download-page.component';
 import { BrowseCitiesComponent } from './browse-cities/browse-cities.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { PageNotFoundComponent } from './error-pages/page-not-found/page-not-found.component';
 import { FaqComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +20,10 @@ const routes: Routes = [
   { path: 'browse-cities', component: BrowseCitiesComponent},
   { path: 'contact-us', component: ContactUsComponent},
   { path: 'faq', component: FaqComponent},
+
+  //Error pages:
+  { path: 'page-not-found', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent },
 
 ];
 
