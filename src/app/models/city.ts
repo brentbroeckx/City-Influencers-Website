@@ -1,6 +1,6 @@
 export interface City {
-    id: String;
-    naam: String;
-    postcode: String;
-    image: String;
+    id: string;
+    naam: string;
+    postcode: string;
+    image: string;
 }

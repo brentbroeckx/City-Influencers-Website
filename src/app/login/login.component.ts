@@ -35,6 +35,12 @@ export class LoginComponent implements OnInit {
       if (res.data.token != null) {
         console.log("logging in")
         localStorage.setItem('token', res.data.token)
+
+        this.authService.validateToken().subscribe(res => {
+          localStorage.setItem('id', res.data.id)
+        })
+
+
         this.router.navigateByUrl('/dashboard/overview');
       } else {
         //show error message (wrong username/password/...)
