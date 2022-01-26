@@ -14,8 +14,8 @@ import { RequestsModule } from './admin-dashboard/requests/requests.module';
     
   ],
   exports: [
-      RequestsModule,
-      AdminOverviewModule
+    RequestsModule,
+    AdminOverviewModule
   ]
 })
 export class AdminModule {

@@ -1,7 +1,6 @@
+import { DefaultApiResponse } from "./defaultApiResponse";
 import { Influencer } from "./influencer";
 
-export interface InfluencerApiResponse {
-    code: number;
-    message: String;
+export interface InfluencerApiResponse extends DefaultApiResponse {
     data: Array<Influencer>;
 }
