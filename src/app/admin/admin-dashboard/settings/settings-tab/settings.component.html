@@ -3,8 +3,8 @@
         <app-admin-side-navigation></app-admin-side-navigation>
     </div>
     <div class="w-full">
-        <app-admin-dashboard-header [headerTitle]="'Overview'"></app-admin-dashboard-header>
-
+        <app-admin-dashboard-header [headerTitle]="'Admin settings'"></app-admin-dashboard-header>
+  
         <div class="">
             <div class="mx-5 mt-5">
             
@@ -12,7 +12,7 @@
                     <div class="flex flex-col h-2/3 mx-4">
                         <div class="flex flex-row justify-between  py-5 border-b-2 border-gray-200">
                             <div class="font-bold flex flex-row">
-                                All cities 
+                                All admins 
                             </div>
                             <div class="flex flex-row space-x-4">
                                 <div class="flex flex-row items-center space-x-1">
@@ -40,45 +40,51 @@
                                                 </svg>
                                             
                                         </div>
-                                        <span class="font-medium">Add city</span>
+                                        <span class="font-medium">Add admin</span>
                                     </div>
                                 </div>
                                 
                             </div>
                         </div>
-                        <div class=" flex md:flex-row mx-auto justify-center md:justify-start height-80 md:h-2/3 w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
-                            <table class="table-auto w-full ">
+                        <div class="flex md:flex-row mx-auto justify-center md:justify-start height-80 md:h-2/3 w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
+                            <table class="table-auto w-full">
                                 <thead class="border-b border-blue-300 h-12">
                                     <tr class="">
-                                        <th class=" text-left">City name</th>
-                                        <th>Influencer amount</th>
-                                        <th>Date started</th>
-                                        <th class="hidden md:table-cell" >Status</th>
+                                        <th class=" text-left">Name</th>
+                                        <th class="hidden md:table-cell">Email</th>
+                                        <th class="hidden md:table-cell">Last active</th>
+                                        <th class="">Status</th>
+                                        <th class="">Super admin</th>
                                     </tr>
                                 </thead>
-                                <tbody class="">
-                                    <tr class=" border-t border-blue-300">
-                                        <td class=" p-4 md:p-6 ">Geel</td>
-                                        <td class=" p-4 md:p-6 text-center">4</td>
-                                        <td class=" p-4 md:p-6 text-center">Januari 19, 2022</td>
-                                        <td class=" p-4 md:p-6 hidden md:block">
+                                <tbody>
+                                    <tr class=" border-b border-blue-300">
+                                        <td class=" p-2 md:p-6 text-left ">Geel</td>
+                                        <td class=" p-2 md:p-6 text-center hidden md:table-cell">geel@blauw.xd</td>
+                                        <td class=" p-2 md:p-6 text-center hidden md:table-cell">Januari 19, 2022</td>
+                                        <td class=" p-2 md:p-6">
                                             <div class="flex items-center justify-center w-full">
   
                                                 <label for="toogleA" class="flex items-center cursor-pointer" >
                                                   <!-- toggle -->
-                                             
-                                                  <div class="relative">
-                                                    <!-- input -->
-                                                    <input id="toogleA" type="checkbox" class="sr-only" />
-                                                    <!-- line -->
-                                                    <div class=" line w-10 h-4 bg-red-800 rounded-full shadow-inner"></div>
-                                                    <!-- dot -->
-                                                    <div class="dot absolute w-6 h-6 bg-white rounded-full shadow -left-1 -top-1 transition"></div>
-                                                  </div>
-                                                  <!-- label -->
-                                                
-                                                </label>
-                                                
+                                                    <div class="relative">
+                                                        <input id="toogleA" type="checkbox" class="sr-only" />
+                                                        <div class=" line w-10 h-4 bg-red-800 rounded-full shadow-inner"></div>
+                                                        <div class="dot absolute w-6 h-6 bg-white rounded-full shadow -left-1 -top-1 transition"></div>
+                                                    </div>
+                                                </label>                                               
+                                              </div>
+                                        </td>
+                                        <td class=" p-4 md:p-6">
+                                            <div class="flex items-center justify-center w-full">
+                                                <label for="toogleB" class="flex items-center cursor-pointer" >
+                                                  <!-- toggle -->
+                                                    <div class="relative">
+                                                        <input id="toogleB" type="checkbox" class="sr-only" />
+                                                        <div class=" line w-10 h-4 bg-red-800 rounded-full shadow-inner"></div>
+                                                        <div class="dot absolute w-6 h-6 bg-white rounded-full shadow -left-1 -top-1 transition"></div>
+                                                    </div>
+                                                </label>                                               
                                               </div>
                                         </td>
                                     </tr>
@@ -92,7 +98,9 @@
     
             </div>
         </div>
-
+  
     </div>
-
-</div>
+  
+  </div>
+  
+  

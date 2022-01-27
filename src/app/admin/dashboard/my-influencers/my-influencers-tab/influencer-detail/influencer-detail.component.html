@@ -2,21 +2,21 @@
     <div>
         <app-side-navigation></app-side-navigation>
     </div>
-    <div class="w-full">
+    <div class="w-full ">
         <app-dashboard-header [headerTitle]="influencer.voornaam"></app-dashboard-header>
         
         <div class="detail-size overflow-auto ">
             <div class="flex flex-col mt-10 items-center">
                 <img class="w-2/3 md:w-1/3 rounded-3xl" src="../../../../../../assets/images/influencerProfilePlaceholder.jpg" alt="Influencer profile picture">
             </div>
-            <div class="flex flex-col ml-20 md:ml-0 md:items-center lg:ml-36 xl:ml-52 mt-2">
+            <div class="flex flex-col  md:ml-0 md:items-center  xl:ml-0 mt-2  text-center">
                 <div class="flex flex-col">
                     <div class="font-bold">{{ influencer.voornaam}} {{ influencer.familienaam}}</div>
                     <div class="text-gray-500 text-sm text-center">
                         <p *ngFor="let category of influencer.categories"><span *ngIf="influencer.categories.length > 1">,</span>{{ category }}</p>
                     </div>
                 </div>
-                <div class="flex flex-row mt-2 space-x-2">
+                <div class="flex flex-row mt-2 space-x-2  items-center justify-center ">
                     <div *ngIf="highestFollowCount == 'Instagram'" class="flex flex-row md:flex-col md:items-center" >
                         <svg *ngIf="influencer.gebruikersnaaminstagram != null" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="1.94177" y="2.25203" width="19.7168" height="19.7168" rx="6" fill="url(#paint0_radial_436_2353)"/>
@@ -46,8 +46,9 @@
                         </svg>
                         <p class="pl-1 text-purple-500 font-bold text-sm">{{influencer.aantalvolgersinstagram}} Followers</p>
                     </div>
-                    <div *ngIf="highestFollowCount == 'Facebook'" class="flex flex-row md:flex-col md:items-center">
-                        <svg *ngIf="influencer.gebruikersnaamfacebook != null" width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    
+                    <div *ngIf="highestFollowCount == 'Facebook'" class="flex flex-row md:flex-col items-center ">
+                            <svg *ngIf="influencer.gebruikersnaamfacebook != null" width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="11.4496" cy="12.1104" r="9.85839" fill="url(#paint0_linear_436_2354)"/>
                             <path d="M15.121 15.1254L15.5589 12.3429H12.8194V10.538C12.8194 9.77659 13.2014 9.03395 14.4284 9.03395H15.6747V6.66507C15.6747 6.66507 14.5441 6.47706 13.4638 6.47706C11.2066 6.47706 9.73263 7.81001 9.73263 10.2222V12.3429H7.22461V15.1254H9.73263V21.8523C10.2361 21.9293 10.7513 21.9688 11.276 21.9688C11.8008 21.9688 12.3159 21.9293 12.8194 21.8523V15.1254H15.121Z" fill="white"/>
                             <defs>
@@ -59,6 +60,7 @@
                         </svg>
                         <p>{{influencer.aantalvolgersfacebook}} Followers</p>
                     </div>
+                    
                     <div *ngIf="highestFollowCount == 'Tiktok'" class="flex flex-row md:flex-col md:items-center">
                         <svg *ngIf="influencer.gebruikersnaamtiktok != null" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.09616 15.3286C7.21199 14.3695 7.60534 13.8326 8.34659 13.2821C9.40719 12.5366 10.732 12.9583 10.732 12.9583V10.4565C11.0541 10.4483 11.3763 10.4674 11.6949 10.5136V13.7331C11.6949 13.7331 10.3705 13.3114 9.30986 14.0573C8.56901 14.6074 8.17486 15.1447 8.05942 16.1038C8.0558 16.6246 8.15354 17.3054 8.6036 17.894C8.49232 17.837 8.3789 17.7719 8.26334 17.6989C7.27192 17.0332 7.09133 16.0344 7.09616 15.3286ZM17.1652 5.83072C16.4356 5.03123 16.1597 4.22403 16.06 3.65698H16.9778C16.9778 3.65698 16.7948 5.14379 18.1285 6.60592L18.147 6.62558C17.7875 6.39948 17.4579 6.13259 17.1652 5.83072ZM21.5866 8.09735V11.2521C21.5866 11.2521 20.4154 11.2063 19.5486 10.9858C18.3384 10.6774 17.5606 10.2044 17.5606 10.2044C17.5606 10.2044 17.0232 9.8671 16.9798 9.84359V16.3582C16.9798 16.721 16.8805 17.6269 16.5776 18.3824C16.1822 19.3708 15.5721 20.0196 15.4599 20.1522C15.4599 20.1522 14.7178 21.0291 13.4087 21.6197C12.2286 22.1524 11.1926 22.1389 10.8829 22.1524C10.8829 22.1524 9.09187 22.2234 7.48026 21.176C7.13176 20.9452 6.80645 20.6837 6.50854 20.395L6.51659 20.4008C8.1286 21.4481 9.91919 21.3772 9.91919 21.3772C10.2293 21.3637 11.2654 21.3772 12.445 20.8445C13.753 20.2539 14.4962 19.377 14.4962 19.377C14.6072 19.2443 15.2202 18.5956 15.6139 17.6068C15.916 16.8517 16.0161 15.9454 16.0161 15.5827V9.06877C16.0596 9.09267 16.5965 9.42997 16.5965 9.42997C16.5965 9.42997 17.3748 9.90334 18.585 10.2113C19.4521 10.4318 20.6229 10.4777 20.6229 10.4777V8.00561C21.0235 8.09543 21.365 8.11971 21.5866 8.09735Z" fill="#EE1D52"/>

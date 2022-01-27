@@ -47,6 +47,7 @@ import { FaqComponent } from './faq/faq.component';
     ServiceUnavailableComponent,
     TimeOutComponent,
     FaqComponent,
+  
 
   ],
   imports: [
