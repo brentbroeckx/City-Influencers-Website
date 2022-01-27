@@ -8,6 +8,7 @@ import { DashboardModule } from './dashboard/dashboard-header/dashboard.module';
 import { MyInfluencersModule } from './dashboard/my-influencers/my-influencers.module';
 import { MyTasksModule } from './dashboard/my-tasks/my-tasks.module';
 import { OverviewModule } from './dashboard/overview/overview.module';
+import { SettingsModule } from './dashboard/settings/settings.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,8 @@ import { OverviewModule } from './dashboard/overview/overview.module';
     MyInfluencersModule,
     MyTasksModule,
     DashboardModule,
+    SettingsModule
+    
   ]
 })
 export class CityDashboardModule {

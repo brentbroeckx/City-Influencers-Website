@@ -1,0 +1,27 @@
+.theme_button_color {
+    background-color: #27DFEB ;
+    transition-duration: 0.5s;
+     transition-timing-function: ease-in-out;
+ }
+ 
+ .theme_button_color:hover{
+     background-color:#FFDA47;
+     transition-duration: 0.5s;
+     transition-timing-function: ease-in-out;
+ }
+ 
+ .inputshadow:hover {
+     box-shadow: 2px 2px #FFDA47;
+ }
+
+ .theme_button_color_2 {
+    background-color: #FFDA47 ;
+    transition-duration: 0.5s;
+     transition-timing-function: ease-in-out;
+ }
+ 
+ .theme_button_color_2:hover{
+     background-color:#27DFEB;
+     transition-duration: 0.5s;
+     transition-timing-function: ease-in-out;
+ }
