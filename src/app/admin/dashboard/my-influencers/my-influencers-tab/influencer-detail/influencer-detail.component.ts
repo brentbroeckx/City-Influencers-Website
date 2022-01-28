@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Influencer } from 'src/app/models/influencer';
 import { InfluencerService } from 'src/app/services/influencer.service';
+import { Post } from 'src/app/models/post';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class InfluencerDetailComponent implements OnInit {
   highestFollowCount: String = "";
   mostLikes: string = "";
   mostReach: string = "";
+  posts: Post[] | undefined;
 
   constructor(private postsService: PostsService, private influencersService: InfluencerService, private route: ActivatedRoute) { }
 
@@ -35,6 +37,10 @@ export class InfluencerDetailComponent implements OnInit {
           } else {
             this.highestFollowCount = "Tiktok";
           }
+
+          this.postsService.getPostsByInfluencerId(this.influencer.id).subscribe(res => {
+            this.posts = res.data;
+          })
 
 
         this.postsService.getPostsByInfluencerId(this.influencer.id).subscribe(res => {
