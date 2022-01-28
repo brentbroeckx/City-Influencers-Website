@@ -16,7 +16,7 @@ export class PostCardComponent implements OnInit {
   }
 
   toDetailPage(id: String) {
-    this.router.navigate(['/dashboard/my-influencers/posts/detail', id])
+    this.router.navigate(['/dashboard/my-influencers/posts/', id])
   }
 
 }

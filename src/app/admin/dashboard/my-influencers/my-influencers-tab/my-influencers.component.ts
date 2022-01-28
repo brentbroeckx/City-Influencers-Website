@@ -20,6 +20,9 @@ export class MyInfluencersComponent implements OnInit {
       this.influencers = res.data;
     })
 
+    this.influencerService.getInfluencersFiltered().subscribe(res => {
+      console.log(res.data);
+    })
   }
 
   changeSort() {

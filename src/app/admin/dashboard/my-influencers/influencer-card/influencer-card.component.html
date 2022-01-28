@@ -1,7 +1,7 @@
 <div (click)="toDetailPage(influencer.id)" class="w-52 md:w-44 shadow-lg my-5 mx-5 rounded-3xl rounded-br-none">
     <img class="rounded-t-3xl" src="../../../../../assets/images/influencerProfilePlaceholder.jpg" alt="Influencer profile foto">
     <div class="ml-2 mt-3 pb-5">
-        <p>{{ influencer.voornaam}} {{ influencer.familienaam}}</p>
+        <p class="ml-2">{{ influencer.voornaam}} {{ influencer.familienaam}}</p>
         <div>
             <div class="text-gray-500 text-sm ">
                 <div class="flex flex-row">
@@ -12,7 +12,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-row mt-3 space-x-3">
+            <div class="flex flex-row mt-3 space-x-3 ml-2">
                 <svg *ngIf="influencer.gebruikersnaaminstagram != null" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="1.94177" y="2.25203" width="19.7168" height="19.7168" rx="6" fill="url(#paint0_radial_436_2353)"/>
                     <rect x="1.94177" y="2.25203" width="19.7168" height="19.7168" rx="6" fill="url(#paint1_radial_436_2353)"/>
