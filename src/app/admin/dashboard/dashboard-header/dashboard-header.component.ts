@@ -11,7 +11,7 @@ import { CityService } from 'src/app/services/city.service';
 export class DashboardHeaderComponent implements OnInit {
 
   @Input() headerTitle: String = "";
-  city: City = {id: "", naam: "", postcode: "", image: ""};
+  city: City = {id: "", naam: "", postcode: "", image: "", isActief: ""};
 
   constructor(private authService: AuthService, private cityService: CityService) { }
 

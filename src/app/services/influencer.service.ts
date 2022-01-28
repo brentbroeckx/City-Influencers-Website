@@ -36,4 +36,16 @@ export class InfluencerService {
     return this.httpClient.get<InfluencerApiResponse>(environment.API_URL + "influencers/" + id, {headers: headers})
   }
 
+
+  getInfluencerCount(id: string) {
+    const bearer = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${bearer}`
+    })
+
+    return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers", {headers: headers});
+    
+  }
+
 }

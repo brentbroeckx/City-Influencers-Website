@@ -52,36 +52,35 @@
                                     <tr class="">
                                         <th class=" text-left">City name</th>
                                         <th>Influencer amount</th>
-                                        <th>Date started</th>
                                         <th class="hidden md:table-cell" >Status</th>
                                     </tr>
                                 </thead>
                                 <tbody class="">
-                                    <tr class=" border-t border-blue-300">
-                                        <td class=" p-4 md:p-6 ">Geel</td>
-                                        <td class=" p-4 md:p-6 text-center">4</td>
-                                        <td class=" p-4 md:p-6 text-center">Januari 19, 2022</td>
-                                        <td class=" p-4 md:p-6 hidden md:block">
-                                            <div class="flex items-center justify-center w-full">
-  
-                                                <label for="toogleA" class="flex items-center cursor-pointer" >
-                                                  <!-- toggle -->
-                                             
-                                                  <div class="relative">
-                                                    <!-- input -->
-                                                    <input id="toogleA" type="checkbox" class="sr-only" />
-                                                    <!-- line -->
-                                                    <div class=" line w-10 h-4 bg-red-800 rounded-full shadow-inner"></div>
-                                                    <!-- dot -->
-                                                    <div class="dot absolute w-6 h-6 bg-white rounded-full shadow -left-1 -top-1 transition"></div>
+                                        <tr *ngFor="let city of cities" class=" border-t border-blue-300">
+                                            <td class=" p-4 md:p-6 w-3/12 ">{{city.naam}}</td>
+                                            <td class=" p-4 md:p-6 text-center">4</td>
+                                            <td class=" p-4 md:p-6 hidden md:block">
+                                                <div class="flex items-center justify-center w-full">
+      
+                                                    <label for="toogleA" class="flex items-center cursor-pointer" >
+                                                      <!-- toggle -->
+                                                 
+                                                      <div class="relative">
+                                                        <!-- input -->
+                                                        <input id="toogleA" type="checkbox" class="sr-only" />
+                                                        <!-- line -->
+                                                        <div class=" line w-10 h-4 bg-red-800 rounded-full shadow-inner"></div>
+                                                        <!-- dot -->
+                                                        <div class="dot absolute w-6 h-6 bg-white rounded-full shadow -left-1 -top-1 transition"></div>
+                                                      </div>
+                                                      <!-- label -->
+                                                    
+                                                    </label>
+                                                    
                                                   </div>
-                                                  <!-- label -->
-                                                
-                                                </label>
-                                                
-                                              </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    
                                 </tbody>
                             </table>
     
