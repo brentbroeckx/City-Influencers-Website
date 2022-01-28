@@ -9,6 +9,7 @@ import { MyInfluencersRoutingModule } from "./my-influencers-routing.module";
 import { MyInfluencersComponent } from "./my-influencers-tab/my-influencers.component";
 import { InfluencerDetailComponent } from './my-influencers-tab/influencer-detail/influencer-detail.component';
 import { PostCardComponent } from './my-influencers-tab/influencer-detail/post-card/post-card.component';
+import { PostDetailComponent } from './my-influencers-tab/post-detail/post-detail.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { PostCardComponent } from './my-influencers-tab/influencer-detail/post-c
         InfluencerCardComponent,
         InfluencerDetailComponent,
         InfluencerDetailComponent,
-        PostCardComponent
+        PostCardComponent,
+        PostDetailComponent
     ],
     imports: [
         SharedModule,

@@ -10,9 +10,13 @@ import { Post } from 'src/app/models/post';
 export class PostCardComponent implements OnInit {
   @Input() post: Post = {id: "", influencerid: "", stadid: "", isgoedgekeurd: "", commentaarstad: "", aantallikes: "", bereik: "" }
   
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  toDetailPage(id: String) {
+    this.router.navigate(['/dashboard/my-influencers/posts/detail', id])
   }
 
 }
