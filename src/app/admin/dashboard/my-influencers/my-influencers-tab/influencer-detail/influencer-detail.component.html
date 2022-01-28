@@ -13,7 +13,14 @@
                 <div class="flex flex-col">
                     <div class="font-bold">{{ influencer.voornaam}} {{ influencer.familienaam}}</div>
                     <div class="text-gray-500 text-sm text-center">
-                        <p *ngFor="let category of influencer.categories"><span *ngIf="influencer.categories.length > 1">,</span>{{ category }}</p>
+                        <div *ngFor="let category of influencer.categories">
+                            <div *ngIf="category != 'All'">
+                                {{category}}
+                            </div>
+                        </div>
+
+ 
+
                     </div>
                 </div>
                 <div class="flex flex-row mt-2 space-x-2  items-center justify-center ">
