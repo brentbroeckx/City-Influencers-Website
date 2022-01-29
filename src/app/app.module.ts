@@ -24,6 +24,8 @@ import { BadGatewayComponent } from './error-pages/bad-gateway/bad-gateway.compo
 import { ServiceUnavailableComponent } from './error-pages/service-unavailable/service-unavailable.component';
 import { TimeOutComponent } from './error-pages/time-out/time-out.component';
 import { FaqComponent } from './faq/faq.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -55,6 +57,12 @@ import { FaqComponent } from './faq/faq.component';
     AppRoutingModule,
     SharedModule,
     RouterModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
+    BrowserAnimationsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

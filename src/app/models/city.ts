@@ -3,6 +3,6 @@ export interface City {
     naam: string;
     postcode: string;
     image: string;
-    isActief: string;
+    isactief: string;
 }
 
