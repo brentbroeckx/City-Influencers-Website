@@ -26,14 +26,39 @@
             <hr class="mt-5">
         </div>
         <div [ngClass]="navHidden ? 'hidden' : '  block text-center bg-white shadow-md pl-5 pr-5'" class="flex flex-col justify-center items-center w-full lg:flex lg:flex-row lg:justify-center lg:w-1/4 lg:order-1 lg:shadow-none lg:mt-0 lg:bg-transparent lg:pl-0 lg:pr-0  navigation-index">
-            <ul class="flex flex-col justify-center items-center mt-4 lg:flex-row lg:space-x-4 lg:mt-0 lg:text-sm lg:font-medium">
-                <li class=" text-center">
-                    <a [routerLink]="['/login']" class=" w-32 block px-x py-1 text-gray-700 lg:border-0" aria-current="page">Login</a>
-                </li>
-                <li class=" text-center">
-                    <a [routerLink]="['/sign-up']" class=" w-32 rounded-full theme_button_color block px-x py-1 text-gray-700 lg:border-0 ">Sign up </a>
-                </li>
-            </ul>
+            <div *ngIf="type == 'guest'">
+                <ul class="flex flex-col justify-center items-center mt-4 lg:flex-row lg:space-x-4 lg:mt-0 lg:text-sm lg:font-medium">
+                    <li class=" text-center">
+                        <a [routerLink]="['/login']" class=" w-32 block px-x py-1 text-gray-700 lg:border-0" aria-current="page">Login</a>
+                    </li>
+                    <li class=" text-center">
+                        <a [routerLink]="['/sign-up']" class=" w-32 rounded-full theme_button_color block px-x py-1 text-gray-700 lg:border-0 ">Sign up </a>
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="type == 'stad'">
+                <ul class="flex flex-col justify-center items-center mt-4 lg:flex-row lg:space-x-4 lg:mt-0 lg:text-sm lg:font-medium">
+                    <li class=" text-center">
+                        <a (click)="logout()" class=" w-32 block px-x py-1 text-gray-700 lg:border-0" aria-current="page">Logout</a>
+                    </li>
+                    <li class=" text-center">
+                        <a [routerLink]="['/dashboard/overview']" class=" w-32 rounded-full theme_button_color block px-x py-1 text-gray-700 lg:border-0 " aria-current="page">
+                            City Dashboard
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="type == 'admin'">
+                <ul class="flex flex-col justify-center items-center mt-4 lg:flex-row lg:space-x-4 lg:mt-0 lg:text-sm lg:font-medium">
+                    <li class=" text-center">
+                        <a (click)="logout()" class=" w-32 block px-x py-1 text-gray-700 lg:border-0" aria-current="page">Logout</a>
+                    </li>
+                    <li class=" text-center">
+                        <a [routerLink]="['/admin']" class=" w-32 rounded-full theme_button_color block px-x py-1 text-gray-700 lg:border-0 " aria-current="page">Admin Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+           
         </div>
     </div>
 </nav>

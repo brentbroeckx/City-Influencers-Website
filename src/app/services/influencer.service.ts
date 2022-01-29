@@ -26,7 +26,7 @@ export class InfluencerService {
 
   }
 
-  getInfluencersFiltered(): Observable<InfluencerApiResponse> {
+  getInfluencersFiltered(category: string, name: string): Observable<InfluencerApiResponse> {
     const bearer = localStorage.getItem('token');
     let id = localStorage.getItem('id');
 
@@ -34,7 +34,7 @@ export class InfluencerService {
       'Authorization': `Bearer ${bearer}`
     })
 
-    return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers?where=naam&like=" + "b", {headers: headers});
+    return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers?where=naam&like=" + name + "?where=category&like=" + category, {headers: headers});
 
   }
 

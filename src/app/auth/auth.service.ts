@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthTokenResponse } from './authTokenResponse';
@@ -11,7 +12,7 @@ import { TokenValidationResponse } from './tokenValidationResponse';
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private toastr: ToastrService, private httpClient: HttpClient, private router: Router) { }
 
   getLocalToken(): string {
     return localStorage.getItem('token') ?? '';
@@ -40,17 +41,21 @@ export class AuthService {
 
   reRouteNonAuth(type: string): any {
     this.validateToken().subscribe(res => {
+      console.log(res);
       if (res.error == "AuthTokenExpire") {
         console.log("token expired")
+        this.toastr.error("Your login session as expired", "Expired Login")
         this.router.navigateByUrl('/login')
         return true;
       } else if (res.error == "AuthTokenWrong") {
         console.log("Wrong Auth Token!")
+        this.toastr.error("Wrong token detected, try logging in again.")
+        localStorage.removeItem("token");
         this.router.navigateByUrl('/login')
         return true;
       }
       else if (res.data.type != type) {
-        console.log("Trying to access route not meant for" + type)
+        console.log("Trying to access route not meant for: " + res.data.type)
         this.router.navigateByUrl('/')
         return true;
       } else {
