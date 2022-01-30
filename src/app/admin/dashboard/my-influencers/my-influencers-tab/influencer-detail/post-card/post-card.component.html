@@ -1,4 +1,4 @@
-<div (click)="toDetailPage(post.id)" class="w-52 md:w-44 shadow-lg my-5 mx-5 rounded-3xl rounded-br-none">
+<div (click)="toDetailPage(post.influencerid, post.id)" class="w-52 md:w-44 shadow-lg my-5 mx-5 rounded-3xl rounded-br-none">
     <img class="rounded-t-3xl" src="../../../../../assets/images/postPlaceholder.jpg" alt="Post foto">
     <div class="ml-2 mt-3 pb-5">
         <div>
@@ -8,7 +8,7 @@
                         <path d="M10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10C19.9939 15.5203 15.5203 19.9939 10 20ZM9.984 18H10C14.4167 17.9956 17.9942 14.4127 17.992 9.996C17.9898 5.57929 14.4087 2 9.992 2C5.57528 2 1.99421 5.57929 1.992 9.996C1.98979 14.4127 5.56729 17.9956 9.984 18ZM8 15L4 11L5.41 9.59L8 12.17L14.59 5.58L16 7L8 15Z" fill="#6b7280"/>
                         </svg>
                         <span class="ml-4">
-                            <div *ngIf="post.isgoedgekeurd; then thenBlock else elseBlock"></div>
+                            <div *ngIf="post.isgoedgekeurd==='t'; then thenBlock else elseBlock"></div>
                             <ng-template #thenBlock class="ml-4">Yes</ng-template>
                             <ng-template #elseBlock class="ml-4">No</ng-template>
                         </span>
@@ -21,6 +21,13 @@
                         
                     <span class="ml-4">{{post.aantallikes}}</span>
                 </p>  
+                <p class="flex flex-row items-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.124 9.11361L2.12669 9.12637C2.50897 10.9413 3.73214 12.4995 5.46323 13.2864L9 14.894V13H11C13.7614 13 16 10.7614 16 8V7C16 4.23858 13.7614 2 11 2H7C4.23858 2 2 4.23858 2 7V8C2 8.38037 2.04211 8.74852 2.12115 9.10089L2.124 9.11361ZM11 18L4.63562 15.1071C2.31787 14.0536 0.68127 11.9677 0.169628 9.53858C0.0585895 9.0435 0 8.52859 0 8V7C0 3.13401 3.13401 0 7 0H11C14.866 0 18 3.13401 18 7V8C18 11.866 14.866 15 11 15V18Z" fill="#6b7280"/>
+                        </svg>
+                        
+                    <span class="ml-4">{{post.aantalcomments}}</span>
+                </p> 
                 <p class="flex flex-row items-center">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.051 19.949C4.72611 19.9444 0.33878 15.7679 0.0721887 10.4497C-0.194403 5.13142 3.75326 0.537084 9.05102 0V4.04C6.04164 4.54858 3.89493 7.23721 4.06516 10.2845C4.23539 13.3318 6.6682 15.7646 9.7155 15.9349C12.7628 16.1051 15.4514 13.9584 15.96 10.949H20C19.4798 16.0555 15.183 19.9421 10.05 19.949H10.051ZM20.001 8.949H15.961C15.5354 6.4347 13.5654 4.46506 11.051 4.04V0C15.7781 0.483982 19.5155 4.22098 20 8.948L20.001 8.949Z" fill="#6b7280"/>

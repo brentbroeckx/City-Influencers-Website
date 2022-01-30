@@ -1,0 +1,23 @@
+.buttonColor {
+    background-color: #27DFEB;
+}
+
+.customHeight {
+    height: 67vh;
+}
+
+.theme_button_color {
+    background-color: #27DFEB ;
+    transition-duration: 0.5s;
+     transition-timing-function: ease-in-out;
+ }
+ 
+ .theme_button_color:hover{
+     background-color:#FFDA47;
+     transition-duration: 0.5s;
+     transition-timing-function: ease-in-out;
+ }
+ 
+ .inputshadow:hover {
+     box-shadow: 2px 2px #FFDA47;
+ }

@@ -8,15 +8,15 @@ import { Post } from 'src/app/models/post';
   styleUrls: ['./post-card.component.css']
 })
 export class PostCardComponent implements OnInit {
-  @Input() post: Post = {id: "", influencerid: "", stadid: "", isgoedgekeurd: "", commentaarstad: "", aantallikes: "", bereik: "" }
+  @Input() post: Post = {id: "", influencerid: "", stadid: "", foto: "", beschrijving: "", isgoedgekeurd: "", commentaarstad: "", aantallikes: "", aantalcomments: "", bereik: "" }
   
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  toDetailPage(id: String) {
-    this.router.navigate(['/dashboard/my-influencers/posts/', id])
+  toDetailPage(influencerId: String, postId: String) {
+    this.router.navigate(['/dashboard/my-influencers/' + influencerId + '/posts/' + postId])
   }
 
 }
