@@ -7,7 +7,7 @@ import { PostDetailComponent } from "./my-influencers-tab/post-detail/post-detai
 const routes: Routes = [
     { path: '', component: MyInfluencersComponent},
     { path: 'detail/:id', component: InfluencerDetailComponent},
-    { path: 'posts/:id', component: PostDetailComponent}
+    { path: ':influencerId/posts/:postId', component: PostDetailComponent}
 ]
 
 @NgModule({

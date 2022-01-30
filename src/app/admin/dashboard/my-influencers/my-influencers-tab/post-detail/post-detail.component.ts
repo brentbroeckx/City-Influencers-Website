@@ -10,17 +10,20 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class PostDetailComponent implements OnInit {
 
-  post: Post = {id: "", influencerid: "", stadid: "", isgoedgekeurd: "", commentaarstad: "", aantallikes: "", bereik: "" }
+  post: Post = {id: "", influencerid: "", stadid: "", foto: "", beschrijving: "", isgoedgekeurd: "", commentaarstad: "", aantallikes: "", aantalcomments: "", bereik: "" }
 
 
   constructor(private postsService: PostsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const postId = this.route.snapshot.paramMap.get('id');
-    /* if (postId != null) {
-      this.postsService.getPostById(postId).subscribe(res => {
-        this.post = res.data[0];
-      } */
+    const postId = this.route.snapshot.paramMap.get('postId');
+    const influencerId = this.route.snapshot.paramMap.get('influencerId');
+    if (postId != null && influencerId != null){
+        this.postsService.getPostById(influencerId, postId).subscribe(res => {
+          this.post = res.data[0];
+      })
+    }
   }
+
 
 }

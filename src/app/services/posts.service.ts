@@ -21,15 +21,15 @@ export class PostsService {
 
   }
 
-  /* getPostById(postId: String) {
+  getPostById(influencerId: String, postId: String) {
     const bearer = localStorage.getItem('token');
 
     let headers = new HttpHeaders({
     'Authorization': `Bearer ${bearer}`
     })
 
-    return this.httpClient.get<PostsApiResponse>(environment.API_URL +"influencers/posts/" + postId, {headers: headers})
+    return this.httpClient.get<PostsApiResponse>(environment.API_URL +"influencers/" + influencerId + "/posts/" + postId, {headers: headers})
 
-  } */
+  }
 
 }
