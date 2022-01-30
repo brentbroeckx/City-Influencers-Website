@@ -4,5 +4,7 @@ export interface City {
     postcode: string;
     image: string;
     isactief: string;
+    emailadres?: string;
+    isnew?: string;
 }
 

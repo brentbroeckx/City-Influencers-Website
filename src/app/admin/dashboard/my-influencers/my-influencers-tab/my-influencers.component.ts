@@ -10,7 +10,12 @@ import { InfluencerService } from 'src/app/services/influencer.service';
 export class MyInfluencersComponent implements OnInit {
 
   influencers: Influencer[] | undefined;
+  savedInfluencers: Influencer[] | undefined;
+  savedFilteredInfluencers: Influencer[] | undefined;
   sorting: Boolean = false;
+  searchNameParam: string = "";
+  searchCategoryParam: string[] = ["All"];
+  isFiltering: Boolean = false;
 
   constructor(private influencerService: InfluencerService) { }
 
@@ -18,17 +23,55 @@ export class MyInfluencersComponent implements OnInit {
 
     this.influencerService.getAllInfluencers().subscribe(res => {
       this.influencers = res.data;
+      this.savedInfluencers = res.data;
     })
 
     
   }
 
-  onFilter(category: string, name: string) {
-    name = "b";
+  filterByName(category: string, name: string) {
     this.influencerService.getInfluencersFiltered(category, name).subscribe(res => {
-      console.log(res.data);
+      this.influencers = res.data;
+      this.savedFilteredInfluencers = res.data;
     })
 
+  }
+
+  searchName(event: any) {
+
+    if (this.searchNameParam == event.target.value) return;
+    this.searchNameParam = event.target.value;
+
+    this.filterByName(this.searchCategoryParam[1], this.searchNameParam)
+
+  }
+
+  searchCategory(event: any) {
+
+    if (this.searchCategoryParam.length != 1 && this.searchCategoryParam[0] == "All") {
+      this.searchCategoryParam.pop()
+    }
+
+    if (event.target.value == "All") {
+      if (this.searchNameParam == "") {
+        this.influencers = this.savedInfluencers;
+        return;
+      } else {
+        this.influencers = this.savedFilteredInfluencers;
+        return;
+      }
+    }
+
+    if (this.searchCategoryParam.includes(event.target.value)) return;
+    this.searchCategoryParam.push(event.target.value);
+
+    this.influencers = this.savedInfluencers?.filter(a => JSON.stringify(a.categories) === JSON.stringify(this.searchCategoryParam));
+
+
+  }
+
+  changeFilterBar() {
+    this.isFiltering = !this.isFiltering;
   }
 
   changeSort() {
@@ -36,7 +79,6 @@ export class MyInfluencersComponent implements OnInit {
 
     switch (this.sorting) {
         case true:
-            console.log("sort")
             this.influencers?.sort((a, b) => {
               var textA = a.voornaam.toLowerCase();
               var textB = b.voornaam.toLowerCase();
@@ -44,7 +86,6 @@ export class MyInfluencersComponent implements OnInit {
             })
           break;
         case false:
-            console.log("unsort")
             this.influencers?.sort((a, b) => {
               var textA = a.voornaam.toLowerCase();
               var textB = b.voornaam.toLowerCase();

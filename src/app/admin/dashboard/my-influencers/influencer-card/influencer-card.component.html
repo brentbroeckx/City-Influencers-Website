@@ -1,4 +1,4 @@
-<div (click)="toDetailPage(influencer.id)" class="w-52 md:w-44 shadow-lg my-5 mx-5 rounded-3xl rounded-br-none">
+<div (click)="toDetailPage(influencer.id)" class="w-44 md:w-40 shadow-lg my-5 mx-5 rounded-3xl rounded-br-none">
     <img class="rounded-t-3xl" src="../../../../../assets/images/influencerProfilePlaceholder.jpg" alt="Influencer profile foto">
     <div class="ml-2 mt-3 pb-5">
         <p class="ml-2">{{ influencer.voornaam}} {{ influencer.familienaam}}</p>
@@ -7,7 +7,7 @@
                 <div class="flex flex-row">
                     <div *ngFor="let category of influencer.categories" >
                         <div *ngIf="category!='All'">
-                            <p>{{category}}</p>
+                            <p class="ml-2">{{category}}</p>
                         </div>
                     </div>
                 </div>

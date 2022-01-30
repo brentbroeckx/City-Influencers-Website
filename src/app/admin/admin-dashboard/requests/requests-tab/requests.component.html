@@ -43,25 +43,26 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr class=" border-b border-blue-300">
-                                      <td class=" p-4 md:p-6 ">Geel</td>
-                                      <td class=" p-4 md:p-6 text-center">geel@blauw.xd</td>
-                                      <td class=" p-4 md:p-6 hidden md:block">
+                                  <tr *ngFor="let city of cities" class=" border-b border-blue-300">
+                                      <td class="py-4 ">{{city.naam}}</td>
+                                      <td class="py-4 text-center">{{city.emailadres}}</td>
+                                      <td class="py-4 hidden md:block">
                                           <div class="flex items-center justify-center w-full">
 
-                                              <label for="toogleA" class="flex items-center cursor-pointer" >
+                                            <label class="flex items-center cursor-pointer" >
                                                 <!-- toggle -->
-                                       
+                                           
                                                 <div class="relative">
                                                   <!-- input -->
-                                                  <input id="toogleA" type="checkbox" class="sr-only" />
+                                                  <input (click)="changeStatus(city)" id="toogleA" type="checkbox" class="sr-only" />
                                                   <!-- line -->
-                                                  <div class=" line w-10 h-4 bg-red-800 rounded-full shadow-inner"></div>
+                                                  <div [ngClass]="city.isactief == 't' ? 'line-active': ''" class=" line w-10 h-4 bg-red-800 rounded-full shadow-inner"></div>
                                                   <!-- dot -->
-                                                  <div class="dot absolute w-6 h-6 bg-white rounded-full shadow -left-1 -top-1 transition"></div>
+                                                  <div [ngClass]="city.isactief == 't' ? 'dot-active' : ''" class="bg-red-500 absolute w-6 h-6 rounded-full shadow -left-1 -top-1 transition"></div>
                                                 </div>
                                                 <!-- label -->
-                                              </label>                                       
+                                              
+                                              </label>                                   
                                             </div>
                                       </td>
                                   </tr>

@@ -34,7 +34,9 @@ export class InfluencerService {
       'Authorization': `Bearer ${bearer}`
     })
 
-    return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers?where=naam&like=" + name + "?where=category&like=" + category, {headers: headers});
+    console.log('id: ' + id + ' name: ' + name);
+
+    return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers?where=voornaam&like=" + name, {headers: headers});
 
   }
 

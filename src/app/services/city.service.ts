@@ -27,6 +27,26 @@ export class CityService {
     return this.httpClient.get<CityApiResponse>( environment.API_URL +"cities");
   }
 
+  getAllValidatedCities(): Observable<CityApiResponse> {
+    const bearer = localStorage.getItem('token');
+
+     let headers = new HttpHeaders({
+      'Authorization': `Bearer ${bearer}`
+    })
+
+    return this.httpClient.get<CityApiResponse>(environment.API_URL +"cities?where=isnew&like=f", {headers: headers})
+  }
+
+  getAllRequestedCities(): Observable<CityApiResponse> {
+    const bearer = localStorage.getItem('token');
+
+     let headers = new HttpHeaders({
+      'Authorization': `Bearer ${bearer}`
+    })
+
+    return this.httpClient.get<CityApiResponse>(environment.API_URL +"cities?where=isnew&like=t", {headers: headers})
+  }
+
   changeCityStatus(id: string, value: boolean) {
     const changeParam = {
       type: "stad",
@@ -43,6 +63,8 @@ export class CityService {
     return this.httpClient.put<any>( environment.API_URL + "activation", changeParam, {headers: headers});
 
   }
+
+  
 
 
 }
