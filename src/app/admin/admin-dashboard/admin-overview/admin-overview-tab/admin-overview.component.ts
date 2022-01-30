@@ -12,6 +12,7 @@ import { InfluencerService } from 'src/app/services/influencer.service';
 export class AdminOverviewComponent implements OnInit {
   cities: City[] | undefined;
   selected: boolean = false;
+  getCount: boolean = true;
 
 
   constructor(private cityService:CityService, private authService: AuthService) { }
@@ -20,8 +21,7 @@ export class AdminOverviewComponent implements OnInit {
 
     this.authService.reRouteNonAuth("admin");
 
-
-    this.cityService.getAllCities().subscribe(res=>{
+    this.cityService.getAllValidatedCities().subscribe(res=>{
       this.cities=res.data     
     })
   }
@@ -32,16 +32,19 @@ export class AdminOverviewComponent implements OnInit {
       // change to true
       city.isactief = "t";
       this.cityService.changeCityStatus(city.id, true).subscribe(res => {
-        console.log(res)
+        return;
       });
     } else {
       // change to false
       city.isactief = "f";
       this.cityService.changeCityStatus(city.id, false).subscribe(res => {
-        console.log(res)
+        return;
       });
     }
+
+    
   }
+
 
   
 

@@ -8,10 +8,6 @@
   background-color: #00ff00 ;
 }
 
-.dot {
-  background-color: #ff0000;
-}
-
 .scrollbar-hidden {
     -ms-overflow-style: none;
     scrollbar-width: none;

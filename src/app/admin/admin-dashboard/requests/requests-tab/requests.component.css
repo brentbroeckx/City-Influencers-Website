@@ -1,21 +1,18 @@
-input:checked ~ .dot {
-    transform: translateX(100%);
-    background-color: #00ff00 ;
-  }
 
-input:checked ~ .line {
-    background-color: #006622;
-  }
+.line-active {
+  background-color: #006622;
+}
 
-.dot {
-  background-color: #ff0000;
+.dot-active {
+  transform: translateX(100%);
+  background-color: #00ff00 ;
 }
 
 .scrollbar-hidden {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .scrollbar-hidden::-webkit-scrollbar{
-  display: none;
+    display: none;
 }
