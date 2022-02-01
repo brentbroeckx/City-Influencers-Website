@@ -5,7 +5,6 @@ import { Login } from '../models/login';
 import { AuthService } from '../auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
-import * as bcrypt from 'bcryptjs';
 import {sha256} from 'crypto-hash';
 
 @Component({
@@ -29,8 +28,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
 
     var password = this.loginForm.controls.password.value;
-    /* const salt = bcrypt.genSaltSync(10);
-    var encryptedPass = bcrypt.hashSync(password, salt); */
     var encryptedPass = sha256(password).then(res => {
         console.log(encryptedPass)
 

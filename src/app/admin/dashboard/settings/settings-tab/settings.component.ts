@@ -3,12 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { matchValidator } from 'src/app/shared/validators/checkPassword-validator';
 import { passwordValidator } from 'src/app/shared/validators/password-validator';
 
-import * as bcrypt from 'bcryptjs';
-import { CityRegister } from 'src/app/models/cityRegister';
 import { City } from 'src/app/models/city';
 import { CityService } from 'src/app/services/city.service';
 import { CityChange } from 'src/app/models/cityChange';
 import { sha256 } from 'crypto-hash';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-settings',
@@ -28,7 +27,7 @@ export class SettingsComponent implements OnInit {
   
   thisCity: City = {id: "", naam: "", gebruikersnaam:"", wachtwoord: "", postcode: "", image: "", isactief: "", emailadres: "", isnew: ""}
 
-  constructor(private cityService: CityService) { }
+  constructor(private cityService: CityService, private toastr: ToastrService ) { }
 
   ngOnInit(): void {
     const cityId = localStorage.getItem("id");
@@ -63,6 +62,7 @@ export class SettingsComponent implements OnInit {
         });
       }
     })
+    this.toastr.success("Succesfully updated", "City")
   }
 
   get email() {
