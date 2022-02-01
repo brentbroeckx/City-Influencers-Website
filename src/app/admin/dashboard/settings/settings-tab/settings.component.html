@@ -23,13 +23,13 @@
                             <div *ngIf="username?.invalid && username?.touched" class="text-red-500">Username length must be at least 4 characters</div>
                         </div>
                           <div class="mb-4">
-                          <label for="password" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Password</label>
-                          <input formControlName="password" [class.border-red-500]="password?.invalid && password?.touched" class="shadow inputshadow appearance-none rounded-full w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" type="password" placeholder="Password">
+                          <label for="password" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">New password</label>
+                          <input formControlName="password" [class.border-red-500]="password?.invalid && password?.touched" class="shadow inputshadow appearance-none rounded-full w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" type="password" placeholder="New password">
                           <div *ngIf="password?.errors?.passwordInvalid && password?.touched" class="text-red-500">Password must contain at least 8 characters, one uppercase and a digit. </div>
                           </div>
                           <div class="mb-4">
-                              <label for="passwordCheck" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Password check</label>
-                              <input formControlName="passwordCheck" [class.border-red-500]="passwordCheck?.invalid && passwordCheck?.touched" class="shadow inputshadow appearance-none rounded-full w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" id="passwordCheck" type="password" placeholder="Repeat password">
+                              <label for="passwordCheck" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">New password check</label>
+                              <input formControlName="passwordCheck" [class.border-red-500]="passwordCheck?.invalid && passwordCheck?.touched" class="shadow inputshadow appearance-none rounded-full w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" id="passwordCheck" type="password" placeholder="Repeat new password">
                               <div *ngIf="passwordCheck?.hasError('matching') && passwordCheck?.touched" class="text-red-500">Passwords do not match!</div>
                           </div>
                           <div class="flex flex-wrap justify-center mb-2">
