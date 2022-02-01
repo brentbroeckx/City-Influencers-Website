@@ -31,7 +31,7 @@
                                     </div>
                                     <span>Filter</span>
                                 </div>
-                                <div class=" text-center theme_button_color flex flex-row justify-center items-center space-x-1 w-32 h-9 rounded-xl">
+                                <div class="hidden md:block text-center theme_button_color md:flex flex-row justify-center items-center space-x-1 w-32 h-9 rounded-xl">
                                     <div class="">
 
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,15 +49,16 @@
                                     <tr class="">
                                         <th class=" text-left">Task details</th>
                                         <th>Influencer amount</th>
-                                        <th>Date</th>
+                                        <th class="hidden md:table-cell">Date</th>
                                         <th>Reward</th>
+                                        <th class="hidden md:table-cell">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr class=" border-b border-yellow-300">
-                                    <td class=" p-4 md:p-6 ">Take Photo of the main church</td>
+                                <tr (click)="toDetailPage('1')" class=" border-b border-yellow-300">
+                                    <td class=" p-4 md:p-6 ">Church</td>
                                     <td class=" p-4 md:p-6 text-center">2</td>
-                                    <td class=" p-4 md:p-6 text-center">May 26, 2021</td>
+                                    <td class=" p-4 md:p-6 text-center hidden md:table-cell">May 26, 2021</td>
                                     <td class=" p-4 md:p-6 flex justify-center items-center">
                                         <div class="theme_button_color rounded-xl w-12 h-6 font-bold items-center">
                                             <div class="flex flex-row items-center space-x-1">
@@ -69,107 +70,25 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <td class=" p-4 md:p-6 items-center hidden md:table-cell">
+                                        <div class="flex items-center justify-center w-full">
+                                            ON/OFF 
 
-                                </tr>
-                                <tr class="border-b border-yellow-300">
-                                    <td class=" p-4 md:p-6 ">Dog photo in the main park</td>
-                                    <td class=" p-4 md:p-6 text-center">4</td>
-                                    <td class=" p-4 md:p-6 text-center">april 18, 2021</td>
-                                    <td class=" p-4 md:p-6 flex justify-center items-center">
-                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold text-center">
-                                            <div class="flex flex-row items-center space-x-1">
-                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>                                                                
-                                                <span>25</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-yellow-300">
-                                    <td class=" p-4 md:p-6 ">Jogging photo</td>
-                                    <td class=" p-4 md:p-6 text-center">5</td>
-                                    <td class=" p-4 md:p-6 text-center">june 30, 2021</td>
-                                    <td class=" p-4 md:p-6 flex justify-center items-center">
-                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold text-center">
-                                            <div class="flex flex-row items-center space-x-1">
-                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>                                                                
-                                                <span>25</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-yellow-300">
-                                    <td class=" p-4 md:p-6 ">Selfie in the city café</td>
-                                    <td class=" p-4 md:p-6 text-center">7</td>
-                                    <td class=" p-4 md:p-6 text-center">May 25, 2019</td>
-                                    <td class=" p-4 md:p-6 flex justify-center items-center">
-                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold text-center">
-                                            <div class="flex flex-row items-center space-x-1">
-                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>                                                                
-                                                <span>25</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-yellow-300">
-                                    <td class=" p-4 md:p-6 ">Running photo</td>
-                                    <td class=" p-4 md:p-6 text-center">0</td>
-                                    <td class=" p-4 md:p-6 text-center">May 25, 2019</td>
-                                    <td class=" p-4 md:p-6 flex justify-center items-center">
-                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold text-center">
-                                            <div class="flex flex-row items-center space-x-1">
-                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>                                                                
-                                                <span>25</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-yellow-300">
-                                    <td class=" p-4 md:p-6 ">Dancing on terrain photo</td>
-                                    <td class=" p-4 md:p-6 text-center">1</td>
-                                    <td class=" p-4 md:p-6 text-center">May 24, 2019</td>
-                                    <td class=" p-4 md:p-6 flex justify-center items-center">
-                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold text-center">
-                                            <div class="flex flex-row items-center space-x-1">
-                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>                                                                
-                                                <span>25</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-yellow-300">
-                                    <td class=" p-4 md:p-6 ">Helping someone photo</td>
-                                    <td class=" p-4 md:p-6 text-center">3</td>
-                                    <td class=" p-4 md:p-6 text-center">May 24, 2019</td>
-                                    <td class=" p-4 md:p-6 flex justify-center items-center">
-                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold text-center">
-                                            <div class="flex flex-row items-center space-x-1">
-                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>                                                                
-                                                <span>25</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                
+        <!----------------------- nog aanpasse! ------------------------------------->
 
-
+                                            <!-- <label class="flex items-center cursor-pointer" >
+                                           
+                                                <div class="relative">
+                                                  <input (click)="changeStatus(city)" id="toogleA" type="checkbox" class="sr-only" />
+                                                  <div [ngClass]="city.isactief == 't' ? 'line-active': ''" class=" line w-10 h-4 bg-red-800 rounded-full shadow-inner"></div>
+                                                  <div [ngClass]="city.isactief == 't' ? 'dot-active' : ''" class="bg-red-500 absolute w-6 h-6 rounded-full shadow -left-1 -top-1 transition"></div>
+                                                </div>
+                                              
+                                              </label>                                    -->
+                                            </div>
+                                    </td>
+                                </tr>
+                                                                
                                 </tbody>
                             </table>
     
@@ -179,32 +98,6 @@
                 </div>
     
             </div>
-            <!-- <table class="table-auto">
-                <thead class="border-b border-yellow-300">
-                  <tr>
-                    <th>Song</th>
-                    <th>Artist</th>
-                    <th>Year</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="border-b border-yellow-300">
-                    <td class=" md:p-6 ">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                    <td class=" md:p-6 ">Malcolm Lockyer</td>
-                    <td class=" md:p-6 ">1961</td>
-                  </tr>
-                  <tr class="border-b border-yellow-300">
-                    <td class=" md:p-6 ">Witchy Woman</td>
-                    <td class=" md:p-6 ">The Eagles</td>
-                    <td class=" md:p-6 ">1972</td>
-                  </tr>
-                  <tr class="border-b border-yellow-300">
-                    <td class=" md:p-6 ">Shining Star</td>
-                    <td class=" md:p-6 ">Earth, Wind, and Fire</td>
-                    <td class=" md:p-6 ">1975</td>
-                  </tr>
-                </tbody>
-              </table> -->
         </div>
 
     </div>
