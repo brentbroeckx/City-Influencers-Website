@@ -5,6 +5,7 @@ import { Login } from '../models/login';
 import { AuthService } from '../auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
+import {sha256} from 'crypto-hash';
 
 @Component({
   selector: 'app-login',
@@ -25,44 +26,53 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
-    const loginCredentials: Login = {
-      username: this.loginForm.controls.username.value,
-      password: this.loginForm.controls.password.value
-    }
 
-    this.authService.authenticate(loginCredentials).subscribe(res => {
-      if (res.error == "AuthCredsWrong") {
-        this.toastr.warning(res.message, 'Login')
-        return;
+    var password = this.loginForm.controls.password.value;
+    var encryptedPass = sha256(password).then(res => {
+        console.log(encryptedPass)
+
+      const loginCredentials: Login = {
+        username: this.loginForm.controls.username.value,
+        password: res
       }
-
-      console.log(res);
-
-      if (res.data.token != null) {
-        localStorage.setItem('token', res.data.token)
-
-        this.authService.validateToken().subscribe(res => {
-          localStorage.setItem('id', res.data.id)
-
-          console.log(res.data)
-
-          if (res.data.isSuper || res.data.type == "admin") {
-            this.toastr.success("Succesfully logged in", "Admin")
-            this.router.navigateByUrl('/admin');
-
-          } else if (res.data.type == "stad")  {
-              this.toastr.success("Succesfully logged in", "City")
-              this.router.navigateByUrl('/dashboard/overview');
-          }
-      
-
-        })
-
-      } else {
-        //show error message (wrong username/password/...)
-        this.toastr.warning("Wrong username or password", "Login")
-      }
+      this.authService.authenticate(loginCredentials).subscribe(res => {
+        if (res.error == "AuthCredsWrong") {
+          this.toastr.warning(res.message, 'Login')
+          return;
+        }
+  
+        console.log(res);
+  
+        if (res.data.token != null) {
+          localStorage.setItem('token', res.data.token)
+  
+          this.authService.validateToken().subscribe(res => {
+            localStorage.setItem('id', res.data.id)
+  
+            console.log(res.data)
+  
+            if (res.data.isSuper || res.data.type == "admin") {
+              this.toastr.success("Succesfully logged in", "Admin")
+              this.router.navigateByUrl('/admin');
+  
+            } else if (res.data.type == "stad")  {
+                this.toastr.success("Succesfully logged in", "City")
+                this.router.navigateByUrl('/dashboard/overview');
+            }
+        
+  
+          })
+  
+        } else {
+          //show error message (wrong username/password/...)
+          this.toastr.warning("Wrong username or password", "Login")
+        }
+      })
     })
+
+    
+
+    
 
   }
 }

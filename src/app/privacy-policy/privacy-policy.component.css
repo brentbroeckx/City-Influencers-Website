@@ -1,0 +1,27 @@
+a{
+    text-decoration: underline;
+}
+
+a:hover{
+    font-weight:bold;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+p, ul, ol{
+    margin-bottom: 1rem;
+}
+
+ul > li{
+    margin-left: 1.5rem;
+    list-style-type: circle;
+}
+
+ol > li{
+    margin-left: 1.5rem;
+    list-style-type: decimal;
+}
+
+.font-italic{
+    font-style: italic;
+}
