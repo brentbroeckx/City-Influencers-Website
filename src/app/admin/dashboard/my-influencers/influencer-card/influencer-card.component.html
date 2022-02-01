@@ -4,9 +4,9 @@
         <p class="ml-2">{{ influencer.voornaam}} {{ influencer.familienaam}}</p>
         <div>
             <div class="text-gray-500 text-sm ">
-                <div class="flex flex-row">
-                    <div *ngFor="let category of influencer.categories" >
-                        <div *ngIf="category!='All'">
+                <div class="flex flex-row flex-wrap">
+                    <div  *ngFor="let category of influencer.categories" >
+                        <div *ngIf="category!='All'" >
                             <p class="ml-2">{{category}}</p>
                         </div>
                     </div>

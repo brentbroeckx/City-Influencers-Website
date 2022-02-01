@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AppDownloadPageComponent } from './app-download-page/app-download-page.component';
 import { BrowseCitiesComponent } from './browse-cities/browse-cities.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -26,7 +26,6 @@ const routes: Routes = [
   { path: '**', component: PageNotFoundComponent },
 
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

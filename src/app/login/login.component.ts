@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.authenticate(loginCredentials).subscribe(res => {
       if (res.error == "AuthCredsWrong") {
-        this.toastr.warning(res.message, 'Login')
+        this.toastr.error(res.message, 'Login')
         return;
       }
 
