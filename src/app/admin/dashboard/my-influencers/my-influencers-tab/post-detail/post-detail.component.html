@@ -31,13 +31,13 @@
                                 <span class="ml-2 mr-4">{{post.bereik}}</span>
                             </div> 
                         </div>
-                        <form class="text-gray-500 mt-4 w-96">
+                        <form class="text-gray-500 mt-4 w-96" (ngSubmit)="onSubmit()" [formGroup]="postForm">
                             <label for="approved" class="mr-2">Approved</label>
-                            <input type="checkbox" id="approved" name="approved" [checked]="post.isgoedgekeurd==='t'"><br><br>
+                            <input type="checkbox" id="approved" formControlName="approved" name="approved" [checked]="post.isgoedgekeurd==='t'"><br><br>
                             <label for="comment">Comment</label><br>
-                            <textarea class="inputshadow no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="comment" *ngIf="post.commentaarstad === null">Write your comment about the post here.</textarea>
-                            <textarea class="inputshadow no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="comment" *ngIf="post.commentaarstad">{{post.commentaarstad}}</textarea>
-                            <button class="theme_button_color  hover:bg-blue-700 text-black font-bold py-1 px-3 mt-5 rounded-full">
+                            <textarea formControlName="comment" class="inputshadow no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="comment" *ngIf="post.commentaarstad === null">Write your comment about the post here.</textarea>
+                            <textarea formControlName="comment" class="inputshadow no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="comment" *ngIf="post.commentaarstad">{{post.commentaarstad}}</textarea>
+                            <button class="theme_button_color  hover:bg-blue-700 text-black font-bold py-1 px-3 mt-5 rounded-full" type="submit">
                                 <span class="text-sm">Submit</span>
                             </button>
                         </form>
