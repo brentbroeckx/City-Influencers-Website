@@ -6,6 +6,7 @@ import { passwordValidator } from '../shared/validators/password-validator';
 
 import * as bcrypt from 'bcryptjs';
 import { SignUpService } from '../services/sign-up.service';
+import { sha256 } from 'crypto-hash';
 
 @Component({
   selector: 'app-sign-up',
@@ -36,25 +37,24 @@ export class SignUpComponent implements OnInit {
     console.log("registering button clicked")
 
     var password = this.registerForm.controls.password.value;
-    const salt = bcrypt.genSaltSync(10);
-    var encryptedPass = bcrypt.hashSync(password, 10);
+    var encryptedPass = sha256(password).then(res => {
+      var cityRegister: CityRegister = {
+        username: this.registerForm.controls.username.value,
+        password: res,
+        name: this.registerForm.controls.city.value,
+        postcode: this.registerForm.controls.postcode.value,
+        email: this.registerForm.controls.email.value,
+        type: "stad"
+      }
+  
+      console.log("Registering...")
+      console.log(cityRegister)
+  
+      this.signUpSerivce.processLogin(cityRegister).subscribe(res => {
+        console.log(res)
+      });
 
-    var cityRegister: CityRegister = {
-      username: this.registerForm.controls.username.value,
-      password: encryptedPass,
-      name: this.registerForm.controls.city.value,
-      postcode: this.registerForm.controls.postcode.value,
-      email: this.registerForm.controls.email.value,
-      type: "stad"
-    }
-
-    console.log("Registering...")
-    console.log(cityRegister)
-
-    this.signUpSerivce.processLogin(cityRegister).subscribe(res => {
-      console.log(res)
-    });
-
+    })
   }
 
   get email() {

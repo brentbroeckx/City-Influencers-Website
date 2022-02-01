@@ -8,6 +8,7 @@ import { CityRegister } from 'src/app/models/cityRegister';
 import { City } from 'src/app/models/city';
 import { CityService } from 'src/app/services/city.service';
 import { CityChange } from 'src/app/models/cityChange';
+import { sha256 } from 'crypto-hash';
 
 @Component({
   selector: 'app-settings',
@@ -47,26 +48,21 @@ export class SettingsComponent implements OnInit {
     const cityId = localStorage.getItem("id");
 
     var password = this.settingsForm.controls.password.value;
-    const salt = bcrypt.genSaltSync(10);
-    var encryptedPass = bcrypt.hashSync(password, 10);
-
-    if (cityId != null){
-    var settingsChange: CityChange = {
-      id: cityId,
-      username: this.settingsForm.controls.username.value,
-      password: encryptedPass,
-      name: this.settingsForm.controls.city.value,
-      postcode: this.settingsForm.controls.postcode.value,
-      emailadres: this.settingsForm.controls.email.value
-    }
-    this.cityService.changeCity(settingsChange).subscribe(res => {
-      
-    });
-  }
-
-
-    
-
+    var encryptedPass = sha256(password).then(res => {
+      if (cityId != null){
+        var settingsChange: CityChange = {
+          id: cityId,
+          username: this.settingsForm.controls.username.value,
+          password: res,
+          name: this.settingsForm.controls.city.value,
+          postcode: this.settingsForm.controls.postcode.value,
+          emailadres: this.settingsForm.controls.email.value
+        }
+        this.cityService.changeCity(settingsChange).subscribe(res => {
+          
+        });
+      }
+    })
   }
 
   get email() {
