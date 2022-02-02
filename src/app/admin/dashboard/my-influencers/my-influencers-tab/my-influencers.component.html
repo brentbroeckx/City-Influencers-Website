@@ -9,27 +9,15 @@
             
             <div class="border-2 border-gray-200 rounded-md bg-white databox">
                 <div class="flex flex-col h-full">
-                    <div [ngClass]="!isFiltering ? 'md:justify-between' : 'md:justify-end'" class="flex flex-col justify-center items-center md:flex-row mx-4 md:mx-5 h-24 py-5 border-b-2 border-gray-200">
-                        <div *ngIf="!isFiltering" class="flex font-bold items-center">
+                    <div class="flex flex-col justify-center items-center md:justify-between md:flex-row mx-4 md:mx-5 h-24 py-5 border-b-2 border-gray-200">
+                        <div class="flex font-bold items-center">
                             My Influencers
                         </div>
                         <div class="flex flex-row space-x-4">
                             
                             <div class="flex flex-col items-center md:flex-row">
-                                <div *ngIf="isFiltering" class="flex flex-row items-center space-x-1">
-                                    <div class="flex flex-col md:flex-row items-center">
-                                        <input class="mr-2 text-center mb-2 md:mb-0" (change)="searchName($event)" (keyup.enter)="searchName($event)" type="text" placeholder="Search by name">
-                                        <div class="flex flex-row">
-                                            <label class="mr-2" for="category">category: </label>
-                                            <select (change)="searchCategory($event)" name="categories" id="categories">
-                                                <option selected value="All">All</option>
-                                                <option value="Lifestyle">Lifestyle</option>
-                                                <option value="Music">Music</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div (click)="changeFilterBar()" class="flex flex-row mt-2 md:mt-0 md:ml-2 items-center space-x-1 cursor-pointer">
+                                
+                                <div  class="flex flex-row mt-2 md:mt-0 md:ml-2 items-center space-x-5 cursor-pointer">
                                     <div (click)="changeSort()" class="flex flex-row items-center space-x-1 cursor-pointer">
                                         <div *ngIf="sorting == true">
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,25 +34,125 @@
                                         </div>
                                         <span>Sort</span>
                                     </div>
-                                    <div>
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M13.4369 2H2.56315C2.06351 2 1.8114 2.60623 2.16542 2.96026L6.5 7.29549V12.125C6.5 12.3085 6.58955 12.4805 6.73993 12.5858L8.61493 13.8979C8.98484 14.1568 9.5 13.8944 9.5 13.437V7.29549L13.8347 2.96026C14.188 2.60694 13.9376 2 13.4369 2Z" fill="#C5C7CD"/>
-                                            </svg>
-                                            
-                                            
+                                    <div (click)="changeFilterBar()" class="flex flex-row items-center">
+                                        <div class="hidden md:block">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M13.4369 2H2.56315C2.06351 2 1.8114 2.60623 2.16542 2.96026L6.5 7.29549V12.125C6.5 12.3085 6.58955 12.4805 6.73993 12.5858L8.61493 13.8979C8.98484 14.1568 9.5 13.8944 9.5 13.437V7.29549L13.8347 2.96026C14.188 2.60694 13.9376 2 13.4369 2Z" fill="#C5C7CD"/>
+                                                </svg>
+                                                
+                                                
+                                        </div>
+                                        <span class="hidden md:block">Filter</span>
                                     </div>
-                                    <span>Filter</span>
+                                    
+                                    
                                 </div>
                             </div>
                            
                         </div>
                     </div>
-                    <div class="flex md:flex-row justify-center height-80 md:h-2/3 w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
+                    <div *ngIf="errormessage == ''" class="flex md:flex-row justify-center height-80 md:h-2/3 w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
                         <div *ngFor="let influencer of influencers">
                             <app-influencer-card [influencer]="influencer" style="cursor: pointer;"></app-influencer-card>
                         </div>
 
                     </div>
+                    <div class="flex justify-center h-20 items-center font-bold" *ngIf="errormessage != ''">
+                        {{ errormessage }}
+                    </div>
+                </div>
+                <div *ngIf="isFiltering" class="bg-white border-2 border-gray-200 absolute md:w-1/4 lg:w-1/6 top-0 right-0 h-screen">
+                    <div class="m-5">
+                        <div (click)="changeFilterBar()" class="flex flex-row cursor-pointer">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.28802 12L14.298 18.01L15.712 16.596L11.112 11.996L15.712 7.39599L14.298 5.98999L8.28802 12Z" fill="#2E3A59"/>
+                                </svg>
+                            <p>Close</p>
+                        </div>
+
+                        <div class="mt-5 w-11/12">
+                            <p class="font-bold text-base mb-5">Filter options</p>
+                            <div class="mb-5">
+                                <label class="mt-5 block font-bold text-sm mb-2" for="name">By name</label>
+                                <input (change)="setFilterName($event)" class="block border-2 border-gray-200 pl-3 mb-2 w-full" type="text" placeholder="Name">
+                                <input (change)="setFilterSurname($event)" class="block border-2 border-gray-200 pl-3 w-full" type="text" placeholder="Surname">
+                            </div>
+                            <div>
+                                <label class="mt-5 block font-bold text-sm mb-2" for="category">Category</label>
+                                <select (change)="setFilterCategory($event)" class="border-2 border-gray-200" name="category" id="category">
+                                    <option *ngFor="let category of allCategories" value={{category.naam}}>{{category.naam}}</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="mt-5 block font-bold text-sm mb-2" for="gender">Gender</label>
+                                <select (change)="setFilterGender($event)" class="border-2 border-gray-200" name="gender" id="gender">
+                                    <option value="Man">Man</option>
+                                    <option value="Vrouw">Vrouw</option>
+                                    <option value="Andere">Andere</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="mt-5 block font-bold text-sm mb-2" for="gender">Followers</label>
+                                <div class="block">
+                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="500">
+                                    <label for="radio">&lt; 500</label>
+                                </div>
+                                <div class="block">
+                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="500">
+                                    <label for="radio">&gt; 500</label>
+                                </div>
+                                <div class="block">
+                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="1000">
+                                    <label for="radio">&gt; 1000</label>
+                                </div>
+                                <div class="block">
+                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="2000">
+                                    <label for="radio">&gt; 2000</label>
+                                </div>
+                                <div class="block">
+                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="5000">
+                                    <label for="radio">&gt; 5000</label>
+                                </div>
+                            </div>
+                            <div class="flex flex-col flex-wrap space-x-1">
+                                <label class="mt-5 block font-bold text-sm mb-2 w-full" for="age">Age</label>
+                                <label class="block">
+                                    <input (change)="setFilterAge($event)" class="mr-2 text-yellow-500" type="radio" name="radiobutton" value="18">
+                                    <span for="radio">&lt; 18</span>
+                                </label>
+                                <label>
+                                    <input (change)="setFilterAge($event)" class="mr-2" type="radio" name="radiobutton" value="18">
+                                    <span for="radio">&gt; 18</span>
+                                </label>
+                                <label>
+                                    <input (change)="setFilterAge($event)" class="mr-2 " type="radio" name="radiobutton" value="24">
+                                    <span for="radio">&gt; 24</span>
+                                </label>
+                                <label>
+                                    <input (change)="setFilterAge($event)" class="mr-2" type="radio" name="radiobutton" value="30">
+                                    <span for="radio">&gt; 30</span>
+                                </label>
+                                <label>
+                                    <input (change)="setFilterAge($event)" class="mr-2 " type="radio" name="radiobutton" value="40">
+                                    <span for="radio">&gt; 40</span>
+                                </label>
+                                <label>
+                                    <input (change)="setFilterAge($event)" class="mr-2" type="radio" name="radiobutton" value="50">
+                                    <span for="radio">&gt; 50</span>
+                                </label>
+                                <label>
+                                    <input (change)="setFilterAge($event)" class="mr-2" type="radio" name="radiobutton" value="60">
+                                    <span for="radio">&gt; 60</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        
+
+
+
+                    </div>
+                   
                 </div>
                 
             </div>

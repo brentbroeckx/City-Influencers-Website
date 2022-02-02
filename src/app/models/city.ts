@@ -8,5 +8,6 @@ export interface City {
     isactief: string;
     emailadres?: string;
     isnew?: string;
+    influencercount?: string;
 }
 
