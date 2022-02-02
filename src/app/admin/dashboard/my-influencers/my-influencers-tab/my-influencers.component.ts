@@ -15,14 +15,20 @@ export class MyInfluencersComponent implements OnInit {
   savedInfluencers: Influencer[] | undefined;
   savedFilteredInfluencers: Influencer[] | undefined;
   sorting: Boolean = false;
-  filterNameParam: string = "";
-  filterSurnameParam: string = "";
-  searchCategoryParam: string[] = ["All"];
   isFiltering: Boolean = false;
   allCategories: Category[] | undefined;
 
+  filterNameParam: string = "";
+  filterSurnameParam: string = "";
+  filterCategoryParam: string[] = ["All"];
+  filterGenderParam: string = "";
+  filterFollowersParam: string = "";
+  filterAgeParam: string = "";
+
+
   errormessage: string = "";
   nameEvent: any;
+  surnameEvent: any;
 
   constructor(private influencerService: InfluencerService, private categoryService: CategoryService) { }
 
@@ -39,47 +45,6 @@ export class MyInfluencersComponent implements OnInit {
 
     
   }
-
-  /*filterByName(category: string, name: string) {
-    this.influencerService.getInfluencersFiltered(category, name).subscribe(res => {
-      this.influencers = res.data;
-      this.savedFilteredInfluencers = res.data;
-    })
-
-  }
-
-  searchName(event: any) {
-
-    if (this.searchNameParam == event.target.value) return;
-    this.searchNameParam = event.target.value;
-
-    this.filterByName(this.searchCategoryParam[1], this.searchNameParam)
-
-  }
-
-  searchCategory(event: any) {
-
-    if (this.searchCategoryParam.length != 1 && this.searchCategoryParam[0] == "All") {
-      this.searchCategoryParam.pop()
-    }
-
-    if (event.target.value == "All") {
-      if (this.searchNameParam == "") {
-        this.influencers = this.savedInfluencers;
-        return;
-      } else {
-        this.influencers = this.savedFilteredInfluencers;
-        return;
-      }
-    }
-
-    if (this.searchCategoryParam.includes(event.target.value)) return;
-    this.searchCategoryParam.push(event.target.value);
-
-    this.influencers = this.savedInfluencers?.filter(a => JSON.stringify(a.categories) === JSON.stringify(this.searchCategoryParam));
-
-
-  }*/
 
 
   filterDistinct(array: Influencer[] | undefined, array2: Influencer[]) {
@@ -122,17 +87,27 @@ export class MyInfluencersComponent implements OnInit {
 
   }
 
+  resetFilterValue(type: string) {
+    switch(type) {
+      case "names":
+        if (this.nameEvent == null) break;
+        console.log(this.nameEvent)
+        this.nameEvent.target.value = "";
+        if (this.surnameEvent == null) break;
+        this.surnameEvent.target.value = "";
+    }
+  }
+
   setFilterName(event: any) {
     this.errormessage = "";
     var filtervalue = "";
+    this.nameEvent = event;
 
     console.log(event);
 
     if (event != null) {
       filtervalue = event.target.value;
       console.log(filtervalue);
-      //this.nameEvent = event;
-
 
       this.filterNameParam = filtervalue;
     }
@@ -144,6 +119,7 @@ export class MyInfluencersComponent implements OnInit {
       console.log(res);
 
       if (res.data == null) {
+        console.log("errormessage");
         this.errormessage = "No results with name: " + filtervalue;
         return;
       };
@@ -156,7 +132,7 @@ export class MyInfluencersComponent implements OnInit {
         this.setFilterSurname(null);
 
       } else {
-        return;
+        this.influencers = res.data;
       }
     });
 
@@ -165,6 +141,7 @@ export class MyInfluencersComponent implements OnInit {
   setFilterSurname(event: any) {
     this.errormessage = ""
     var filtervalue = "";
+    this.surnameEvent = event;
 
     if (event != null) {
       filtervalue = event.target.value;
@@ -175,8 +152,6 @@ export class MyInfluencersComponent implements OnInit {
 
 
     console.log(this.filterSurnameParam);
-   
-    
 
     this.influencerService.filter("surname", this.filterSurnameParam)?.subscribe(res => {
       console.log(res.data);
@@ -186,6 +161,7 @@ export class MyInfluencersComponent implements OnInit {
         return;
       };
 
+      console.log(this.filterNameParam + " : " + this.filterSurnameParam)
     
       if (!this.filterNameParam && this.filterSurnameParam) {
         console.log("filter param is not empty")
@@ -193,6 +169,9 @@ export class MyInfluencersComponent implements OnInit {
       } else if (this.filterNameParam && this.filterSurnameParam) {
         console.log("no filter param")
         this.influencers = this.filterDistinct(this.influencers, res.data);
+      } else if (this.filterNameParam && !this.filterSurnameParam) {
+        console.log("nothing else")
+        this.setFilterName(null);
       } else {
         this.influencers = res.data;
       }
@@ -201,18 +180,72 @@ export class MyInfluencersComponent implements OnInit {
   }
 
   setFilterCategory(event: any) {
-    var filtervalue = event.target.value;
-    console.log(filtervalue);
+    this.errormessage = "";
+    var filtervalue = "";
+    
+    if (this.filterCategoryParam.length != 1 && this.filterCategoryParam[0] == "All") {
+      this.filterCategoryParam.pop()
+    }
 
-    this.influencerService.filter("category", filtervalue);
+    if (event != null) {
+      filtervalue = event.target.value;
+      console.log(filtervalue);
+      if (event.target.value != "All") {
+        
+  
+        this.filterCategoryParam.push(filtervalue);
+      }
+
+      
+
+    }
+
+    console.log(this.filterCategoryParam);
+
+    this.influencerService.filter("category", filtervalue)?.subscribe(res => {
+      console.log(res.data);
+      this.resetFilterValue("names");
+
+      if (res.data == null) {
+        this.errormessage = "No results for category: " + this.filterCategoryParam;
+      }
+
+      if (!this.filterGenderParam && this.filterCategoryParam) {
+        this.influencers = res.data;
+      } else if (this.filterGenderParam && this.filterCategoryParam) {
+        this.influencers = this.filterDistinct(this.influencers, res.data);
+      } else if (this.filterGenderParam && !this.filterCategoryParam) {
+        this.setFilterGender(null);
+      } else {
+        this.influencers = res.data;
+      }
+
+    });
 
   }
 
   setFilterGender(event: any) {
-    var filtervalue = event.target.value;
-    console.log(filtervalue);
+    this.errormessage = ""
+    var filtervalue = "";
 
-    this.influencerService.filter("gender", filtervalue);
+    if (event != null) {
+      filtervalue = event.target.value;
+      console.log(filtervalue);
+
+      this.filterGenderParam = filtervalue;
+    }
+
+
+
+    this.influencerService.filter("gender", filtervalue)?.subscribe(res => {
+      console.log(res.data);
+      this.resetFilterValue("names");
+
+      if (res.data == null) {
+        this.errormessage = "No results with gender: " + this.filterGenderParam;
+      }
+
+    });
 
   }
 

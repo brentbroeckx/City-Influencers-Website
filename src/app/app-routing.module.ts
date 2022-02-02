@@ -8,6 +8,7 @@ import { FaqComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'browse-cities', component: BrowseCitiesComponent},
   { path: 'contact-us', component: ContactUsComponent},
   { path: 'faq', component: FaqComponent},
+  { path: 'privacy-policy', component: PrivacyPolicyComponent},
 
   //Error pages:
   { path: 'page-not-found', component: PageNotFoundComponent },

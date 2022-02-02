@@ -26,6 +26,7 @@ import { TimeOutComponent } from './error-pages/time-out/time-out.component';
 import { FaqComponent } from './faq/faq.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ServiceUnavailableComponent,
     TimeOutComponent,
     FaqComponent,
+    PrivacyPolicyComponent,
   
 
   ],
