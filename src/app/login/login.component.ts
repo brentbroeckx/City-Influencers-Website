@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     var password = this.loginForm.controls.password.value;
     var encryptedPass = sha256(password).then(res => {
-        console.log(encryptedPass)
 
       const loginCredentials: Login = {
         username: this.loginForm.controls.username.value,
