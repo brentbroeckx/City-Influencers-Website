@@ -7,6 +7,7 @@ import { CityApiResponse } from '../models/cityApiResponse';
 import { environment } from 'src/environments/environment';
 import { CityRegister } from '../models/cityRegister';
 import { CityChange } from '../models/cityChange';
+import { CityListResponse } from '../models/cityListResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,11 @@ export class CityService {
     return this.httpClient.get<CityApiResponse>(environment.API_URL +"cities?where=isnew&like=t", {headers: headers})
   }
 
+  getListCities(): Observable<CityListResponse> {
+    return this.httpClient.get<CityListResponse>(environment.API_URL + "list/cities")
+
+  }
+
   changeCity(city: CityChange){
     const changeParam = {
       type: "stad",
@@ -58,9 +64,8 @@ export class CityService {
       password: city.password,
       postcode: city.postcode,
       email: city.emailadres,
-      isactief: city.isactief
+      isactief: city.isactief,
     }
-    console.log(city)
 
     const bearer = localStorage.getItem('token');
 
@@ -87,6 +92,7 @@ export class CityService {
     return this.httpClient.put<any>( environment.API_URL + "activation", changeParam, {headers: headers});
 
   }
+
 
   
 

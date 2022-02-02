@@ -235,7 +235,7 @@ export class MyInfluencersComponent implements OnInit {
       this.filterGenderParam = filtervalue;
     }
 
-
+    console.log(this.filterGenderParam);
 
     this.influencerService.filter("gender", filtervalue)?.subscribe(res => {
       console.log(res.data);

@@ -16,13 +16,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SettingsComponent implements OnInit {
 
+  imgFile: string = "";
+
   settingsForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     username: new FormControl('', [Validators.required, Validators.minLength(4)]),
     password: new FormControl('', [Validators.required, passwordValidator(), matchValidator('passwordCheck', true)]),
     passwordCheck: new FormControl('', [Validators.required, matchValidator('password')]),
     postcode: new FormControl('', [Validators.required]),
-    city: new FormControl('', [Validators.required])
+    city: new FormControl('', [Validators.required]),
+    image: new FormControl('')
   })
   
   thisCity: City = {id: "", naam: "", gebruikersnaam:"", wachtwoord: "", postcode: "", image: "", isactief: "", emailadres: "", isnew: ""}
@@ -43,9 +46,39 @@ export class SettingsComponent implements OnInit {
     }
   }
 
+  onImageChange(event: any) {
+    const reader = new FileReader();
+
+    console.log(event.target.files)
+    
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      var kbFileSize = event.target.files[0].size
+
+      var filesize = ((kbFileSize/1024)/1024).toFixed(4);
+      console.log(filesize);
+
+      if (Number(filesize) > 25) {
+        this.toastr.error("Image size can't be more than 25MB.", "Image Upload");
+        event.target.files = [];
+        return;
+      } else {
+        reader.readAsDataURL(file);
+
+    
+        reader.onload = () => {
+          this.imgFile = reader.result as string;
+
+          console.log(this.imgFile.substring(5))          
+        };
+      }
+
+      
+    }
+  }
+
   onSubmit() {
     const cityId = localStorage.getItem("id");
-
     var password = this.settingsForm.controls.password.value;
     var encryptedPass = sha256(password).then(res => {
       if (cityId != null){
@@ -55,7 +88,7 @@ export class SettingsComponent implements OnInit {
           password: res,
           name: this.settingsForm.controls.city.value,
           postcode: this.settingsForm.controls.postcode.value,
-          emailadres: this.settingsForm.controls.email.value
+          emailadres: this.settingsForm.controls.email.value,
         }
         this.cityService.changeCity(settingsChange).subscribe(res => {
           
@@ -87,6 +120,10 @@ export class SettingsComponent implements OnInit {
 
   get city() {
     return this.settingsForm.get('city')
+  }
+
+  get image() {
+    return this.settingsForm.get('image');
   }
 
 
