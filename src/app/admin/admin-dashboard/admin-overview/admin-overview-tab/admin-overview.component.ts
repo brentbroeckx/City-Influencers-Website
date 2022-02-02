@@ -23,6 +23,7 @@ export class AdminOverviewComponent implements OnInit {
 
     this.cityService.getAllValidatedCities().subscribe(res=>{
       this.cities=res.data     
+      console.log(this.cities)
     })
   }
 
