@@ -7,6 +7,8 @@ import { passwordValidator } from '../shared/validators/password-validator';
 import * as bcrypt from 'bcryptjs';
 import { SignUpService } from '../services/sign-up.service';
 import { sha256 } from 'crypto-hash';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -28,7 +30,7 @@ export class SignUpComponent implements OnInit {
     city: new FormControl('', [Validators.required])
   })
 
-  constructor(private signUpSerivce: SignUpService) { }
+  constructor(private signUpSerivce: SignUpService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -45,13 +47,12 @@ export class SignUpComponent implements OnInit {
         postcode: this.registerForm.controls.postcode.value,
         email: this.registerForm.controls.email.value,
         type: "stad"
-      }
-  
-      console.log("Registering...")
-      console.log(cityRegister)
-  
+      }  
       this.signUpSerivce.processLogin(cityRegister).subscribe(res => {
         console.log(res)
+        this.toastr.success("Successful registration, you will hear from us soon", "City")
+        this.router.navigateByUrl('');
+
       });
 
     })
