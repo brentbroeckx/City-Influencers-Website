@@ -28,8 +28,13 @@ export class MyPostsCardComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  toDetailPage(id: String) {
-    this.router.navigate(['/dashboard/my-tasks/detail', id])
+  // toDetailPage(id: String) {
+  //   this.router.navigate(['/dashboard/my-tasks/detail', id])
+  // }
+
+  toDetailPage(influencerId: String, postId: String) {
+    this.router.navigate(['/dashboard/my-influencers/' + influencerId + '/posts/' + postId])
   }
+
 
 }
