@@ -13,10 +13,10 @@ export class PostDetailComponent implements OnInit {
 
   post: Post = {id: "", influencerid: "", stadid: "", foto: "", beschrijving: "", isgoedgekeurd: "", commentaarstad: "", aantallikes: "", aantalcomments: "", bereik: "" }
 
-  postForm = new FormGroup({
+  /* postForm = new FormGroup({
     approved: new FormControl('', [Validators.required]),
     comment: new FormControl('', Validators.required)
-  })
+  }) */
 
   constructor(private postsService: PostsService, private route: ActivatedRoute) { }
 
@@ -30,7 +30,7 @@ export class PostDetailComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+ /*  onSubmit() {
     console.log("registering button clicked")
 
     var approved = this.postForm.controls.approved.value;
@@ -54,7 +54,7 @@ export class PostDetailComponent implements OnInit {
       console.log(res)
     }); */
 
-  }
+  
 
 
 }

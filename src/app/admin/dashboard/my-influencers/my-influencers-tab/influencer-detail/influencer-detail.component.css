@@ -1,3 +1,8 @@
 .detail-size {
     height: 93vh;
 }
+
+
+#posts :first-child {
+  margin-top:45px;
+}
