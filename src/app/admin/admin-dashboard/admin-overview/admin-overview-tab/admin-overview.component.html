@@ -47,7 +47,7 @@
                         </div>
                         <div class=" flex md:flex-row mx-auto justify-center md:justify-start height-80 md:h-2/3 w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
                             <table class="table-auto w-full ">
-                                <thead class="border-b border-blue-300 h-12">
+                                <thead class="border-t border-blue-300 h-12">
                                     <tr class="">
                                         <th class=" text-left">City name</th>
                                         <th>Influencer amount</th>
@@ -57,7 +57,7 @@
                                 <tbody class="">
                                         <tr *ngFor="let city of cities" class=" border-t border-blue-300">
                                             <td class=" py-4 w-3/12 ">{{city.naam}}</td>
-                                            <td class=" py-4 text-center">4</td>
+                                            <td class=" py-4 text-center">{{city.influencercount}}</td>
                                             <td class=" py-4 hidden md:block">
                                                 <div class="flex items-center justify-center w-full">
       

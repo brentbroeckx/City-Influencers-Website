@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { City } from 'src/app/models/city';
 import { CityService } from 'src/app/services/city.service';
 
@@ -11,7 +12,7 @@ export class RequestsComponent implements OnInit {
 
   cities: City[] | undefined;
 
-  constructor(private cityService: CityService) { }
+  constructor(private cityService: CityService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -27,12 +28,16 @@ export class RequestsComponent implements OnInit {
       // change to true
       city.isactief = "t";
       this.cityService.changeCityStatus(city.id, true).subscribe(res => {
+        this.toastr.success("Succesfully activated city", "Admin");
+        window.location.reload();
         return;
       });
     } else {
       // change to false
       city.isactief = "f";
       this.cityService.changeCityStatus(city.id, false).subscribe(res => {
+        this.toastr.success("Succesfully deactivated city", "Admin");
+        window.location.reload();
         return;
       });
     }
