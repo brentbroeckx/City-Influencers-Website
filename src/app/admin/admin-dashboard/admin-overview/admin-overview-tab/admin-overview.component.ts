@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/auth.service';
 import { City } from 'src/app/models/city';
 import { CityService } from 'src/app/services/city.service';
@@ -15,7 +16,7 @@ export class AdminOverviewComponent implements OnInit {
   getCount: boolean = true;
 
 
-  constructor(private cityService:CityService, private authService: AuthService) { }
+  constructor(private cityService:CityService, private authService: AuthService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -33,12 +34,14 @@ export class AdminOverviewComponent implements OnInit {
       // change to true
       city.isactief = "t";
       this.cityService.changeCityStatus(city.id, true).subscribe(res => {
+        this.toastr.success("Succesfully activated city", "Admin");
         return;
       });
     } else {
       // change to false
       city.isactief = "f";
       this.cityService.changeCityStatus(city.id, false).subscribe(res => {
+        this.toastr.success("Succesfully deactivated city", "Admin");
         return;
       });
     }
