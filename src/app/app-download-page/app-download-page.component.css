@@ -3,7 +3,7 @@
 }
 
 .banner {
-    z-index: -2;
+    z-index: 50;
     height: 2s00px;
 }
 
