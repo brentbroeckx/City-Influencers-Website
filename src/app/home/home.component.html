@@ -2,26 +2,28 @@
     <app-header></app-header>
 
     <div class="flex lg:hidden justify-center">
-        <img class="md:h-80" src="../../assets/images/banner.jpg" alt="">
+        <img class="md:h-80 rounded-xl" src="../../assets/images/photograph_long.jpg" alt="">
     </div>
     <div class="flex flex-row justify-between mt-5 lg:mt-20 items-center align-middle">
         <div class=" lg:w-2/4 xl:w-3/4 md:ml-5 lg:ml-0">
             <h1 class="text-1xl md:text-3xl lg:text-4xl xl:text-5xl font-bold  ">
                 Instantly promote your city <br> with your local influencers.
             </h1>
-            <p class="text-tiny w-44 md:text-sm md:w-80 lg:w-auto text-gray-500 mt-1">
+            <p class="text-sm w-44 md:text-sm md:w-80 lg:w-auto text-gray-500 mt-1">
                 City Influencers is an app where local influencers can sign up and promote your city to receive rewards.
             </p>
-            <div class=" w-80 mt-5 w">
-                <h3 class="text-sm md:text-sm lg:text-xl xl:text-xl font-bold text-center uppercase ">
+            <div class=" w-11/12 md:w-10/12 mt-5 items-start">
+                <h3 class=" text-sm md:text-sm lg:text-xl xl:text-xl font-bold text-center ">
                     Get started:
                 </h3>
-                <button [routerLink]="['/download-page']" class="theme_button_color hover:bg-blue-700 text-black font-bold mx-7 py-1 px-3 text-tiny md:text-lg md:py-2 md:px-4 lg:px-8 rounded-full">
-                    <span class="text-sm">Influencer</span>
-                </button>
-                <button [routerLink]="['/login']" class="theme_button_color hover:bg-blue-700 text-black font-bold py-1 px-3 text-tiny md:text-lg md:py-2 md:px-4 lg:px-8  rounded-full">
-                    <span class="text-sm">City</span>
-                </button>
+                <div class="flex justify-center text-center" >
+
+                    <a [routerLink]="['/download-page']" class="m-2 w-32 rounded-full font-semibold theme_button_color block px-x py-1 text-gray-700 lg:border-0">
+                        Influencer </a>
+
+                    <a [routerLink]="['/login']" class="m-2 w-32 rounded-full font-semibold theme_button_color block px-x py-1 text-gray-700 lg:border-0">
+                        City </a>
+                </div>
 
             </div>
         </div>
@@ -29,7 +31,7 @@
             
         </div>
         <div class="hidden lg:block">
-            <img class="image rounded-full" src="../../assets/images/instaheart_sq.png" alt="">
+            <img class="image rounded-full shadow-xl" src="../../assets/images/instaheart_sq.png" alt="">
         </div>
     </div>
     

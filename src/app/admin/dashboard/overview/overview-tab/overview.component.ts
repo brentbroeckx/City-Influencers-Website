@@ -25,7 +25,7 @@ export class OverviewComponent implements OnInit {
     const data3 = [];
 
     for (let i = 0; i < 100; i++) {
-      xAxisData.push('category' + i);
+      xAxisData.push('day' + i);
       data1.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5);
       data2.push((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5);
       data3.push((Math.sin(i / 6) * (i / 6 - 10) + i / 6) * 6);
@@ -33,7 +33,7 @@ export class OverviewComponent implements OnInit {
 
     this.options = {
       legend: {
-        data: ['influencers', 'tasks', 'tasks_done'],
+        data: ['influencers', 'tasks', 'tasks done'],
         align: 'left',
       },
       tooltip: {},
@@ -59,7 +59,7 @@ export class OverviewComponent implements OnInit {
           animationDelay: (idx: number) => idx * 10 + 100,
         },
         {
-          name: 'tasks_done',
+          name: 'tasks done',
           type: 'bar',
           data: data3,
           animationDelay: (idx: number) => idx * 10,

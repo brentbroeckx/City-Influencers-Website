@@ -23,3 +23,7 @@ details a:hover{
     transition-duration: 0.1s;
     transition-timing-function: ease-in-out;
 }
+
+.inputshadow:hover {
+     box-shadow: 2px 2px #FFDA47;
+ }
