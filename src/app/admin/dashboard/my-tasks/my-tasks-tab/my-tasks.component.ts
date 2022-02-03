@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Task } from 'src/app/models/task';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-my-tasks',
@@ -8,9 +10,15 @@ import { Router } from '@angular/router';
 })
 export class MyTasksComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  tasks: Task[] | undefined;
+
+  constructor(private router: Router, private taskService: TaskService) { }
 
   ngOnInit(): void {
+    this.taskService.getAllTasks().subscribe(res => {
+      this.tasks = res.data;
+      console.log(this.tasks)
+    })
   }
 
 

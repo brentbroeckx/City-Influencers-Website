@@ -9,4 +9,5 @@ export interface Post {
     aantallikes: string;
     aantalcomments: string;
     bereik: string;
+    gebruikersnaam?: string;
 }

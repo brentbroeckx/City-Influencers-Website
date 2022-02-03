@@ -23,14 +23,13 @@ export class MyPostsCardComponent implements OnInit {
     bereik: ''
   }
 
+  @Input() winnerId: String = "";
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
   
-  // toDetailPage(id: String) {
-  //   this.router.navigate(['/dashboard/my-tasks/detail', id])
-  // }
 
   toDetailPage(influencerId: String, postId: String) {
     this.router.navigate(['/dashboard/my-influencers/' + influencerId + '/posts/' + postId])

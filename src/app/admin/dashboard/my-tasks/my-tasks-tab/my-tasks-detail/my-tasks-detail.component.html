@@ -4,22 +4,28 @@
     </div>
     <div class="w-full ">
         <app-dashboard-header></app-dashboard-header>
-        
+        <p class="m-8">
+            <a href="javascript:history.back()">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.58501 13.01L0.575012 6.99999L6.58501 0.98999L8.00001 2.40399L3.40001 7.00399L8.00001 11.604L6.58601 13.01H6.58501ZM12.01 13.01L5.99901 6.99999L12.01 0.98999L13.424 2.40399L8.82401 7.00399L13.424 11.604L12.011 13.01H12.01Z" fill="#6b7280"/>
+                </svg>
+            </a>
+        </p>
         <div class="detail-size overflow-auto ">
             <div class="flex flex-col mt-5 lg:m-0 items-center">
                 <div class="flex flex-row justify-around items-center">
-                    <div class=" hidden md:block rounded-xl shadow-lg h-20 w-20 px-3 pb-3 pt-1 border-2 border-gray-100 bg-white">
-                        <div>
+                    <div class=" hidden md:block rounded-xl shadow-lg h-50 w-50 px-3 pb-3 pt-1 border-2 border-gray-100">
+                        <div class="font-bold">
                             Reward:
                         </div>
-                        <div class=" h-8 font-bold flex justify-center  ">
+                        <div class=" h-8 flex justify-center  ">
 
                             <div class=" mt-2 w-12 theme_button_color rounded-xl flex flex-row justify-center items-center text-center ">
                                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>                                                                
-                                <span>25</span>
+                                <span class="ml-2">{{task.aantalpuntenwaard}}</span>
                             </div>  
 
                         </div>
@@ -27,19 +33,14 @@
                     
                     <img class=" w-2/3 md:w-2/3 lg:w-2/6 rounded-3xl shadow-xl" src="../../../../../../assets/images/influencer.jpg" alt="Influencer profile picture">
                     
-                    <div class="hidden md:block rounded-xl shadow-lg h-20 w-20 px-3 pb-3 pt-1 border-2 border-gray-100 bg-white">
+                    <div class="hidden md:block rounded-xl h-50 w-50 px-3 pb-3 pt-1 border-2 border-gray-100 shadow-xl">
                         <div>
-                            Status:
+                            <span class="font-bold">Status:</span>
                             <div class=" mt-3 flex items-center justify-center w-full">
   
-                                <label for="toogleA" class="flex items-center cursor-pointer" >
-                                  <!-- toggle -->
-                                    <div class="relative">
-                                        <input id="toogleA" type="checkbox" class="sr-only" />
-                                        <div class=" line w-10 h-4 bg-red-800 rounded-full shadow-inner"></div>
-                                        <div class="dot absolute w-6 h-6 bg-white rounded-full shadow -left-1 -top-1 transition"></div>
-                                    </div>
-                                </label>                                               
+                                <div *ngIf="task.isuitgevoerd==='t'; then thenBlock else elseBlock"></div>
+                                <ng-template #thenBlock>Winner selected</ng-template>
+                                <ng-template #elseBlock>No winner selected</ng-template>                                             
                             
                             </div>
                         </div>
@@ -47,46 +48,44 @@
 
                 </div>
                 
-                <div class="rounded-3xl border-2 border-gray-100 bg-white shadow-xl h-full px-2 pb-3 w-3/4 md:w-8/12 mt-10 md:mt-5">
+                <div class="rounded-3xl border-2 border-gray-100 shadow-xl h-full px-2 pb-3 w-3/4 md:w-8/12 mt-10 md:mt-5">
                     <div class="text-gray-500 text-sm font-semibold text-center">
-                        Categorie
+                        <div class="text-gray-500 text-sm text-center">
+                            <div *ngFor="let category of task.categories">
+                                <div *ngIf="category != 'All'">
+                                    {{category}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class=" text-sm font-bold text-center max-w-full mt-2 md:mt-5">
-                        dddddddddddddddddddddd ddddddddddddddd dddddddddddddddddddddddddd ddddddddddd dddddddddddddd ddddddddddddddddddddddd
+                        Description
+                    </div>
+                    <div class=" text-sm text-center max-w-full mt-2 md:mt-5">
+                        {{task.omschrijving}}
                     </div>
                 </div>
             
             </div>
             
-    
-            <div class="mt-10 lg:mt-5 flex flex-col items-center">
-                <div class="font-bold text-blue-500 uppercase text-sm lg:text-xl">
-                    Posts
+            <div class="mt-10 flex flex-col items-center">
+                <div class="font-bold text-blue-500 uppercase text-sm">
+                    posts
                 </div>
-                <div class="font-normal text-blue-500 text-xs lg:text-base">
-                    Total posts 3
+                <div>
+                    <p class="font-bold text-lg">Total posts: {{task.postcount}}</p>
                 </div>
             </div>
     
-            <div class="flex flex-row justify-center items-center">
-                
-                
-                    <div class="flex flex-col justify-center items-center space-y-10 md:flex-wrap md:flex-row md:space-x-2">
-                        <app-my-posts-card style="cursor: pointer;"></app-my-posts-card> 
-                        <app-my-posts-card style="cursor: pointer;"></app-my-posts-card> 
-                        <app-my-posts-card style="cursor: pointer;"></app-my-posts-card> 
-                        
-                    </div>  
-                
-                
 
-            </div>
-            
+                <div class="flex flex-col justify-center items-center space-y-10 md:flex-wrap md:flex-row md:space-x-2" id="posts">
+                    <div *ngFor="let post of posts">
+                        <app-my-posts-card [post]="post" [winnerId]="task.winnaarid" style="cursor: pointer;"></app-my-posts-card> 
+                    </div>  
+                </div>  
+                        
             
         </div>
-
-        
-
     </div>
 
 </div>

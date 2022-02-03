@@ -31,7 +31,7 @@
                                     </div>
                                     <span>Filter</span>
                                 </div>
-                                <div class="hidden md:block text-center theme_button_color md:flex flex-row justify-center items-center space-x-1 w-32 h-9 rounded-xl">
+                                <div class="hidden text-center theme_button_color md:flex flex-row justify-center items-center space-x-1 w-32 h-9 rounded-xl">
                                     <div class="">
 
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,44 +47,38 @@
                             <table class="table-auto w-full">
                                 <thead class="border-b border-yellow-300 h-12">
                                     <tr class="">
-                                        <th class=" text-left">Task details</th>
-                                        <th>Influencer amount</th>
-                                        <th class="hidden md:table-cell">Date</th>
+                                        <th class=" text-left">Task title</th>
+                                        <th>Post amount</th>
+                                        <th class="hidden md:table-cell">Given</th>
                                         <th>Reward</th>
                                         <th class="hidden md:table-cell">Status</th>
+                                        <th class="hidden md:table-cell">Executed</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr (click)="toDetailPage('1')" style="cursor: pointer;" class=" border-b border-yellow-300">
-                                    <td class=" p-4 md:p-6 ">Church</td>
-                                    <td class=" p-4 md:p-6 text-center">2</td>
-                                    <td class=" p-4 md:p-6 text-center hidden md:table-cell">May 26, 2021</td>
-                                    <td class=" p-4 md:p-6 flex justify-center items-center">
-                                        <div class="theme_button_color rounded-xl w-12 h-6 font-bold items-center">
-                                            <div class="flex flex-row items-center space-x-1">
-                                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>                                                                
-                                                <span>25</span>
+                                    <tr *ngFor="let task of tasks" (click)="toDetailPage(task.id)" style="cursor: pointer;" class=" border-b border-yellow-300">
+                                        <td class=" p-4 md:p-6 ">{{task.titel}}</td>
+                                        <td class=" p-4 md:p-6 text-center">{{task.postcount}}</td>
+                                        <td class=" p-4 md:p-6 text-center md:table-cell">{{task.datumopgegeven.split(" ")[0]}}</td>
+                                        <td class=" p-4 md:p-6 flex justify-center items-center">
+                                            <div class="theme_button_color rounded-xl w-12 h-6 font-bold items-center">
+                                                <div class="flex flex-row items-center space-x-1">
+                                                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>                                                                
+                                                    <span>{{task.aantalpuntenwaard}}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class=" p-4 md:p-6 items-center hidden md:table-cell">
-                                        <div class="flex items-center justify-center w-full">
-  
-                                                <label for="toogleA" class="flex items-center cursor-pointer" >
-                                                  <!-- toggle -->
-                                                    <div class="relative">
-                                                        <input id="toogleA" type="checkbox" class="sr-only" />
-                                                        <div class=" line w-10 h-4 bg-red-800 rounded-full shadow-inner"></div>
-                                                        <div class="dot absolute w-6 h-6 bg-white rounded-full shadow -left-1 -top-1 transition"></div>
-                                                    </div>
-                                                </label>                                               
-                                            
-                                            </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td class=" p-4 md:p-6 text-center md:table-cell">
+                                            <div *ngIf="task.isuitgevoerd==='t'; then thenBlock else elseBlock"></div>
+                                            <ng-template #thenBlock>Winner selected</ng-template>
+                                            <ng-template #elseBlock>No winner selected</ng-template>
+                                        </td>
+                                    <td *ngIf="task.datumuitgevoerd" class=" p-4 md:p-6 text-center hidden md:table-cell">{{task.datumuitgevoerd.split(" ")[0]}}</td>
+
+                                    </tr>
                                                                 
                                 </tbody>
                             </table>

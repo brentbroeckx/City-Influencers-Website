@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PostsApiResponse } from '../models/postsApiResponse';
 
@@ -30,6 +31,16 @@ export class PostsService {
 
     return this.httpClient.get<PostsApiResponse>(environment.API_URL +"influencers/" + influencerId + "/posts/" + postId, {headers: headers})
 
+  }
+  
+  getPostsFromTask(id: String): Observable<PostsApiResponse>{
+    const bearer = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${bearer}`
+    })
+
+    return this.httpClient.get<PostsApiResponse>( environment.API_URL + "tasks/" + id + "/posts", {headers: headers});
   }
 
 }
