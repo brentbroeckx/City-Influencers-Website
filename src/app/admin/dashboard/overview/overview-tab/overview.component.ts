@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -7,12 +7,21 @@ import { AuthService } from 'src/app/auth/auth.service';
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css']
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit, AfterViewInit {
   options: any;
+  title = "Animated Count";
 
-  constructor(private authService: AuthService) {}
+  nums: Array<number> = [25, 76, 48];
+
+  @ViewChild("oneItem") oneItem: any;
+  @ViewChildren("count") count: QueryList<any> | undefined;
+
+
+
+
+  constructor(private authService: AuthService, private elRef: ElementRef) {}
+
   
-
   ngOnInit(): void {
 
     this.authService.reRouteNonAuth("stad");
@@ -70,6 +79,37 @@ export class OverviewComponent implements OnInit {
     };
   }
 
-  
+  ngAfterViewInit() {
+    this.animateCount();
+  }
 
+  animateCount() {
+    let _this = this;
+
+    let single = this.oneItem.nativeElement.innerHTML;
+
+    this.counterFunc(single, this.oneItem, 7000);
+
+    this.count?.forEach(item => {
+      _this.counterFunc(item.nativeElement.innerHTML, item, 2000);
+    });
+  }
+
+  counterFunc(end: number, element: any, duration: number) {
+    let range, current: number, step, timer: NodeJS.Timeout;
+
+    range = end - 0;
+    current = 0;
+    step = Math.abs(Math.floor(duration / range));
+
+    timer = setInterval(() => {
+      current += 1;
+      element.nativeElement.textContent = current;
+      if (current == end) {
+        clearInterval(timer);
+      }
+    }, step);
+  }
 }
+
+
