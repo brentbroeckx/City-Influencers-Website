@@ -14,21 +14,30 @@
         <div class="detail-size overflow-auto ">
             <div class="flex flex-col mt-5 lg:m-0 items-center">
                 <div class="flex flex-row justify-around items-center">
-                    <div class=" hidden md:block rounded-xl shadow-lg h-50 w-50 px-3 pb-3 pt-1 border-2 border-gray-100">
-                        <div class="font-bold">
-                            Reward:
+                    
+                    <div class=" hidden md:block rounded-xl shadow-lg h-150 w-150 px-5 pb-3 pt-1 border-2 border-gray-100">
+                        <div class="flex flex-row jusify-around items-center">
+                            <div class="font-bold pr-5">
+                                Reward:
+                            </div>
+                            <div>
+                                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.41999 18.5789C1.13948 18.5784 0.872062 18.4601 0.682993 18.2529C0.490439 18.0474 0.394758 17.7694 0.419993 17.4889L0.664993 14.7949L11.983 3.48091L15.52 7.01691L4.20499 18.3299L1.51099 18.5749C1.47999 18.5779 1.44899 18.5789 1.41999 18.5789ZM16.226 6.30991L12.69 2.77391L14.811 0.652906C14.9986 0.465129 15.2531 0.359619 15.5185 0.359619C15.7839 0.359619 16.0384 0.465129 16.226 0.652906L18.347 2.77391C18.5348 2.96147 18.6403 3.216 18.6403 3.48141C18.6403 3.74681 18.5348 4.00134 18.347 4.18891L16.227 6.30891L16.226 6.30991Z" fill="#6b7280"/>
+                                </svg>
+                            </div>
                         </div>
-                        <div class=" h-8 flex justify-center  ">
-
-                            <div class=" mt-2 w-12 theme_button_color rounded-xl flex flex-row justify-center items-center text-center ">
+                        
+                        <div class=" h-8 flex justify-center">
+                            <div class=" mt-2 w-20 theme_button_color rounded-xl flex flex-row justify-center items-center text-center ">
                                 <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8 12.25C11.3137 12.25 14 9.89949 14 7C14 4.1005 11.3137 1.75 8 1.75C4.68629 1.75 2 4.1005 2 7C2 9.89949 4.68629 12.25 8 12.25Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M9.33333 5.25H6.66667C6.29848 5.25 6 5.51117 6 5.83333V8.16667C6 8.48883 6.29848 8.75 6.66667 8.75H9.33333C9.70152 8.75 10 8.48883 10 8.16667V5.83333C10 5.51117 9.70152 5.25 9.33333 5.25Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>                                                                
                                 <span class="ml-2">{{task.aantalpuntenwaard}}</span>
+                                
                             </div>  
-
                         </div>
+                        
                     </div>
                     
                     <img class=" w-2/3 md:w-2/3 lg:w-2/6 rounded-3xl shadow-xl" src="../../../../../../assets/images/influencer.jpg" alt="Influencer profile picture">
@@ -58,9 +67,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" text-sm font-bold text-center max-w-full mt-2 md:mt-5">
+                    <div class="flex flex-row justify-center font-bold text-center max-w-full mt-2 md:mt-5">
                         Description
+                        <div class="pl-5">
+                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.41999 18.5789C1.13948 18.5784 0.872062 18.4601 0.682993 18.2529C0.490439 18.0474 0.394758 17.7694 0.419993 17.4889L0.664993 14.7949L11.983 3.48091L15.52 7.01691L4.20499 18.3299L1.51099 18.5749C1.47999 18.5779 1.44899 18.5789 1.41999 18.5789ZM16.226 6.30991L12.69 2.77391L14.811 0.652906C14.9986 0.465129 15.2531 0.359619 15.5185 0.359619C15.7839 0.359619 16.0384 0.465129 16.226 0.652906L18.347 2.77391C18.5348 2.96147 18.6403 3.216 18.6403 3.48141C18.6403 3.74681 18.5348 4.00134 18.347 4.18891L16.227 6.30891L16.226 6.30991Z" fill="#6b7280"/>
+                            </svg>
+                        </div>
                     </div>
+                    
                     <div class=" text-sm text-center max-w-full mt-2 md:mt-5">
                         {{task.omschrijving}}
                     </div>

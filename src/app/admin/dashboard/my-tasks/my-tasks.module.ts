@@ -23,7 +23,7 @@ import { MyPostsCardComponent } from './my-tasks-card/my-posts-card.component';
         SidenavigationModule
     ],
     exports: [
-        MyTasksComponent,
+        MyTasksComponent
 
     ],
     providers: []

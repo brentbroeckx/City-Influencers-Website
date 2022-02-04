@@ -50,8 +50,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
     ServiceUnavailableComponent,
     TimeOutComponent,
     FaqComponent,
-    PrivacyPolicyComponent,
-  
+    PrivacyPolicyComponent
 
   ],
   imports: [
