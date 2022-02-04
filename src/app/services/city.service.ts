@@ -56,6 +56,7 @@ export class CityService {
   }
 
   changeCity(city: CityChange){
+    console.log(city.picture?.toString)
     const changeParam = {
       type: "stad",
       id: city.id,
@@ -65,6 +66,7 @@ export class CityService {
       postcode: city.postcode,
       email: city.emailadres,
       isactief: city.isactief,
+      picture: city.picture,
     }
 
     const bearer = localStorage.getItem('token');

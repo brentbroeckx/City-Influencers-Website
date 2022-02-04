@@ -8,4 +8,5 @@ export interface CityChange {
     isactief?: boolean;
     emailadres?: string;
     isnew?: string;
+    picture?: string;
 }

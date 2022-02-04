@@ -28,6 +28,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
+import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
+import { Cloudinary } from 'cloudinary-core';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +67,8 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'dbyo9rarj'} as CloudinaryConfiguration),
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
