@@ -4,7 +4,7 @@ export interface City {
     gebruikersnaam?: string;
     wachtwoord?: string;
     postcode: string;
-    image: string;
+    picture?: string;
     isactief: string;
     emailadres?: string;
     isnew?: string;
