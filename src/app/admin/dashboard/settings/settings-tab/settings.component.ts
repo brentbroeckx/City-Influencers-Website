@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { matchValidator } from 'src/app/shared/validators/checkPassword-validator';
 import { passwordValidator } from 'src/app/shared/validators/password-validator';
@@ -8,6 +8,8 @@ import { CityService } from 'src/app/services/city.service';
 import { CityChange } from 'src/app/models/cityChange';
 import { sha256 } from 'crypto-hash';
 import { ToastrService } from 'ngx-toastr';
+import * as cloudinary from 'cloudinary-core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-settings',
@@ -16,7 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SettingsComponent implements OnInit {
 
-  imgFile: string = "";
+  pictureURL: string = "";
 
   settingsForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -30,7 +32,7 @@ export class SettingsComponent implements OnInit {
   
   thisCity: City = {id: "", naam: "", gebruikersnaam:"", wachtwoord: "", postcode: "", image: "", isactief: "", emailadres: "", isnew: ""}
 
-  constructor(private cityService: CityService, private toastr: ToastrService ) { }
+  constructor(private _renderer2: Renderer2, @Inject(DOCUMENT) private _document: Document, private cityService: CityService, private toastr: ToastrService ) { }
 
   ngOnInit(): void {
     const cityId = localStorage.getItem("id");
@@ -38,63 +40,100 @@ export class SettingsComponent implements OnInit {
     if (cityId != null){
         this.cityService.getCityById(cityId).subscribe(res => {
           this.thisCity = res.data[0];
+          this.pictureURL = this.thisCity.image;
+
           this.settingsForm.controls.email.setValue(this.thisCity.emailadres);
           this.settingsForm.controls.username.setValue(this.thisCity.gebruikersnaam);
           this.settingsForm.controls.postcode.setValue(this.thisCity.postcode);
           this.settingsForm.controls.city.setValue(this.thisCity.naam);
       })
     }
-  }
 
-  onImageChange(event: any) {
-    const reader = new FileReader();
-
-    console.log(event.target.files)
+    let script = this._renderer2.createElement('script');
+    script.type = `text/javascript`;
+    script.text = `
+    {
+      function success() {
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+      }
     
-    if(event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      var kbFileSize = event.target.files[0].size
-
-      var filesize = ((kbFileSize/1024)/1024).toFixed(4);
-      console.log(filesize);
-
-      if (Number(filesize) > 25) {
-        this.toastr.error("Image size can't be more than 25MB.", "Image Upload");
-        event.target.files = [];
-        return;
-      } else {
-        reader.readAsDataURL(file);
-
-    
-        reader.onload = () => {
-          this.imgFile = reader.result as string;
-
-          console.log(this.imgFile.substring(5))          
-        };
+      function error(err) {
+          console.log('Error Occurred :', err);
       }
 
-      
+      var myWidget = cloudinary.createUploadWidget({
+        cloudName: 'dbyo9rarj', 
+        uploadPreset: 'CI-img-upload', 
+        folder: 'Cities',
+        maxImageFileSize: 10000000,
+        cropping: true
+        }, (error, result) => { 
+          if (!error && result && result.event === "success") { 
+            console.log('Done! Here is the image info: ', result.info);
+            var url = result.info.url;
+
+            var imageURL = document.getElementById("imageURL").innerHTML = url;
+          }
+        }
+      )
+    
+      document.getElementById("upload_widget")?.addEventListener("click", function(){
+          myWidget.open();
+        }, false);
     }
+    
+    `;
+
+
+    this._renderer2.appendChild(this._document.body, script);
+    this._renderer2.data
+
+
   }
 
   onSubmit() {
     const cityId = localStorage.getItem("id");
     var password = this.settingsForm.controls.password.value;
-    var encryptedPass = sha256(password).then(res => {
+
+    var pictureURL = document.getElementById("imageURL")?.textContent?.toString()
+    console.log("testing: " +pictureURL);
+
+    if (password == "") {
       if (cityId != null){
         var settingsChange: CityChange = {
           id: cityId,
           username: this.settingsForm.controls.username.value,
-          password: res,
           name: this.settingsForm.controls.city.value,
           postcode: this.settingsForm.controls.postcode.value,
           emailadres: this.settingsForm.controls.email.value,
+          picture: pictureURL
         }
         this.cityService.changeCity(settingsChange).subscribe(res => {
-          
+            console.log(res)
         });
       }
-    })
+    } else {
+      var encryptedPass = sha256(password).then(res => {
+        if (cityId != null){
+          var settingsChange: CityChange = {
+            id: cityId,
+            username: this.settingsForm.controls.username.value,
+            password: res,
+            name: this.settingsForm.controls.city.value,
+            postcode: this.settingsForm.controls.postcode.value,
+            emailadres: this.settingsForm.controls.email.value,
+            picture: pictureURL
+          }
+          this.cityService.changeCity(settingsChange).subscribe(res => {
+            console.log(res)
+            
+          });
+        }
+      })
+    }
+
+    
     this.toastr.success("Succesfully updated", "City")
   }
 

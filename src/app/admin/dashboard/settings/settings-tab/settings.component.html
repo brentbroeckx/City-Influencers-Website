@@ -17,13 +17,17 @@
                                 <div class="relative w-full h-52 rounded-full flex justify-center items-center">
                                     <div class="absolute">
                                         <div class="flex flex-col items-center"> 
-                                            <img class="rounded-full w-52 h-52" src="../../../../../assets/images/city-profile-picture-1.jpg" alt="">
+                                            <img class="rounded-full w-52 h-52" src={{pictureURL}} alt="">
                                         </div>
-                                    </div> 
-                                    <input formControlName="image" type="file" class="h-52 w-52 opacity-0 rounded-full" name="" (change)="onImageChange($event)">
+                                      </div> 
+                                      <button id="upload_widget" class="cloudinary-button h-52 w-52 opacity-0 rounded-full">Upload files</button>
                                 </div>
                             </div>
                         </div>
+                        <div class="">
+                          <p id="imageURL">test</p>
+                        </div>
+
                           <div class="mb-4">
                             <label for="eamil" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Email</label>
                               <input formControlName="email" [class.border-red-500]="email?.invalid && email?.touched" class="shadow inputshadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Email">
@@ -75,3 +79,5 @@
       </div>
   </div>
 </div>
+
+
