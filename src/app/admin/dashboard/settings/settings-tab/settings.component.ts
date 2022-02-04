@@ -18,7 +18,8 @@ import { DOCUMENT } from '@angular/common';
 })
 export class SettingsComponent implements OnInit {
 
-  pictureURL: string = "";
+  pictureURL: any;
+  loading: boolean = true;
 
   settingsForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -30,22 +31,30 @@ export class SettingsComponent implements OnInit {
     image: new FormControl('')
   })
   
-  thisCity: City = {id: "", naam: "", gebruikersnaam:"", wachtwoord: "", postcode: "", image: "", isactief: "", emailadres: "", isnew: ""}
+  thisCity: City = {id: "", naam: "", gebruikersnaam:"", wachtwoord: "", postcode: "", picture: "", isactief: "", emailadres: "", isnew: ""}
 
   constructor(private _renderer2: Renderer2, @Inject(DOCUMENT) private _document: Document, private cityService: CityService, private toastr: ToastrService ) { }
 
   ngOnInit(): void {
     const cityId = localStorage.getItem("id");
-    console.log(cityId)
     if (cityId != null){
         this.cityService.getCityById(cityId).subscribe(res => {
           this.thisCity = res.data[0];
-          this.pictureURL = this.thisCity.image;
+          this.pictureURL = this.thisCity.picture;
 
+          if (this.pictureURL == null) {
+            var randomImage = Math.floor(Math.random() * (4 - 1 + 1) + 1);
+  
+            this.pictureURL = "../../../../../assets/images/city-profile-picture-" + randomImage + ".jpg"
+          }
+          
+          
+          
           this.settingsForm.controls.email.setValue(this.thisCity.emailadres);
           this.settingsForm.controls.username.setValue(this.thisCity.gebruikersnaam);
           this.settingsForm.controls.postcode.setValue(this.thisCity.postcode);
           this.settingsForm.controls.city.setValue(this.thisCity.naam);
+          this.loading = false;
       })
     }
 
@@ -55,11 +64,9 @@ export class SettingsComponent implements OnInit {
     {
       function success() {
         var data = JSON.parse(this.responseText);
-        console.log(data);
       }
     
       function error(err) {
-          console.log('Error Occurred :', err);
       }
 
       var myWidget = cloudinary.createUploadWidget({
@@ -70,10 +77,9 @@ export class SettingsComponent implements OnInit {
         cropping: true
         }, (error, result) => { 
           if (!error && result && result.event === "success") { 
-            console.log('Done! Here is the image info: ', result.info);
             var url = result.info.url;
 
-            var imageURL = document.getElementById("imageURL").innerHTML = url;
+            var imageURL = document.getElementById("imageURL").src = url;
           }
         }
       )
@@ -96,8 +102,9 @@ export class SettingsComponent implements OnInit {
     const cityId = localStorage.getItem("id");
     var password = this.settingsForm.controls.password.value;
 
-    var pictureURL = document.getElementById("imageURL")?.textContent?.toString()
-    console.log("testing: " +pictureURL);
+    var element = document.getElementById("imageURL")?.attributes
+    var srcURL = element?.getNamedItem("src")?.textContent;
+    var pictureURL = srcURL || undefined;
 
     if (password == "") {
       if (cityId != null){
@@ -110,7 +117,6 @@ export class SettingsComponent implements OnInit {
           picture: pictureURL
         }
         this.cityService.changeCity(settingsChange).subscribe(res => {
-            console.log(res)
         });
       }
     } else {
@@ -126,8 +132,6 @@ export class SettingsComponent implements OnInit {
             picture: pictureURL
           }
           this.cityService.changeCity(settingsChange).subscribe(res => {
-            console.log(res)
-            
           });
         }
       })
