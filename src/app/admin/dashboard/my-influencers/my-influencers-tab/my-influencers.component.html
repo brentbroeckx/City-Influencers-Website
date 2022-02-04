@@ -94,56 +94,31 @@
                             <div>
                                 <label class="mt-5 block font-bold text-sm mb-2" for="gender">Followers</label>
                                 <div class="block">
-                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="500">
+                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="&lt;500">
                                     <label for="radio">&lt; 500</label>
                                 </div>
                                 <div class="block">
-                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="500">
+                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="&gt;500">
                                     <label for="radio">&gt; 500</label>
                                 </div>
                                 <div class="block">
-                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="1000">
+                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="&gt;1000">
                                     <label for="radio">&gt; 1000</label>
                                 </div>
                                 <div class="block">
-                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="2000">
+                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="&gt;2000">
                                     <label for="radio">&gt; 2000</label>
                                 </div>
                                 <div class="block">
-                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="5000">
+                                    <input (change)="setFilterFollowers($event)" class="mr-2" type="radio" name="radiofollower" value="&gt;5000">
                                     <label for="radio">&gt; 5000</label>
                                 </div>
                             </div>
+                            <label class="mt-5 block font-bold text-sm mb-2" for="gender">Age</label>
+                            
                             <div class="flex flex-col flex-wrap space-x-1">
-                                <label class="mt-5 block font-bold text-sm mb-2 w-full" for="age">Age</label>
-                                <label class="block">
-                                    <input (change)="setFilterAge($event)" class="mr-2 text-yellow-500" type="radio" name="radiobutton" value="18">
-                                    <span for="radio">&lt; 18</span>
-                                </label>
-                                <label>
-                                    <input (change)="setFilterAge($event)" class="mr-2" type="radio" name="radiobutton" value="18">
-                                    <span for="radio">&gt; 18</span>
-                                </label>
-                                <label>
-                                    <input (change)="setFilterAge($event)" class="mr-2 " type="radio" name="radiobutton" value="24">
-                                    <span for="radio">&gt; 24</span>
-                                </label>
-                                <label>
-                                    <input (change)="setFilterAge($event)" class="mr-2" type="radio" name="radiobutton" value="30">
-                                    <span for="radio">&gt; 30</span>
-                                </label>
-                                <label>
-                                    <input (change)="setFilterAge($event)" class="mr-2 " type="radio" name="radiobutton" value="40">
-                                    <span for="radio">&gt; 40</span>
-                                </label>
-                                <label>
-                                    <input (change)="setFilterAge($event)" class="mr-2" type="radio" name="radiobutton" value="50">
-                                    <span for="radio">&gt; 50</span>
-                                </label>
-                                <label>
-                                    <input (change)="setFilterAge($event)" class="mr-2" type="radio" name="radiobutton" value="60">
-                                    <span for="radio">&gt; 60</span>
-                                </label>
+                                <ngx-slider (userChangeEnd)="sliderEvent()" [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+                                
                             </div>
                         </div>
 

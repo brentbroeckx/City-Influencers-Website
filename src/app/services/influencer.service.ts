@@ -37,7 +37,7 @@ export class InfluencerService {
   }
 
 
-  filter(type: string, value: string) {
+  filter(type: string, value: string, array?: string[], numberArray?: number[]) {
     const bearer = localStorage.getItem('token');
     let id = localStorage.getItem('id');
 
@@ -45,23 +45,23 @@ export class InfluencerService {
       'Authorization': `Bearer ${bearer}`
     })
 
+    console.log(array);
+    console.log(value);
+    console.log(numberArray)
+
     switch(type) {
       case "name":
-        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers?where=voornaam&like=" + value, {headers: headers});
+        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "influencers?where=voornaam&like=" + value, {headers: headers});
       case "surname":
-        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers?where=familienaam&like=" + value, {headers: headers});
+        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "influencers?where=familienaam&like=" + value, {headers: headers});
       case "category":
-        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers?where=categories&like=['" + value + "']", {headers: headers});
+        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "influencers?where=categories&like=['" + array + "']", {headers: headers});
       case "gender":
-        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers?where=geslacht&like=" + value, {headers: headers});
-      case "followersinstagram":
-        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers?where=aantalvolgersinstagram&like=" + value, {headers: headers});
-      case "followersfacebook":
-        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers?where=aantalvolgersfacebook&like=" + value, {headers: headers});
-      case "followerstiktok":
-        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers?where=aantalvolgerstiktok&like=" + value, {headers: headers});
+        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "influencers?where=geslacht&like=" + value, {headers: headers});
+      case "followers":
+        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "influencers?where=volgers&like=" + value, {headers: headers});
       case "age":
-        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "cities/" + id + "/influencers?where=leeftijd&like=" + value, {headers: headers});
+        return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "influencers?where=leeftijd&like=[" + numberArray + "]", {headers: headers});
       default:
         return null;
     }
