@@ -7,10 +7,13 @@ import { SideNavigationComponent } from "../navigation/side-navigation.component
 import { SidenavigationModule } from "../navigation/side-navigation.module";
 import { OverviewRoutingModule } from "./overview-routing.module";
 import { OverviewComponent } from "./overview-tab/overview.component";
+import { CountComponent } from './count/count.component';
 
 @NgModule({
     declarations: [
         OverviewComponent,
+        CountComponent,
+        
     ],
     imports: [
         SharedModule,
