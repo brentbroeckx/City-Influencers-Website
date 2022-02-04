@@ -30,10 +30,41 @@ export class MyTasksDetailComponent implements OnInit {
   constructor(private taskService: TaskService, private route: ActivatedRoute, private postService: PostsService) {
   }
   
+  public modalHandler(val: boolean, modalNumber: String) {
+    if (modalNumber === 'modal1'){
+      var modal = document.getElementById("modal");
+      var image = document.getElementById("image");
+      if(modal && image){
+        if (val) {
+          modal.classList.remove("hidden");
+          image.classList.add("hidden");
+      } else {
+          modal.classList.add("hidden");
+          image.classList.remove("hidden");
+      }
+      }
+    }
+
+    else if (modalNumber === 'modal2'){
+      var modal = document.getElementById("modal2");
+      var image = document.getElementById("image");
+      if(modal && image){
+        if (val) {
+          modal.classList.remove("hidden");
+          image.classList.add("hidden");
+      } else {
+          modal.classList.add("hidden");
+          image.classList.remove("hidden");
+      }
+      }
+    }
+}
 
 
   ngOnInit(): void {
     const taskId = this.route.snapshot.paramMap.get('id');
+    this.modalHandler(false, 'modal1');
+    this.modalHandler(false, 'modal2');
     if (taskId != null ){
       this.taskService.getTaskById(taskId).subscribe(res => {
         this.task = res.data[0];
