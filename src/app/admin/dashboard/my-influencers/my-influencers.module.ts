@@ -10,6 +10,7 @@ import { MyInfluencersComponent } from "./my-influencers-tab/my-influencers.comp
 import { InfluencerDetailComponent } from './my-influencers-tab/influencer-detail/influencer-detail.component';
 import { PostCardComponent } from './my-influencers-tab/influencer-detail/post-card/post-card.component';
 import { PostDetailComponent } from './my-influencers-tab/post-detail/post-detail.component';
+import { NgxSliderModule } from "@angular-slider/ngx-slider";
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { PostDetailComponent } from './my-influencers-tab/post-detail/post-detai
         SharedModule,
         MyInfluencersRoutingModule,
         DashboardModule,
-        SidenavigationModule
+        SidenavigationModule,
+        NgxSliderModule
     ],
     exports: [
         MyInfluencersComponent,

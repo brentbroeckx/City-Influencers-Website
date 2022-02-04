@@ -4,6 +4,9 @@ import { Influencer } from 'src/app/models/influencer';
 import { CategoryService } from 'src/app/services/category.service';
 import { InfluencerService } from 'src/app/services/influencer.service';
 
+import { Options } from '@angular-slider/ngx-slider';
+
+
 @Component({
   selector: 'app-my-influencers',
   templateUrl: './my-influencers.component.html',
@@ -17,6 +20,19 @@ export class MyInfluencersComponent implements OnInit {
   sorting: Boolean = false;
   isFiltering: Boolean = false;
   allCategories: Category[] | undefined;
+
+  // AGE SLIDER VALUES
+  minValue = 18;
+  maxValue = 80;
+  options: Options = {
+      ceil: 100,
+      showSelectionBar: true,
+      selectionBarGradient: {
+        from: 'white',
+        to: '#FC0'
+    }
+  }
+
 
   filterNameParam: string = "";
   filterSurnameParam: string = "";
@@ -182,6 +198,7 @@ export class MyInfluencersComponent implements OnInit {
   setFilterCategory(event: any) {
     this.errormessage = "";
     var filtervalue = "";
+    this.filterCategoryParam = ["All"]
     
     if (this.filterCategoryParam.length != 1 && this.filterCategoryParam[0] == "All") {
       this.filterCategoryParam.pop()
@@ -199,10 +216,15 @@ export class MyInfluencersComponent implements OnInit {
       
 
     }
+    console.log(this.filterCategoryParam)
+
+    if (this.filterCategoryParam.length != 1) {
+      this.filterCategoryParam.splice(0, 1)
+    }
 
     console.log(this.filterCategoryParam);
 
-    this.influencerService.filter("category", filtervalue)?.subscribe(res => {
+    this.influencerService.filter("category", "", this.filterCategoryParam)?.subscribe(res => {
       console.log(res.data);
       this.resetFilterValue("names");
 
@@ -253,15 +275,31 @@ export class MyInfluencersComponent implements OnInit {
     var filtervalue = event.target.value;
     console.log(filtervalue);
 
-    this.influencerService.filter("followersinstagram", filtervalue);
+    this.influencerService.filter("followers", filtervalue.toString())?.subscribe( res => {
+      this.resetFilterValue("names");
+
+      console.log(res)
+    });
 
   }
 
-  setFilterAge(event: any) {
-    var filtervalue = event.target.value;
-    console.log(filtervalue);
+  sliderEvent() {
+    console.log(this.minValue)
+    var min = this.minValue;
+    var max = this.maxValue;
+    this.setFilterAge(min, max);
+  }
 
-    this.influencerService.filter("age", filtervalue);
+  setFilterAge(min: number, max: number) {
+
+    var array = []
+    array.push(min);
+    array.push(max);
+
+    this.influencerService.filter("age", "", [], array)?.subscribe(res => {
+      this.resetFilterValue("names");
+      
+    });
 
   }
 
