@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth/auth.service';
 
+import { gsap, Power4, CSSPlugin } from 'gsap';
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -16,6 +19,9 @@ export class HeaderComponent implements OnInit {
   constructor(private toastr: ToastrService, private authService: AuthService) { }
 
   ngOnInit(): void {
+
+    
+
 
 
     if (!localStorage.getItem('token')) return;
@@ -36,5 +42,6 @@ export class HeaderComponent implements OnInit {
   changeNav(value: Boolean) {
     this.navHidden = value;
   }
+
 
 }

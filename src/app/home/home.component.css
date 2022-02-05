@@ -14,3 +14,22 @@
     transition-timing-function: ease-in-out;
 }
 
+.nav {
+    clip-path: polygon(0 100%, 0 100%, 0 0, 0 0);
+    opacity: 0;
+    transform: translateY((100px));
+    height: 10vh;
+}
+
+#header {
+    height: 25vh;
+}
+
+@media (min-width: 1024px) {
+    #header {
+        height: 90vh;
+    }
+}
+
+
+
