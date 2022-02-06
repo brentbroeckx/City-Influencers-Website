@@ -22,7 +22,7 @@
                             </div>
                             <div>
 
-                                    <svg style="cursor: pointer;" (click)="modalHandler(true, 'modal1')" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg *ngIf="task.isuitgevoerd==='f'" style="cursor: pointer;" (click)="modalHandler(true, 'modal1')" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1.41999 18.5789C1.13948 18.5784 0.872062 18.4601 0.682993 18.2529C0.490439 18.0474 0.394758 17.7694 0.419993 17.4889L0.664993 14.7949L11.983 3.48091L15.52 7.01691L4.20499 18.3299L1.51099 18.5749C1.47999 18.5779 1.44899 18.5789 1.41999 18.5789ZM16.226 6.30991L12.69 2.77391L14.811 0.652906C14.9986 0.465129 15.2531 0.359619 15.5185 0.359619C15.7839 0.359619 16.0384 0.465129 16.226 0.652906L18.347 2.77391C18.5348 2.96147 18.6403 3.216 18.6403 3.48141C18.6403 3.74681 18.5348 4.00134 18.347 4.18891L16.227 6.30891L16.226 6.30991Z" fill="#6b7280"/>
                                     </svg>
 
@@ -46,20 +46,23 @@
                     <div class="py-12 transition duration-150 ease-in-out" style="width: 50vw;" id="modal">
                         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                             <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit reward</h1>
-                                <label for="reward" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Reward</label>
-                                <input id="reward" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="James" />
-                                <div class="flex items-center justify-start w-full">
-                                    <button class="focus:outline-none transition duration-150 ease-in-out theme_button_color text-black rounded px-8 py-2 text-sm">Submit</button>
-                                    <button class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" (click)="modalHandler(false, 'modal1')">Cancel</button>
-                                </div>
-                                <div class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out" (click)="modalHandler(false, 'modal1')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" />
-                                        <line x1="18" y1="6" x2="6" y2="18" />
-                                        <line x1="6" y1="6" x2="18" y2="18" />
-                                    </svg>
-                                </div>
+                                <form (ngSubmit)="onSubmitReward()" [formGroup]="rewardForm">
+                                    <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit reward</h1>
+                                    <label for="reward" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Reward</label>
+                                    <input formControlName="reward" id="reward" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" value="{{task.aantalpuntenwaard}}"/>
+                                    <div class="flex items-center justify-start w-full">
+                                        <button class="focus:outline-none transition duration-150 ease-in-out theme_button_color text-black rounded px-8 py-2 text-sm" (click)="onSubmitReward()">Submit</button>
+                                        <button class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" (click)="modalHandler(false, 'modal2')">Cancel</button>
+                                    </div>
+                                    <div class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out" (click)="modalHandler(false, 'modal2')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" />
+                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                            <line x1="6" y1="6" x2="18" y2="18" />
+                                        </svg>
+                                    </div>
+                                </form>
+                                
                             </div>
                         </div>
                     </div>
@@ -67,24 +70,41 @@
                     <div class="py-12 transition duration-150 ease-in-out" style="width: 50vw;" id="modal2">
                         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                             <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit description</h1>
-                                <label for="description" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Description</label>
-                                <input id="description" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="James" />
-                                <div class="flex items-center justify-start w-full">
-                                    <button class="focus:outline-none transition duration-150 ease-in-out theme_button_color text-black rounded px-8 py-2 text-sm">Submit</button>
-                                    <button class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" (click)="modalHandler(false, 'modal2')">Cancel</button>
-                                </div>
-                                <div class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out" (click)="modalHandler(false, 'modal2')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" />
-                                        <line x1="18" y1="6" x2="6" y2="18" />
-                                        <line x1="6" y1="6" x2="18" y2="18" />
-                                    </svg>
-                                </div>
+                                <form (ngSubmit)="onSubmitDescription()" [formGroup]="descriptionForm">
+                                    <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit task</h1>
+                                    
+                                    <label for="title" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Title</label>
+                                    <input formControlName="title" id="title" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" value="{{task.titel}}"/>
+
+                                    <label for="categories" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Categories</label>
+                                    <ng-multiselect-dropdown formControlName="categories" id="categories" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm" 
+                                    [placeholder]="'Select one or more categories'"
+                                    [settings]="dropdownSettings"
+                                    [data]="dropdownList"
+                                    [(ngModel)]="selectedItems"
+                                    >
+                                    </ng-multiselect-dropdown>
+
+                                    <label for="description" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Description</label>                                    
+                                    <textarea formControlName="description" class="inputshadow no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="description" *ngIf="task.omschrijving === null">Write your description about the task here.</textarea>
+                                    <textarea formControlName="description" class="inputshadow no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="description" value="{{task.omschrijving}}">{{task.omschrijving}}</textarea>                                    
+
+                                    <div class="flex items-center justify-start w-full">
+                                        <button class="focus:outline-none transition duration-150 ease-in-out theme_button_color text-black rounded px-8 py-2 text-sm" (click)="onSubmitDescription()">Submit</button>
+                                        <button class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" (click)="modalHandler(false, 'modal2')">Cancel</button>
+                                    </div>
+                                    <div class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out" (click)="modalHandler(false, 'modal2')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" />
+                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                            <line x1="6" y1="6" x2="18" y2="18" />
+                                        </svg>
+                                    </div>
+                                </form>
+                                
                             </div>
                         </div>
                     </div>
-                    
                     <img id="image" class="w-2/3 md:w-2/3 lg:w-2/6 rounded-3xl shadow-xl" src="../../../../../../assets/images/influencer.jpg" alt="Influencer profile picture">
                     
                     <div class="hidden md:block rounded-xl h-50 w-50 px-3 pb-3 pt-1 border-2 border-gray-100 shadow-xl">
@@ -103,7 +123,16 @@
                 </div>
                 
                 <div class="rounded-3xl border-2 border-gray-100 shadow-xl h-full px-2 pb-3 w-3/4 md:w-8/12 mt-10 md:mt-5">
+                    <div class="flex flex-row justify-center font-bold text-center max-w-full mt-2 md:mt-5 mb-2 md:mb-5">
+                        {{task.titel}}
+                        <div class="pl-5">
+                        <svg *ngIf="task.isuitgevoerd==='f'" style="cursor: pointer;" (click)="modalHandler(true, 'modal2')" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.41999 18.5789C1.13948 18.5784 0.872062 18.4601 0.682993 18.2529C0.490439 18.0474 0.394758 17.7694 0.419993 17.4889L0.664993 14.7949L11.983 3.48091L15.52 7.01691L4.20499 18.3299L1.51099 18.5749C1.47999 18.5779 1.44899 18.5789 1.41999 18.5789ZM16.226 6.30991L12.69 2.77391L14.811 0.652906C14.9986 0.465129 15.2531 0.359619 15.5185 0.359619C15.7839 0.359619 16.0384 0.465129 16.226 0.652906L18.347 2.77391C18.5348 2.96147 18.6403 3.216 18.6403 3.48141C18.6403 3.74681 18.5348 4.00134 18.347 4.18891L16.227 6.30891L16.226 6.30991Z" fill="#6b7280"/>
+                        </svg>
+                    </div>
+                    </div>
                     <div class="text-gray-500 text-sm font-semibold text-center">
+                        
                         <div class="text-gray-500 text-sm text-center">
                             <div *ngFor="let category of task.categories">
                                 <div *ngIf="category != 'All'">
@@ -114,11 +143,6 @@
                     </div>
                     <div class="flex flex-row justify-center font-bold text-center max-w-full mt-2 md:mt-5">
                         Description
-                        <div class="pl-5">
-                            <svg style="cursor: pointer;" (click)="modalHandler(true, 'modal2')" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1.41999 18.5789C1.13948 18.5784 0.872062 18.4601 0.682993 18.2529C0.490439 18.0474 0.394758 17.7694 0.419993 17.4889L0.664993 14.7949L11.983 3.48091L15.52 7.01691L4.20499 18.3299L1.51099 18.5749C1.47999 18.5779 1.44899 18.5789 1.41999 18.5789ZM16.226 6.30991L12.69 2.77391L14.811 0.652906C14.9986 0.465129 15.2531 0.359619 15.5185 0.359619C15.7839 0.359619 16.0384 0.465129 16.226 0.652906L18.347 2.77391C18.5348 2.96147 18.6403 3.216 18.6403 3.48141C18.6403 3.74681 18.5348 4.00134 18.347 4.18891L16.227 6.30891L16.226 6.30991Z" fill="#6b7280"/>
-                            </svg>
-                        </div>
                     </div>
                     
                     <div class=" text-sm text-center max-w-full mt-2 md:mt-5">
