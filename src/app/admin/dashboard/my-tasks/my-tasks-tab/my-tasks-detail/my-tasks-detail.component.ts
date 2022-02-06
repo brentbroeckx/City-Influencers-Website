@@ -17,6 +17,8 @@ import {
 import {CommonModule} from '@angular/common';
 import { TaskChange } from 'src/app/models/taskChange';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/models/category';
+import { CategoryService } from 'src/app/services/category.service';
 
 
 @Component({
@@ -30,6 +32,8 @@ export class MyTasksDetailComponent implements OnInit {
 
   posts: Post[] | undefined;
 
+  categories: Category[] | undefined;
+
   descriptionForm = new FormGroup({
     description: new FormControl('', [Validators.required]),
     title: new FormControl('', [Validators.required]),
@@ -39,7 +43,7 @@ export class MyTasksDetailComponent implements OnInit {
     reward: new FormControl('', [Validators.required])
   })
 
-  constructor(private taskService: TaskService,  private toastr: ToastrService, private route: ActivatedRoute, private postService: PostsService) {
+  constructor(private taskService: TaskService,  private toastr: ToastrService, private route: ActivatedRoute, private postService: PostsService, private categoryService: CategoryService) {
   }
   
   public modalHandler(val: boolean, modalNumber: String) {
@@ -72,25 +76,25 @@ export class MyTasksDetailComponent implements OnInit {
     }
 }
 
+dropdownList = [
+  { id: '1', naam: 'All' },
+  { id: '2', naam: 'Travel' },
+  { id: '3', naam: 'Food' },
+  { id: '4', naam: 'Sport' },
+  { id: '5', naam: 'Clothes' },
+  { id: '6', naam: 'Lifestyle' },
+  { id: '7', naam: 'DJ' }
+]; 
 
+selectedItems = [
+  { id: '3', naam: 'Food' },
+  { id: '4', naam: 'Sport' }
+];
 
-  dropdownList: [
-    { item_id: 1, item_text: 'All' },
-    { item_id: 2, item_text: 'Travel' },
-    { item_id: 3, item_text: 'Food' },
-    { item_id: 4, item_text: 'Sport' },
-    { item_id: 5, item_text: 'Clothes' },
-    { item_id: 6, item_text: 'Lifestyle' },
-    { item_id: 7, item_text: 'DJ' }
-  ];
-  selectedItems: [
-    { item_id: 3, item_text: 'Food' },
-    { item_id: 4, item_text: 'Sport' }
-  ];
   dropdownSettings = {
         singleSelection: false,
-        idField: 'item_id',
-        textField: 'item_text',
+        idField: 'id',
+        textField: 'naam',
         selectAllText: 'Select All',
         unSelectAllText: 'Unselect All',
         itemsShowLimit: 3,
@@ -98,6 +102,12 @@ export class MyTasksDetailComponent implements OnInit {
       };
 
   ngOnInit(): void {
+
+    this.categoryService.getAllCategories().subscribe(res => {
+      this.categories = res.data;
+      this.dropdownList = this.categories;
+    
+    });
     
     const taskId = this.route.snapshot.paramMap.get('id');
     this.modalHandler(false, 'modal1');
@@ -105,6 +115,7 @@ export class MyTasksDetailComponent implements OnInit {
     if (taskId != null ){
       this.taskService.getTaskById(taskId).subscribe(res => {
         this.task = res.data[0];
+        console.log('DDL',this.dropdownList);
       })
 
       this.postService.getPostsFromTask(taskId).subscribe(res => {
@@ -112,25 +123,13 @@ export class MyTasksDetailComponent implements OnInit {
         console.log(this.posts)
       })
 
-      this.dropdownList = [
-        { item_id: 1, item_text: 'All' },
-        { item_id: 2, item_text: 'Travel' },
-        { item_id: 3, item_text: 'Food' },
-        { item_id: 4, item_text: 'Sport' },
-        { item_id: 5, item_text: 'Clothes' },
-        { item_id: 6, item_text: 'Lifestyle' },
-        { item_id: 7, item_text: 'DJ' }
-      ];
-      this.selectedItems = [
-        { item_id: 3, item_text: 'Food' },
-        { item_id: 4, item_text: 'Sport' }
-      ]; 
+      console.log(this.categories)      
       this.dropdownSettings = {
         singleSelection: false,
-        idField: 'item_id',
-        textField: 'item_text',
+        idField: 'id',
+        textField: 'naam',
         selectAllText: 'Select All',
-        unSelectAllText: 'UnSelect All',
+        unSelectAllText: 'Unselect All',
         itemsShowLimit: 3,
         allowSearchFilter: true
       };
