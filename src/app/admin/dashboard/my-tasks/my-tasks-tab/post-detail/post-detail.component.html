@@ -41,6 +41,8 @@
                             </div> 
                         </div>
                         <form class="text-gray-500 mt-4 w-96" (ngSubmit)="onSubmit()" [formGroup]="postForm">
+                            <label for="winner" class="mr-2">Is winner?</label>
+                            <input type="checkbox" id="winner" formControlName="winner" name="winner"><br><br>
                             <label for="approved" class="mr-2">Approved</label>
                             <input type="checkbox" id="approved" formControlName="approved" name="approved"><br><br>
                             <label for="comment">Comment</label><br>

@@ -22,9 +22,7 @@ export class MyPostsCardComponent implements OnInit {
   
 
   toDetailPage(taskId: String, postId: String) {
-    // this.router.navigateByUrl('/123', { state: { hello: 'world' } });
     const route = '/dashboard/my-tasks/' + taskId + '/posts/' + postId;
-    console.log("####", route)
     this.router.navigateByUrl(route, {state: {post: this.post}})
   }
 
