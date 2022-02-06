@@ -61,7 +61,7 @@
                         {{ errormessage }}
                     </div>
                 </div>
-                <div *ngIf="isFiltering" class="bg-white border-2 border-gray-200 absolute md:w-1/4 lg:w-1/6 top-0 right-0 h-screen">
+                <div *ngIf="isFiltering" class="filternav bg-white border-2 border-gray-200 absolute md:w-1/4 lg:w-1/6 top-0 right-0 h-screen">
                     <div class="m-5">
                         <div (click)="changeFilterBar()" class="flex flex-row cursor-pointer">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,6 +86,7 @@
                             <div>
                                 <label class="mt-5 block font-bold text-sm mb-2" for="gender">Gender</label>
                                 <select (change)="setFilterGender($event)" class="border-2 border-gray-200" name="gender" id="gender">
+                                    <option value="All">All</option>
                                     <option value="Man">Man</option>
                                     <option value="Vrouw">Vrouw</option>
                                     <option value="Andere">Andere</option>
