@@ -93,7 +93,6 @@ export class SettingsComponent implements OnInit {
 
 
     this._renderer2.appendChild(this._document.body, script);
-    this._renderer2.data
 
 
   }

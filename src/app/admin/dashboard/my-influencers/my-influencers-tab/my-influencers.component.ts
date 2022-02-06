@@ -25,11 +25,11 @@ export class MyInfluencersComponent implements OnInit {
   minValue = 18;
   maxValue = 80;
   options: Options = {
-      ceil: 100,
-      showSelectionBar: true,
-      selectionBarGradient: {
-        from: 'white',
-        to: '#FC0'
+    ceil: 100,
+    showSelectionBar: true,
+    selectionBarGradient: {
+      from: 'white',
+      to: '#FC0'
     }
   }
 
@@ -46,6 +46,7 @@ export class MyInfluencersComponent implements OnInit {
   nameEvent: any;
   surnameEvent: any;
 
+
   constructor(private influencerService: InfluencerService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
@@ -58,8 +59,6 @@ export class MyInfluencersComponent implements OnInit {
     this.categoryService.getAllCategories().subscribe(res => {
       this.allCategories = res.data;
     })
-
-    
   }
 
 
@@ -67,7 +66,6 @@ export class MyInfluencersComponent implements OnInit {
     var newArray: Influencer[] = []
 
     array2.forEach(item => {
-      console.log(item)
       if (array?.find(e => e.id === item.id)) {
         newArray.push(item);
       }
@@ -79,35 +77,35 @@ export class MyInfluencersComponent implements OnInit {
 
   changeFilterBar() {
     this.isFiltering = !this.isFiltering;
+
   }
 
   changeSort() {
     this.sorting = !this.sorting;
 
     switch (this.sorting) {
-        case true:
-            this.influencers?.sort((a, b) => {
-              var textA = a.voornaam.toLowerCase();
-              var textB = b.voornaam.toLowerCase();
-              return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
-            })
-          break;
-        case false:
-            this.influencers?.sort((a, b) => {
-              var textA = a.voornaam.toLowerCase();
-              var textB = b.voornaam.toLowerCase();
-              return (textA < textB) ? 1 : (textA > textB) ? -1 : 0
-            })
-          break;
+      case true:
+        this.influencers?.sort((a, b) => {
+          var textA = a.voornaam.toLowerCase();
+          var textB = b.voornaam.toLowerCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+        })
+        break;
+      case false:
+        this.influencers?.sort((a, b) => {
+          var textA = a.voornaam.toLowerCase();
+          var textB = b.voornaam.toLowerCase();
+          return (textA < textB) ? 1 : (textA > textB) ? -1 : 0
+        })
+        break;
     }
 
   }
 
   resetFilterValue(type: string) {
-    switch(type) {
+    switch (type) {
       case "names":
         if (this.nameEvent == null) break;
-        console.log(this.nameEvent)
         this.nameEvent.target.value = "";
         if (this.surnameEvent == null) break;
         this.surnameEvent.target.value = "";
@@ -119,23 +117,18 @@ export class MyInfluencersComponent implements OnInit {
     var filtervalue = "";
     this.nameEvent = event;
 
-    console.log(event);
 
     if (event != null) {
       filtervalue = event.target.value;
-      console.log(filtervalue);
 
       this.filterNameParam = filtervalue;
     }
 
-    console.log(this.filterNameParam)
-    
+
 
     this.influencerService.filter("name", this.filterNameParam)?.subscribe(res => {
-      console.log(res);
 
       if (res.data == null) {
-        console.log("errormessage");
         this.errormessage = "No results with name: " + filtervalue;
         return;
       };
@@ -161,32 +154,24 @@ export class MyInfluencersComponent implements OnInit {
 
     if (event != null) {
       filtervalue = event.target.value;
-      console.log(filtervalue);
 
       this.filterSurnameParam = filtervalue;
     }
 
 
-    console.log(this.filterSurnameParam);
 
     this.influencerService.filter("surname", this.filterSurnameParam)?.subscribe(res => {
-      console.log(res.data);
-
       if (res.data == null) {
         this.errormessage = "No results with surname: " + filtervalue;
         return;
       };
 
-      console.log(this.filterNameParam + " : " + this.filterSurnameParam)
-    
+
       if (!this.filterNameParam && this.filterSurnameParam) {
-        console.log("filter param is not empty")
         this.influencers = res.data;
       } else if (this.filterNameParam && this.filterSurnameParam) {
-        console.log("no filter param")
         this.influencers = this.filterDistinct(this.influencers, res.data);
       } else if (this.filterNameParam && !this.filterSurnameParam) {
-        console.log("nothing else")
         this.setFilterName(null);
       } else {
         this.influencers = res.data;
@@ -199,33 +184,26 @@ export class MyInfluencersComponent implements OnInit {
     this.errormessage = "";
     var filtervalue = "";
     this.filterCategoryParam = ["All"]
-    
+
     if (this.filterCategoryParam.length != 1 && this.filterCategoryParam[0] == "All") {
       this.filterCategoryParam.pop()
     }
 
     if (event != null) {
       filtervalue = event.target.value;
-      console.log(filtervalue);
       if (event.target.value != "All") {
-        
-  
+
+
         this.filterCategoryParam.push(filtervalue);
       }
-
-      
-
     }
-    console.log(this.filterCategoryParam)
 
     if (this.filterCategoryParam.length != 1) {
       this.filterCategoryParam.splice(0, 1)
     }
 
-    console.log(this.filterCategoryParam);
 
     this.influencerService.filter("category", "", this.filterCategoryParam)?.subscribe(res => {
-      console.log(res.data);
       this.resetFilterValue("names");
 
       if (res.data == null) {
@@ -252,45 +230,51 @@ export class MyInfluencersComponent implements OnInit {
 
     if (event != null) {
       filtervalue = event.target.value;
-      console.log(filtervalue);
 
       this.filterGenderParam = filtervalue;
     }
 
-    console.log(this.filterGenderParam);
-
     this.influencerService.filter("gender", filtervalue)?.subscribe(res => {
-      console.log(res.data);
       this.resetFilterValue("names");
 
       if (res.data == null) {
         this.errormessage = "No results with gender: " + this.filterGenderParam;
       }
 
+      this.influencers = res.data;
     });
 
   }
 
   setFilterFollowers(event: any) {
-    var filtervalue = event.target.value;
-    console.log(filtervalue);
+    this.errormessage = ""
+    var filtervalue = "";
 
-    this.influencerService.filter("followers", filtervalue.toString())?.subscribe( res => {
+
+    filtervalue = event.target.value;
+    this.filterFollowersParam = filtervalue;
+
+    this.influencerService.filter("followers", filtervalue.toString())?.subscribe(res => {
       this.resetFilterValue("names");
 
-      console.log(res)
+      if (res.data == null) {
+        this.errormessage = "No results with Followers: " + this.filterFollowersParam;
+      }
+
+      this.influencers = res.data;
+
     });
 
   }
 
   sliderEvent() {
-    console.log(this.minValue)
     var min = this.minValue;
     var max = this.maxValue;
     this.setFilterAge(min, max);
   }
 
   setFilterAge(min: number, max: number) {
+    this.errormessage = ""
 
     var array = []
     array.push(min);
@@ -298,7 +282,13 @@ export class MyInfluencersComponent implements OnInit {
 
     this.influencerService.filter("age", "", [], array)?.subscribe(res => {
       this.resetFilterValue("names");
-      
+
+      if (res.data == null) {
+        this.errormessage = "No results for age between: " + this.minValue + " - " + this.maxValue;
+      }
+
+      this.influencers = res.data;
+
     });
 
   }

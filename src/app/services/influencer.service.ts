@@ -45,10 +45,6 @@ export class InfluencerService {
       'Authorization': `Bearer ${bearer}`
     })
 
-    console.log(array);
-    console.log(value);
-    console.log(numberArray)
-
     switch(type) {
       case "name":
         return this.httpClient.get<InfluencerApiResponse>( environment.API_URL + "influencers?where=voornaam&like=" + value, {headers: headers});

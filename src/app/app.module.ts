@@ -67,7 +67,7 @@ import { Cloudinary } from 'cloudinary-core';
       preventDuplicates: true,
     }),
     BrowserAnimationsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
     CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'dbyo9rarj'} as CloudinaryConfiguration),
   ],
   providers: [AuthGuard],
