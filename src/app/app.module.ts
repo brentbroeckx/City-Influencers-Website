@@ -27,10 +27,10 @@ import { FaqComponent } from './faq/faq.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
 import { Cloudinary } from 'cloudinary-core';
-
 
 @NgModule({
   declarations: [
@@ -53,8 +53,7 @@ import { Cloudinary } from 'cloudinary-core';
     ServiceUnavailableComponent,
     TimeOutComponent,
     FaqComponent,
-    PrivacyPolicyComponent,
-  
+    PrivacyPolicyComponent
 
   ],
   imports: [
@@ -68,6 +67,7 @@ import { Cloudinary } from 'cloudinary-core';
       preventDuplicates: true,
     }),
     BrowserAnimationsModule,
+    NgMultiSelectDropDownModule.forRoot()
     CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'dbyo9rarj'} as CloudinaryConfiguration),
   ],
   providers: [AuthGuard],

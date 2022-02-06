@@ -8,22 +8,26 @@ import { MyTasksRoutingModule } from "./my-tasks-routing.module";
 import { MyTasksDetailComponent } from "./my-tasks-tab/my-tasks-detail/my-tasks-detail.component";
 import { MyTasksComponent } from "./my-tasks-tab/my-tasks.component";
 import { MyPostsCardComponent } from './my-tasks-card/my-posts-card.component';
+import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { PostDetailComponent } from './my-tasks-tab/post-detail/post-detail.component';
 
 @NgModule({
     declarations: [
         MyTasksComponent,
         MyTasksDetailComponent,
-        MyPostsCardComponent
+        MyPostsCardComponent,
+        PostDetailComponent
         
     ],
     imports: [
         SharedModule,
         MyTasksRoutingModule,
         DashboardModule,
-        SidenavigationModule
+        SidenavigationModule,
+        NgMultiSelectDropDownModule.forRoot()
     ],
     exports: [
-        MyTasksComponent,
+        MyTasksComponent
 
     ],
     providers: []

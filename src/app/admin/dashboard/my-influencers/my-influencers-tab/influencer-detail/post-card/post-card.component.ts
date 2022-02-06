@@ -8,7 +8,9 @@ import { Post } from 'src/app/models/post';
   styleUrls: ['./post-card.component.css']
 })
 export class PostCardComponent implements OnInit {
-  @Input() post: Post = {id: "", influencerid: "", stadid: "", foto: "", beschrijving: "", isgoedgekeurd: "", commentaarstad: "", aantallikes: "", aantalcomments: "", bereik: "" }
+  @Input()   post: Post = {id: "", influencerid: "", stadid: "", foto: "", beschrijving: "", isgoedgekeurd: "", commentaarstad: "", aantallikes: "", aantalcomments: "", bereik: "", opdrachtid:""}
+
+
   
   constructor(private router: Router) { }
 

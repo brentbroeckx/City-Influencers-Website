@@ -21,6 +21,7 @@
             <div class="flex flex-col items-center xl:ml-0 mt-2 text-center">
                 <div class="ml-2 mt-3 pb-5">
                         <div class="text-gray-500 items-center">
+                            <p class="font-bold uppercase">{{post.gebruikersnaam}}</p>
                             <p class="font-bold">{{post.beschrijving}}</p>
                             <div class="flex flex-row justify-center items-center">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,6 +40,17 @@
                                 <span class="ml-2 mr-4">{{post.bereik}}</span>
                             </div> 
                         </div>
+                        <form class="text-gray-500 mt-4 w-96" (ngSubmit)="onSubmit()" [formGroup]="postForm">
+                            <label for="winner" class="mr-2">Is winner?</label>
+                            <input type="checkbox" id="winner" formControlName="winner" name="winner"><br><br>
+                            <label for="approved" class="mr-2">Approved</label>
+                            <input type="checkbox" id="approved" formControlName="approved" name="approved"><br><br>
+                            <label for="comment">Comment</label><br>
+                            <textarea formControlName="comment" class="inputshadow no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="comment" placeholder="Write your comment about the post here."></textarea>
+                            <button class="theme_button_color  hover:bg-blue-700 text-black font-bold py-1 px-3 mt-5 rounded-full" type="submit">
+                                <span class="text-sm">Submit</span>
+                            </button>
+                        </form>
                 </div>
                 
         </div>

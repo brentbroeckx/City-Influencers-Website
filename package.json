@@ -43,6 +43,7 @@
     "echarts": "^5.2.2",
     "gsap": "^3.9.1",
     "jwt-decode": "^3.1.2",
+    "ng-multiselect-dropdown": "^0.3.8",
     "ng2-cookies": "^1.0.12",
     "ngx-cookie-service": "^13.1.2",
     "ngx-echarts": "^8.0.1",

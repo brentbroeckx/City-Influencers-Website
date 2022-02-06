@@ -16,3 +16,7 @@ input:checked ~ .line {
 .dot {
   background-color: #ff0000;
 }
+
+#posts :first-child {
+  margin-top:45px;
+}
