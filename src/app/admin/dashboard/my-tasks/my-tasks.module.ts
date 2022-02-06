@@ -9,12 +9,14 @@ import { MyTasksDetailComponent } from "./my-tasks-tab/my-tasks-detail/my-tasks-
 import { MyTasksComponent } from "./my-tasks-tab/my-tasks.component";
 import { MyPostsCardComponent } from './my-tasks-card/my-posts-card.component';
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { PostDetailComponent } from './my-tasks-tab/post-detail/post-detail.component';
 
 @NgModule({
     declarations: [
         MyTasksComponent,
         MyTasksDetailComponent,
-        MyPostsCardComponent
+        MyPostsCardComponent,
+        PostDetailComponent
         
     ],
     imports: [

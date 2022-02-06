@@ -43,4 +43,19 @@ export class PostsService {
     return this.httpClient.get<PostsApiResponse>( environment.API_URL + "tasks/" + id + "/posts", {headers: headers});
   }
 
+  changePost(postId: String, taskId: String, isApproved: boolean, commentCity: String){
+    const changeParam = {
+      isapproved: isApproved,
+      commentscity: commentCity
+    }
+
+    const bearer = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${bearer}`
+    })
+
+    return this.httpClient.put<any>( environment.API_URL + "tasks/" + taskId + "/posts/" + postId, changeParam, {headers: headers});
+  }
+
 }

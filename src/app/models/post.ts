@@ -9,5 +9,6 @@ export interface Post {
     aantallikes: string;
     aantalcomments: string;
     bereik: string;
+    opdrachtid: string;
     gebruikersnaam?: string;
 }
