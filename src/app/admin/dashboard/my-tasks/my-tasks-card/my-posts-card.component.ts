@@ -10,31 +10,25 @@ import { Post } from 'src/app/models/post';
 })
 export class MyPostsCardComponent implements OnInit {
   @Input() influencer: Influencer = {id: "", voornaam: "", familienaam: "", geslacht: "", gebruikersnaam: "", profielfoto: "", adres: "", postcode: "", stad: "", geboortedatum: "", telefoonnummer: "", emailadres: "", gebruikersnaaminstagram: "", gebruikersnaamfacebook: "", gebruikersnaamtiktok: "", infoovervolgers: "", badge: "", aantalPunten: "", categories: [], aantalvolgersinstagram: "", aantalvolgersfacebook: "", aantalvolgerstiktok: "" }
-  @Input() post: Post  = {
-    id: "",
-    influencerid: '',
-    stadid: '',
-    foto: '',
-    beschrijving: '',
-    isgoedgekeurd: '',
-    commentaarstad: '',
-    aantallikes: '',
-    aantalcomments: '',
-    bereik: ''
-  }
+  @Input()  post: Post = {id: "", influencerid: "", stadid: "", foto: "", beschrijving: "", isgoedgekeurd: "", commentaarstad: "", aantallikes: "", aantalcomments: "", bereik: "", opdrachtid:""}
 
+
+  @Input() winnerId: String = "";
+  @Input() taskId: String = "";
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
   
-  // toDetailPage(id: String) {
-  //   this.router.navigate(['/dashboard/my-tasks/detail', id])
-  // }
 
-  toDetailPage(influencerId: String, postId: String) {
-    this.router.navigate(['/dashboard/my-influencers/' + influencerId + '/posts/' + postId])
+  toDetailPage(taskId: String, postId: String) {
+    const route = '/dashboard/my-tasks/' + taskId + '/posts/' + postId;
+    this.router.navigateByUrl(route, {state: {post: this.post}})
   }
 
+  
+
+  
 
 }
+
