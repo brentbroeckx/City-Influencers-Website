@@ -51,4 +51,22 @@ export class TaskService {
 
     return this.httpClient.get<TaskApiResponse>( environment.API_URL + "tasks/" + id, {headers: headers});
   }
+
+  createTask(task: TaskChange){
+    const createParam = {
+      title: task.title,
+      description: task.description,
+      totalpointsworth: task.totalpointsworth,
+      picture: task.picture,
+      winnerid: task.winnerid
+    }
+
+    const bearer = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${bearer}`
+    })
+
+    return this.httpClient.post<any>( environment.API_URL + "tasks", createParam, {headers: headers});
+  }
 }

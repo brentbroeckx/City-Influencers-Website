@@ -43,10 +43,10 @@
                         
                     </div>
 
-                    <div class="py-12 transition duration-150 ease-in-out" style="width: 50vw;" id="modal">
+                    <div class="py-12 transition duration-150 ease-in-out" style="width: 50vw;" id="modal1">
                         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                             <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                                <form (ngSubmit)="onSubmitReward()" [formGroup]="rewardForm">
+                                <form [formGroup]="rewardForm">
                                     <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit reward</h1>
                                     <label for="reward" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Reward</label>
                                     <input formControlName="reward" id="reward" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" value="{{task.aantalpuntenwaard}}"/>
@@ -70,7 +70,7 @@
                     <div class="py-12 transition duration-150 ease-in-out" style="width: 50vw;" id="modal2">
                         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                             <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                                <form (ngSubmit)="onSubmitDescription()" [formGroup]="descriptionForm">
+                                <form [formGroup]="descriptionForm">
                                     <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit task</h1>
                                     
                                     <label for="title" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Title</label>

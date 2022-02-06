@@ -1,5 +1,5 @@
 export interface TaskChange {
-    taskid: string;
+    taskid?: string;
     title?: string;
     description?: string;
     totalpointsworth?: string;

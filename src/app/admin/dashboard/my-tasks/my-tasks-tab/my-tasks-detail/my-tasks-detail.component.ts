@@ -44,7 +44,7 @@ export class MyTasksDetailComponent implements OnInit {
   
   public modalHandler(val: boolean, modalNumber: String) {
     if (modalNumber === 'modal1'){
-      var modal = document.getElementById("modal");
+      var modal = document.getElementById("modal1");
       var image = document.getElementById("image");
       if(modal && image){
         if (val) {
@@ -150,13 +150,9 @@ export class MyTasksDetailComponent implements OnInit {
 
       console.log(settingsChange)
       this.taskService.changeTask(settingsChange).subscribe(res => {
-        var modal = document.getElementById("modal2");
-        var image = document.getElementById("image");
-        if(modal && image){
-          modal.classList.add("hidden");
-          image.classList.remove("hidden");
-          window.location.reload();
-        }
+        this.modalHandler(false, 'modal2');
+        window.location.reload();
+
       });
     }
   }
@@ -171,13 +167,8 @@ export class MyTasksDetailComponent implements OnInit {
 
       console.log(settingsChange)
       this.taskService.changeTask(settingsChange).subscribe(res => {
-        var modal = document.getElementById("modal");
-        var image = document.getElementById("image");
-        if(modal && image){
-          modal.classList.add("hidden");
-          image.classList.remove("hidden");
-          window.location.reload();
-        }
+        this.modalHandler(false, 'modal1');
+        window.location.reload();
       });
     }
   }

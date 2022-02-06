@@ -31,7 +31,7 @@
                                     </div>
                                     <span>Filter</span>
                                 </div>
-                                <div class="hidden text-center theme_button_color md:flex flex-row justify-center items-center space-x-1 w-32 h-9 rounded-xl">
+                                <div (click)="modalHandler(true)" style="cursor: pointer;" class="hidden text-center theme_button_color md:flex flex-row justify-center items-center space-x-1 w-32 h-9 rounded-xl">
                                     <div class="">
 
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,10 +41,53 @@
                                     </div>
                                     <span class="font-bold">Add task</span>
                                 </div>
+
+                                
                             </div>
                         </div>
-                        <div class="flex md:flex-row mx-auto justify-center md:justify-start height-80 md:h-2/3 w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
-                            <table class="table-auto w-full">
+                        
+                        <div class="flex md:flex-row mx-auto justify-center md:justify-center height-80 md:h-2/3 w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
+                            <div class="hidden py-12 transition duration-150 ease-in-out" style="width: 50vw;" id="modal">
+                                <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+                                    <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+                                        <form [formGroup]="taskForm">
+                                            <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Create a new task</h1>
+                                            
+                                            <label for="title" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Title</label>
+                                            <input formControlName="title" id="title" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"/>
+        
+                                            <label for="categories" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Categories</label>
+                                            <ng-multiselect-dropdown formControlName="categories" id="categories" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm" 
+                                            [placeholder]="'Select one or more categories'"
+                                            [settings]="dropdownSettings"
+                                            [data]="dropdownList"
+                                            [(ngModel)]="selectedItems"
+                                            >
+                                            </ng-multiselect-dropdown>
+        
+                                            <label for="description" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Description</label>                                    
+                                            <textarea formControlName="description" class="inputshadow no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="description">Write your description about the task here.</textarea>            
+                                            <label for="reward" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Reward</label>
+                                            <input formControlName="reward" id="reward" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"/>
+                                            <div class="flex items-center justify-start w-full">
+                                                <button class="focus:outline-none transition duration-150 ease-in-out theme_button_color text-black rounded px-8 py-2 text-sm" (click)="createTask()">Submit</button>
+                                                <button class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" (click)="modalHandler(false)">Cancel</button>
+                                            </div>
+                                            <div class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out" (click)="modalHandler(false)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" />
+                                                    <line x1="18" y1="6" x2="6" y2="18" />
+                                                    <line x1="6" y1="6" x2="18" y2="18" />
+                                                </svg>
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <table class="table-auto w-full" id="table">
                                 <thead class="border-b border-yellow-300 h-12">
                                     <tr class="">
                                         <th class=" text-left">Task title</th>
