@@ -9,6 +9,8 @@ import { SignUpService } from '../services/sign-up.service';
 import { sha256 } from 'crypto-hash';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { CityService } from '../services/city.service';
+import { keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,7 +20,7 @@ import { Router } from '@angular/router';
 export class SignUpComponent implements OnInit {
 
   zipcodes: [] | undefined;
-  cities: [] | undefined;
+  cities: string[] | undefined;
 
 
   registerForm = new FormGroup({
@@ -30,9 +32,16 @@ export class SignUpComponent implements OnInit {
     city: new FormControl('', [Validators.required])
   })
 
-  constructor(private signUpSerivce: SignUpService, private toastr: ToastrService, private router: Router) { }
+  constructor(private signUpSerivce: SignUpService, private cityService: CityService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
+    this.cityService.getListCities().subscribe(res => {
+      console.log(Object.keys(res.data).find(key => res.data[key] == "1000"))
+
+
+      this.cities = Object.keys(res.data);
+      console.log(this.cities)
+    })
   }
 
   onSubmit() {

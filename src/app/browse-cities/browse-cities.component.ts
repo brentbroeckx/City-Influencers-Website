@@ -21,7 +21,7 @@ export class BrowseCitiesComponent implements OnInit {
 
         var randomImage = Math.floor(Math.random() * (5 - 1 + 1) + 1);
 
-        city.image = "../../../../assets/images/city-profile-picture-" + randomImage + ".jpg"
+        city.picture = "../../../../assets/images/city-profile-picture-" + randomImage + ".jpg"
       });
 
       this.cities = res.data;

@@ -12,6 +12,28 @@
                   <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase">My city</h1>
                   <div class="w-full max-w-md mx-auto m-0 ">
                     <form (ngSumbit)="onSubmit()" class=" mb-6 mt-10" [formGroup]="settingsForm">                          
+                          <div class="flex justify-center">
+                            <div class="w-full pb-5">
+                             
+                              <div *ngIf="loading" class="relative w-full h-52 rounded-full flex justify-center items-center">
+                                <div style="border-top-color:transparent"
+                                    class="w-16 h-16 border-4 border-yellow-400 border-solid rounded-full animate-spin">
+                                    
+                                  </div>
+                              </div>
+
+                              <div class="relative w-full h-52 rounded-full flex justify-center items-center">
+                                <div  class="absolute">
+                                  <div class="z-10 flex flex-col items-center"> 
+                                    <img id="imageURL" class="rounded-full w-52 h-52" src="{{pictureURL}}" alt="city profile picture">
+                                  </div>
+                                </div> 
+                                <button id="upload_widget" class="z-50 opacity-0 cloudinary-button bg-red-500 h-52 w-52  rounded-full">Upload files</button>
+                              </div>
+                              </div>
+                            </div>
+
+
                           <div class="mb-4">
                             <label for="eamil" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Email</label>
                               <input formControlName="email" [class.border-red-500]="email?.invalid && email?.touched" class="shadow inputshadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Email">
@@ -63,3 +85,5 @@
       </div>
   </div>
 </div>
+
+
