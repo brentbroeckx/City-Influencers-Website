@@ -12,8 +12,10 @@ import {sha256} from 'crypto-hash';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
 
+
+export class LoginComponent implements OnInit {
+  show: boolean = false;
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', Validators.required)
@@ -21,6 +23,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private toastr: ToastrService, private authService: AuthService, private router: Router) { }
 
+  showPassword() {
+    this.show = !this.show;
+}
   ngOnInit(): void {
   }
 
