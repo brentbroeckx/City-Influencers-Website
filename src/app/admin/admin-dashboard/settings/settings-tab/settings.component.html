@@ -32,7 +32,7 @@
                                     <span>Filter</span>
                                 </div>
                                 <div class="hidden md:block">
-                                    <div class="text-center theme_button_color flex flex-row justify-center items-center space-x-1 w-32 h-9 rounded-xl">
+                                    <div (click)="modalHandler(true)" style="cursor: pointer;" class="text-center theme_button_color flex flex-row justify-center items-center space-x-1 w-32 h-9 rounded-xl">
                                         <div class="">
 
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,8 +46,76 @@
                                 
                             </div>
                         </div>
-                        <div class="flex md:flex-row mx-auto justify-center md:justify-start height-80 md:h-2/3 w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
-                            <table class="table-auto w-full">
+                        <div class="flex md:flex-row mx-auto justify-center md:justify-center height-80 md:h-2/3 w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
+                            <div class="hidden py-12 transition duration-150 ease-in-out" style="width: 50vw;" id="modal">
+                                <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+                                    <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+                                        <form [formGroup]="adminForm">
+                                            <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Create a new admin</h1>
+                                            
+                                            
+                                            <div class="mb-4">
+                                                <label for="username" class="font-bold">Username</label>
+                                              <input formControlName="username" [class.border-red-500]="username?.invalid && username?.touched" class="shadow inputshadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Username">
+                                              <div *ngIf="username?.invalid && username?.touched" class="text-red-500">Username length must be at least 4 characters</div>
+                                            </div>
+
+                                            <div class="mb-4">
+                                                <label for="firstname" class="font-bold">First name</label>
+                                                <input formControlName="firstname" [class.border-red-500]="firstname?.invalid && firstname?.touched" class="shadow inputshadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="First name">                                            
+                                            </div>
+
+                                            <div class="mb-4">
+                                                <label for="lastname" class="font-bold">Last name</label>
+                                                <input formControlName="lastname" [class.border-red-500]="lastname?.invalid && lastname?.touched" class="shadow inputshadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="First name">                                            
+                                            </div>
+
+                                            <div class="mb-4">
+                                                <label for="email" class="font-bold">Email</label>
+                                                <input formControlName="email" [class.border-red-500]="email?.invalid && email?.touched" class="shadow inputshadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Email">
+                                                <div *ngIf="email?.invalid && email?.touched" class="text-red-500">Email is invalid</div>
+                                            </div>
+
+                                            <div class="mb-4">
+                                                <label for="password" class="font-bold">Password</label>
+                                                <input formControlName="password" [type]="show ? 'text' : 'password'" [class.border-red-500]="password?.invalid && password?.touched" class="shadow inputshadow appearance-none rounded-full w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" [type]="show ? 'text' : 'password'" placeholder="Password">
+                                                <button *ngIf="show" (click)="showPassword()" class="absolute" style="margin-left: -2rem; margin-top: 0.4rem;">
+                                                  <i class="fas fa-eye-slash"></i>
+                                                </button>
+                                                <button *ngIf="show===false" (click)="showPassword()" class="absolute" style="margin-left: -2rem; margin-top: 0.4rem;"> 
+                                                  <i class="fas fa-eye"></i>                        
+                                                </button>
+                                                <div *ngIf="password?.errors?.passwordInvalid && password?.touched" class="text-red-500">Password must contain at least 8 characters, one uppercase and a digit. </div>
+                                                <div class="mb-4">
+                                                    <label for="passwordCheck" class="font-bold">Repeat password</label>
+                                                    <input formControlName="passwordCheck" [class.border-red-500]="passwordCheck?.invalid && passwordCheck?.touched" class="shadow inputshadow appearance-none rounded-full w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" id="passwordCheck" [type]="showCheck ? 'text' : 'password'" placeholder="Repeat password">
+                                                    <button *ngIf="showCheck" (click)="showPasswordCheck()" class="absolute" style="margin-left: -2rem; margin-top: 0.4rem;">
+                                                      <i class="fas fa-eye-slash"></i>
+                                                    </button>
+                                                    <button *ngIf="showCheck===false" (click)="showPasswordCheck()" class="absolute" style="margin-left: -2rem; margin-top: 0.4rem;"> 
+                                                      <i class="fas fa-eye"></i>                        
+                                                    </button>
+                                                    <div *ngIf="passwordCheck?.hasError('matching') && passwordCheck?.touched" class="text-red-500">Passwords do not match!</div>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center justify-start w-full">
+                                                <button class="focus:outline-none transition duration-150 ease-in-out theme_button_color text-black rounded px-8 py-2 text-sm" (click)="createAdmin()">Submit</button>
+                                                <button class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" (click)="modalHandler(false)">Cancel</button>
+                                            </div>
+                                            <div class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out" (click)="modalHandler(false)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" />
+                                                    <line x1="18" y1="6" x2="6" y2="18" />
+                                                    <line x1="6" y1="6" x2="18" y2="18" />
+                                                </svg>
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <table class="table-auto w-full" id="table">
                                 <thead class="border-b border-blue-300 h-12">
                                     <tr class="">
                                         <th class=" text-left">Name</th>
