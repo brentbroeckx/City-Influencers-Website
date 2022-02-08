@@ -18,7 +18,8 @@ import { keyframes } from '@angular/animations';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-
+  show: boolean = false;
+  showCheck: boolean = false;
   zipcodes: [] | undefined;
   cities: string[] | undefined;
 
@@ -33,7 +34,15 @@ export class SignUpComponent implements OnInit {
   })
 
   constructor(private signUpSerivce: SignUpService, private cityService: CityService, private toastr: ToastrService, private router: Router) { }
+  
+  showPassword() {
+    this.show = !this.show;
+}
 
+showPasswordCheck() {
+  this.showCheck = !this.showCheck;
+}
+  
   ngOnInit(): void {
     this.cityService.getListCities().subscribe(res => {
       console.log(Object.keys(res.data).find(key => res.data[key] == "1000"))

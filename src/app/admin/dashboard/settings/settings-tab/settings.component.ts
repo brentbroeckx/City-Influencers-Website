@@ -32,8 +32,16 @@ export class SettingsComponent implements OnInit {
   })
   
   thisCity: City = {id: "", naam: "", gebruikersnaam:"", wachtwoord: "", postcode: "", picture: "", isactief: "", emailadres: "", isnew: ""}
-
+  show: boolean = false;
+  showCheck: boolean = false;
   constructor(private _renderer2: Renderer2, @Inject(DOCUMENT) private _document: Document, private cityService: CityService, private toastr: ToastrService ) { }
+
+  showPassword() {
+    this.show = !this.show;
+}
+showPasswordCheck() {
+  this.showCheck = !this.showCheck;
+}
 
   ngOnInit(): void {
     const cityId = localStorage.getItem("id");

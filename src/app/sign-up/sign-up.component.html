@@ -18,11 +18,23 @@
                           <div *ngIf="username?.invalid && username?.touched" class="text-red-500">Username length must be at least 4 characters</div>
                       </div>
                         <div class="mb-4">
-                        <input formControlName="password" [class.border-red-500]="password?.invalid && password?.touched" class="shadow inputshadow appearance-none rounded-full w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" type="password" placeholder="Password">
+                        <input formControlName="password" [type]="show ? 'text' : 'password'" [class.border-red-500]="password?.invalid && password?.touched" class="shadow inputshadow appearance-none rounded-full w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" [type]="show ? 'text' : 'password'" placeholder="Password">
+                        <button *ngIf="show" (click)="showPassword()" class="absolute" style="margin-left: -2rem; margin-top: 0.4rem;">
+                          <i class="fas fa-eye-slash"></i>
+                        </button>
+                        <button *ngIf="show===false" (click)="showPassword()" class="absolute" style="margin-left: -2rem; margin-top: 0.4rem;"> 
+                          <i class="fas fa-eye"></i>                        
+                        </button>
                         <div *ngIf="password?.errors?.passwordInvalid && password?.touched" class="text-red-500">Password must contain at least 8 characters, one uppercase and a digit. </div>
                         </div>
                         <div class="mb-4">
-                            <input formControlName="passwordCheck" [class.border-red-500]="passwordCheck?.invalid && passwordCheck?.touched" class="shadow inputshadow appearance-none rounded-full w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" id="passwordCheck" type="password" placeholder="Repeat password">
+                            <input formControlName="passwordCheck" [class.border-red-500]="passwordCheck?.invalid && passwordCheck?.touched" class="shadow inputshadow appearance-none rounded-full w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" id="passwordCheck" [type]="showCheck ? 'text' : 'password'" placeholder="Repeat password">
+                            <button *ngIf="showCheck" (click)="showPasswordCheck()" class="absolute" style="margin-left: -2rem; margin-top: 0.4rem;">
+                              <i class="fas fa-eye-slash"></i>
+                            </button>
+                            <button *ngIf="showCheck===false" (click)="showPasswordCheck()" class="absolute" style="margin-left: -2rem; margin-top: 0.4rem;"> 
+                              <i class="fas fa-eye"></i>                        
+                            </button>
                             <div *ngIf="passwordCheck?.hasError('matching') && passwordCheck?.touched" class="text-red-500">Passwords do not match!</div>
                         </div>
 
