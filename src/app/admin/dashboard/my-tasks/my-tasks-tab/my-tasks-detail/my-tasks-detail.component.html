@@ -74,7 +74,7 @@
                                     <input formControlName="title" id="title" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" value="{{task.titel}}"/>
 
                                     <label for="categories" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Categories</label>
-                                    <ng-multiselect-dropdown formControlName="categories" id="categories" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm" 
+                                    <ng-multiselect-dropdown formControlName="categories" id="categories" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center text-sm" 
                                     [placeholder]="'Select one or more categories'"
                                     [settings]="dropdownSettings"
                                     [data]="dropdownList"
@@ -82,10 +82,10 @@
                                     >
                                     </ng-multiselect-dropdown>
 
-                                    <label for="description" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Description</label>                                    
-                                    <textarea formControlName="description" class="inputshadow no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="description" *ngIf="task.omschrijving === null">Write your description about the task here.</textarea>
-                                    <textarea formControlName="description" class="inputshadow no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="description" value="{{task.omschrijving}}">{{task.omschrijving}}</textarea>                                    
-
+                                    <label for="description" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Description</label>                       
+                                    <textarea formControlName="description" class="no-resize appearance-none block w-full h-48 resize-none mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal p-3 text-sm border-gray-300 rounded border" id="description" *ngIf="task.omschrijving === null">Write your description about the task here.</textarea>     
+                                    <textarea formControlName="description" class="no-resize appearance-none block w-full h-48 resize-none mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal p-3 text-sm border-gray-300 rounded border" id="description" value="{{task.omschrijving}}">{{task.omschrijving}}</textarea>            
+    
                                     <div class="flex items-center justify-start w-full">
                                         <button class="focus:outline-none transition duration-150 ease-in-out theme_button_color text-black rounded px-8 py-2 text-sm" (click)="onSubmitDescription()">Submit</button>
                                         <button class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" (click)="modalHandler(false, 'modal2')">Cancel</button>
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                     </div>
-                    <img id="image" class="w-2/3 md:w-2/3 lg:w-2/6 rounded-3xl shadow-xl" src="../../../../../../assets/images/influencer.jpg" alt="Influencer profile picture">
+                    <img id="image" class="w-2/3 md:w-2/3 lg:w-2/6 rounded-3xl shadow-xl" src={{task.foto}} alt="Task picture">
                     
                     <div class="hidden md:block rounded-xl h-50 w-50 px-3 pb-3 pt-1 border-2 border-gray-100 shadow-xl">
                         <div>
