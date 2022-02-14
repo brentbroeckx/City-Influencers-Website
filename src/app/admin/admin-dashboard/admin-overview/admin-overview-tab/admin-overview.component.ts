@@ -14,6 +14,8 @@ export class AdminOverviewComponent implements OnInit {
   cities: City[] | undefined;
   selected: boolean = false;
   getCount: boolean = true;
+  sortingCity: Boolean = false;
+  sortingInfluencer: Boolean = false;
 
 
   constructor(private cityService:CityService, private authService: AuthService, private toastr: ToastrService) { }
@@ -26,6 +28,50 @@ export class AdminOverviewComponent implements OnInit {
       this.cities=res.data     
       console.log(this.cities)
     })
+  }
+
+  changeSortCity() {
+    this.sortingCity = !this.sortingCity;
+
+    switch (this.sortingCity) {
+      case true:
+        this.cities?.sort((a, b) => {
+          var textA = a.naam.toLowerCase();
+          var textB = b.naam.toLowerCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+        })
+        break;
+      case false:
+        this.cities?.sort((a, b) => {
+          var textA = a.naam.toLowerCase();
+          var textB = b.naam.toLowerCase();
+          return (textA < textB) ? 1 : (textA > textB) ? -1 : 0
+        })
+        break;
+    }
+
+  }
+
+  changeSortInfluencer() {
+    this.sortingInfluencer = !this.sortingInfluencer;
+
+    switch (this.sortingInfluencer) {
+      case true:
+        this.cities?.sort((a, b) => {
+          var numberA = Number(a.influencercount);
+          var numberB = Number(b.influencercount);
+          return (numberA < numberB) ? -1 : (numberA > numberB) ? 1 : 0
+        })
+        break;
+      case false:
+        this.cities?.sort((a, b) => {
+          var numberA = Number(a.influencercount);
+          var numberB = Number(b.influencercount);
+          return (numberA < numberB) ? 1 : (numberA > numberB) ? -1 : 0
+        })
+        break;
+    }
+
   }
 
   changeStatus(city: City) {
