@@ -11,6 +11,7 @@ import { CityService } from 'src/app/services/city.service';
 export class RequestsComponent implements OnInit {
 
   cities: City[] | undefined;
+  sortingCity: Boolean = false;
 
   constructor(private cityService: CityService, private toastr: ToastrService) { }
 
@@ -20,6 +21,28 @@ export class RequestsComponent implements OnInit {
       this.cities = res.data;
     });
 
+
+  }
+
+  changeSortCity() {
+    this.sortingCity = !this.sortingCity;
+
+    switch (this.sortingCity) {
+      case true:
+        this.cities?.sort((a, b) => {
+          var textA = a.naam.toLowerCase();
+          var textB = b.naam.toLowerCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+        })
+        break;
+      case false:
+        this.cities?.sort((a, b) => {
+          var textA = a.naam.toLowerCase();
+          var textB = b.naam.toLowerCase();
+          return (textA < textB) ? 1 : (textA > textB) ? -1 : 0
+        })
+        break;
+    }
 
   }
 
