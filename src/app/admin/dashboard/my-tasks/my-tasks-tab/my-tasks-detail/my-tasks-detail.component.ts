@@ -44,7 +44,7 @@ export class MyTasksDetailComponent implements OnInit {
     reward: new FormControl('', [Validators.required])
   })
 
-  constructor(private taskService: TaskService, private fb: FormBuilder, private toastr: ToastrService, private route: ActivatedRoute, private postService: PostsService, private categoryService: CategoryService) {
+  constructor(private taskService: TaskService, private toastr: ToastrService, private route: ActivatedRoute, private postService: PostsService, private categoryService: CategoryService) {
   }
   
   public modalHandler(val: boolean, modalNumber: String) {
@@ -147,10 +147,10 @@ selectedItems: any[] = [];
         categories: cat.toString()
       }
 
-      console.log(settingsChange)
       this.taskService.changeTask(settingsChange).subscribe(res => {
         this.modalHandler(false, 'modal2');
-        // window.location.reload();
+        this.toastr.success("Succesfully changed task", "City");
+        location.reload();
 
       });
     }
@@ -167,7 +167,8 @@ selectedItems: any[] = [];
       console.log(settingsChange)
       this.taskService.changeTask(settingsChange).subscribe(res => {
         this.modalHandler(false, 'modal1');
-        window.location.reload();
+        this.toastr.success("Succesfully changed task", "City");
+        location.reload();
       });
     }
   }

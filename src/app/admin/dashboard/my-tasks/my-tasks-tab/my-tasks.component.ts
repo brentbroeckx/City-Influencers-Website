@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Task } from 'src/app/models/task';
 import { TaskChange } from 'src/app/models/taskChange';
 import { TaskService } from 'src/app/services/task.service';
@@ -21,7 +22,7 @@ export class MyTasksComponent implements OnInit {
 
   })
 
-  constructor(private router: Router, private taskService: TaskService) { }
+  constructor(private router: Router, private taskService: TaskService, private toastr: ToastrService) { }
 
 
   public modalHandler(val: boolean) {
@@ -106,7 +107,8 @@ export class MyTasksComponent implements OnInit {
       }
       this.taskService.createTask(create).subscribe(res => {
         this.modalHandler(false)
-        window.location.reload()
+        this.toastr.success("Succesfully added task", "City");
+        location.reload();
       });
     }
   }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { sha256 } from 'crypto-hash';
+import { ToastrService } from 'ngx-toastr';
+import { Admin } from 'src/app/models/admin';
 import { AdminCreate } from 'src/app/models/AdminCreate';
 import { AdminService } from 'src/app/services/admin.service';
 import { matchValidator } from 'src/app/shared/validators/checkPassword-validator';
@@ -15,6 +17,8 @@ export class SettingsComponent implements OnInit {
   show: boolean = false;
   showCheck: boolean = false;
 
+  admins: Admin[] | undefined;
+
   adminForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(4)]),
     firstname: new FormControl('', [Validators.required]),
@@ -24,15 +28,15 @@ export class SettingsComponent implements OnInit {
     passwordCheck: new FormControl('', [Validators.required, matchValidator('password')]),
   })
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private toastr: ToastrService) { }
 
   showPassword() {
     this.show = !this.show;
-}
+  }
 
-showPasswordCheck() {
-  this.showCheck = !this.showCheck;
-}
+  showPasswordCheck() {
+    this.showCheck = !this.showCheck;
+  }
 
   public modalHandler(val: boolean) {
     var modal = document.getElementById("modal");
@@ -49,6 +53,10 @@ showPasswordCheck() {
   }
 
   ngOnInit(): void {
+    this.adminService.getAdmins().subscribe(res => {
+      this.admins = res.data;
+    });
+    
   }
 
   createAdmin() {
@@ -65,7 +73,8 @@ showPasswordCheck() {
       console.log(create)
       this.adminService.createAdmin(create).subscribe(res => {
         this.modalHandler(false)
-        window.location.reload()
+        this.toastr.success("Succesfully added admin", "Admin");
+        location.reload();
       });
 
     })
