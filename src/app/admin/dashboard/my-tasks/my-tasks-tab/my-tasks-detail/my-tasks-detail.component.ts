@@ -37,13 +37,14 @@ export class MyTasksDetailComponent implements OnInit {
   descriptionForm = new FormGroup({
     description: new FormControl('', [Validators.required]),
     title: new FormControl('', [Validators.required]),
+    categories: new FormControl('', [Validators.required]),
   })
 
   rewardForm = new FormGroup({
     reward: new FormControl('', [Validators.required])
   })
 
-  constructor(private taskService: TaskService,  private toastr: ToastrService, private route: ActivatedRoute, private postService: PostsService, private categoryService: CategoryService) {
+  constructor(private taskService: TaskService, private fb: FormBuilder, private toastr: ToastrService, private route: ActivatedRoute, private postService: PostsService, private categoryService: CategoryService) {
   }
   
   public modalHandler(val: boolean, modalNumber: String) {
@@ -76,27 +77,16 @@ export class MyTasksDetailComponent implements OnInit {
     }
 }
 
-dropdownList = [
-  { id: '1', naam: 'All' },
-  { id: '2', naam: 'Travel' },
-  { id: '3', naam: 'Food' },
-  { id: '4', naam: 'Sport' },
-  { id: '5', naam: 'Clothes' },
-  { id: '6', naam: 'Lifestyle' },
-  { id: '7', naam: 'DJ' }
-]; 
+dropdownList: any[] = []; 
 
-selectedItems = [
-  { id: '3', naam: 'Food' },
-  { id: '4', naam: 'Sport' }
-];
+selectedItems: any[] = [];
 
   dropdownSettings = {
         singleSelection: false,
         idField: 'id',
         textField: 'naam',
-        selectAllText: 'Select All',
-        unSelectAllText: 'Unselect All',
+        selectAllText: 'Select all',
+        unSelectAllText: 'Unselect all',
         itemsShowLimit: 3,
         allowSearchFilter: true
       };
@@ -115,21 +105,25 @@ selectedItems = [
     if (taskId != null ){
       this.taskService.getTaskById(taskId).subscribe(res => {
         this.task = res.data[0];
-        console.log('DDL',this.dropdownList);
+        Array.from(this.task.categories).forEach(category => {
+            let index = this.dropdownList.findIndex(x => x.naam === category)+1;
+            this.selectedItems.push( { id: index.toString(), naam: category })
+        });
+
+        this.descriptionForm.controls.categories.setValue(this.selectedItems);
       })
 
       this.postService.getPostsFromTask(taskId).subscribe(res => {
         this.posts = res.data;
-        console.log(this.posts)
       })
 
-      console.log(this.categories)      
+      ;
       this.dropdownSettings = {
         singleSelection: false,
         idField: 'id',
         textField: 'naam',
-        selectAllText: 'Select All',
-        unSelectAllText: 'Unselect All',
+        selectAllText: 'Select all',
+        unSelectAllText: 'Unselect all',
         itemsShowLimit: 3,
         allowSearchFilter: true
       };
@@ -141,16 +135,22 @@ selectedItems = [
   onSubmitDescription() {
     const taskId = this.route.snapshot.paramMap.get('id');
     if(taskId){
+      var cat: Array<String> = [];
+      this.descriptionForm.controls.categories.value.forEach((category: {id: any, naam: any; }) => {
+        cat.push(category.naam)
+      }); 
+
       var settingsChange: TaskChange = {
         taskid: taskId,
         description: this.descriptionForm.controls.description.value,
-        title: this.descriptionForm.controls.title.value
+        title: this.descriptionForm.controls.title.value,
+        categories: cat.toString()
       }
 
       console.log(settingsChange)
       this.taskService.changeTask(settingsChange).subscribe(res => {
         this.modalHandler(false, 'modal2');
-        window.location.reload();
+        // window.location.reload();
 
       });
     }
@@ -171,7 +171,6 @@ selectedItems = [
       });
     }
   }
-
 }
 
 
