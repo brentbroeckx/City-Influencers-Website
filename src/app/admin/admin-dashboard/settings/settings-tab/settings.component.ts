@@ -16,6 +16,7 @@ import { passwordValidator } from 'src/app/shared/validators/password-validator'
 export class SettingsComponent implements OnInit {
   show: boolean = false;
   showCheck: boolean = false;
+  sorting: Boolean = false;
 
   admins: Admin[] | undefined;
 
@@ -57,6 +58,28 @@ export class SettingsComponent implements OnInit {
       this.admins = res.data;
     });
     
+  }
+
+  changeSort() {
+    this.sorting = !this.sorting;
+
+    switch (this.sorting) {
+      case true:
+        this.admins?.sort((a, b) => {
+          var textA = a.gebruikersnaam.toLowerCase();
+          var textB = b.gebruikersnaam.toLowerCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+        })
+        break;
+      case false:
+        this.admins?.sort((a, b) => {
+          var textA = a.gebruikersnaam.toLowerCase();
+          var textB = b.gebruikersnaam.toLowerCase();
+          return (textA < textB) ? 1 : (textA > textB) ? -1 : 0
+        })
+        break;
+    }
+
   }
 
   createAdmin() {
