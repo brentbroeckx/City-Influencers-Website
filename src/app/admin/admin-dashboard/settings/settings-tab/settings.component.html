@@ -118,18 +118,19 @@
                             <table class="table-auto w-full" id="table">
                                 <thead class="border-b border-blue-300 h-12">
                                     <tr class="">
-                                        <th class=" text-left">Name</th>
-                                        <th class="hidden md:table-cell">Email</th>
-                                        <th class="hidden md:table-cell">Last active</th>
-                                        <th class="">Status</th>
-                                        <th class="">Super admin</th>
+                                        <th class="p-2 md:p-6 text-center">Username</th>
+                                        <th class="p-2 md:p-6 text-center">Full name</th>
+                                        <th class="hidden md:table-cell p-2 md:p-6 text-center">Email</th>
+                                        <th class="p-2 md:p-6 text-center">Status</th>
+                                        <th class="p-2 md:p-6 text-center">Super admin</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
-                                    <tr class=" border-b border-blue-300">
-                                        <td class=" p-2 md:p-6 text-left ">Brent</td>
-                                        <td class=" p-2 md:p-6 text-center hidden md:table-cell">brent@smartvision.be</td>
-                                        <td class=" p-2 md:p-6 text-center hidden md:table-cell">Januari 20, 2022</td>
+                                    <tr *ngFor="let admin of admins" class=" border-b border-blue-300">
+                                        <td class="p-2 md:p-6 text-center">{{admin.gebruikersnaam}}</td>
+                                        <td class="p-2 md:p-6 text-center">{{admin.voornaam}} {{admin.familienaam}}</td>
+                                        <td class="p-2 md:p-6 text-center hidden md:block">{{admin.emailadres}}</td>
                                         <td class=" p-2 md:p-6">
                                             <div class="flex items-center justify-center w-full">
   

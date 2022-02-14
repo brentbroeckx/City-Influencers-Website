@@ -29,7 +29,7 @@ export class RequestsComponent implements OnInit {
       city.isactief = "t";
       this.cityService.changeCityStatus(city.id, true).subscribe(res => {
         this.toastr.success("Succesfully activated city", "Admin");
-        window.location.reload();
+        location.reload();
         return;
       });
     } else {
@@ -37,7 +37,7 @@ export class RequestsComponent implements OnInit {
       city.isactief = "f";
       this.cityService.changeCityStatus(city.id, false).subscribe(res => {
         this.toastr.success("Succesfully deactivated city", "Admin");
-        window.location.reload();
+        location.reload();
         return;
       });
     }

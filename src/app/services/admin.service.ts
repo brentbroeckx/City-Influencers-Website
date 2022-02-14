@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AdminCreate } from '../models/AdminCreate';
+import { AdminApiResponse } from '../models/adminApiResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,16 @@ export class AdminService {
     })
 
     //return this.httpClient.get<CityApiResponse>(environment.API_URL +"cities/", {headers: headers})
+  }
+
+  getAdmins(){
+    const bearer = localStorage.getItem('token');
+
+     let headers = new HttpHeaders({
+      'Authorization': `Bearer ${bearer}`
+    })
+
+    return this.httpClient.get<AdminApiResponse>(environment.API_URL +"admins", {headers: headers})
   }
 
   createAdmin(admin: AdminCreate){
