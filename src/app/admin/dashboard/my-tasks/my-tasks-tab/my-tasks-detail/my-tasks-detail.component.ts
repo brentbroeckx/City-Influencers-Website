@@ -105,6 +105,7 @@ selectedItems: any[] = [];
     if (taskId != null ){
       this.taskService.getTaskById(taskId).subscribe(res => {
         this.task = res.data[0];
+        console.log(this.task)
         Array.from(this.task.categories).forEach(category => {
             let index = this.dropdownList.findIndex(x => x.naam === category)+1;
             this.selectedItems.push( { id: index.toString(), naam: category })
