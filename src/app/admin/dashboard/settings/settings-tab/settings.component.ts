@@ -20,6 +20,8 @@ export class SettingsComponent implements OnInit {
 
   pictureURL: any;
   loading: boolean = true;
+  zipcodes: string[] | undefined;
+  cities: string[] | undefined;
 
   settingsForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -38,12 +40,18 @@ export class SettingsComponent implements OnInit {
 
   showPassword() {
     this.show = !this.show;
-}
-showPasswordCheck() {
-  this.showCheck = !this.showCheck;
-}
+  }
+  showPasswordCheck() {
+    this.showCheck = !this.showCheck;
+  }
 
   ngOnInit(): void {
+
+    this.cityService.getListCities().subscribe(res => {
+      this.cities = Object.keys(res.data);
+      this.zipcodes = Object.values(res.data);      
+    })
+
     const cityId = localStorage.getItem("id");
     if (cityId != null){
         this.cityService.getCityById(cityId).subscribe(res => {
@@ -104,6 +112,20 @@ showPasswordCheck() {
     this._renderer2.appendChild(this._document.body, script);
 
 
+  }
+
+  selectZip() {
+    var zip = this.settingsForm.controls.postcode.value
+    this.cityService.getListCities().subscribe(res => {
+      this.settingsForm.controls.city.setValue(Object.keys(res.data).find(key => res.data[key] == zip))   
+    })
+  }
+
+  selectCity() {
+    var city = this.settingsForm.controls.city.value
+    this.cityService.getListCities().subscribe(res => {    
+      this.settingsForm.controls.postcode.setValue(res.data[city]);
+    })
   }
 
   onSubmit() {

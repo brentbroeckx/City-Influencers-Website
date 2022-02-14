@@ -37,12 +37,12 @@ export class SignUpComponent implements OnInit {
   
   showPassword() {
     this.show = !this.show;
-}
+  }
 
-showPasswordCheck() {
-  this.showCheck = !this.showCheck;
-}
-  
+  showPasswordCheck() {
+    this.showCheck = !this.showCheck;
+  }
+    
   ngOnInit(): void {
     this.cityService.getListCities().subscribe(res => {
       this.cities = Object.keys(res.data);
@@ -80,9 +80,7 @@ showPasswordCheck() {
 
   selectCity() {
     var city = this.registerForm.controls.city.value
-    console.log(city)
     this.cityService.getListCities().subscribe(res => {    
-      console.log(res.data[city])      
       this.registerForm.controls.postcode.setValue(res.data[city]);
     })
   }
