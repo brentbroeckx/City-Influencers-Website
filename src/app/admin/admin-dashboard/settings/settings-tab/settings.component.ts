@@ -82,6 +82,52 @@ export class SettingsComponent implements OnInit {
    
   }
 
+  changeStatus(admin: Admin) {
+
+    if (admin.isactief == "f") {
+      // change to true
+      admin.isactief = "t";
+      /* this.ad.changeCityStatus(city.id, true).subscribe(res => {
+        this.toastr.success("Succesfully activated city", "Admin");
+        return;
+      }); */
+      this.toastr.success("Succesfully activated admin", "Admin");
+    } else {
+      // change to false
+      admin.isactief = "f";
+      /* this.cityService.changeCityStatus(city.id, false).subscribe(res => {
+        this.toastr.success("Succesfully deactivated city", "Admin");
+        return;
+      }); */
+      this.toastr.success("Succesfully deactivated admin", "Admin");
+    }
+
+    
+  }
+
+  changeStatusSuper(admin: Admin) {
+
+    if (admin.issuper == "f") {
+      // change to true
+      admin.issuper = "t";
+      /* this.ad.changeCityStatus(city.id, true).subscribe(res => {
+        this.toastr.success("Succesfully activated city", "Admin");
+        return;
+      }); */
+      this.toastr.success("Succesfully activated super-admin", "Admin");
+    } else {
+      // change to false
+      admin.issuper = "f";
+      /* this.cityService.changeCityStatus(city.id, false).subscribe(res => {
+        this.toastr.success("Succesfully deactivated city", "Admin");
+        return;
+      }); */
+      this.toastr.success("Succesfully deactivated super-admin", "Admin");
+    }
+
+    
+  }
+
   get email() {
     return this.adminForm.get('email');
   }
