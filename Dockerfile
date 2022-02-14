@@ -1,7 +1,8 @@
-FROM node:14.15 as build
-RUN git clone https://github.com/brentbroeckx/City-Influencers-Website
+FROM node:16.13 as build
 
 WORKDIR /app
+RUN git clone https://github.com/brentbroeckx/City-Influencers-Website
+
 COPY package*.json .
 RUN npm install
 COPY . .
