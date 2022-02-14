@@ -20,6 +20,11 @@ export class MyTasksComponent implements OnInit {
   categories: Category[] | undefined;
   pictureURL: any;
   loading: boolean = true;
+  sortingTitle: Boolean = false;
+  sortingPosts: Boolean = false;
+  sortingGiven: Boolean = false;
+  sortingReward: Boolean = false;
+  sortingExecuted: Boolean = false;
 
   taskForm = new FormGroup({
     description: new FormControl('', [Validators.required]),
@@ -133,5 +138,115 @@ export class MyTasksComponent implements OnInit {
         this.toastr.success("Succesfully added task", "City");
         location.reload();
       });
+    }
+  
+    changeSortTitle() {
+      this.sortingTitle = !this.sortingTitle;
+  
+      switch (this.sortingTitle) {
+        case true:
+          this.tasks?.sort((a, b) => {
+            var textA = a.titel.toLowerCase();
+            var textB = b.titel.toLowerCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+          })
+          break;
+        case false:
+          this.tasks?.sort((a, b) => {
+            var textA = a.titel.toLowerCase();
+            var textB = b.titel.toLowerCase();
+            return (textA < textB) ? 1 : (textA > textB) ? -1 : 0
+          })
+          break;
+      }
+  
+    }
+
+    changeSortPosts() {
+      this.sortingPosts = !this.sortingPosts;
+  
+      switch (this.sortingPosts) {
+        case true:
+          this.tasks?.sort((a, b) => {
+            var numberA = Number(a.postcount);
+            var numberB = Number(b.postcount);
+            return (numberA < numberB) ? -1 : (numberA > numberB) ? 1 : 0
+          })
+          break;
+        case false:
+          this.tasks?.sort((a, b) => {
+            var numberA = Number(a.postcount);
+            var numberB = Number(b.postcount);
+            return (numberA < numberB) ? 1 : (numberA > numberB) ? -1 : 0
+          })
+          break;
+      }
+  
+    }
+
+    changeSortGiven() {
+      this.sortingGiven = !this.sortingGiven;
+  
+      switch (this.sortingGiven) {
+        case true:
+          this.tasks?.sort((a, b) => {
+            var dateA = new Date(a.datumopgegeven);
+            var dateB = new Date(b.datumopgegeven);
+            return (dateA < dateB) ? -1 : (dateA > dateB) ? 1 : 0
+          })
+          break;
+        case false:
+          this.tasks?.sort((a, b) => {
+            var dateA = new Date(a.datumopgegeven);
+            var dateB = new Date(b.datumopgegeven);
+            return (dateA < dateB) ? 1 : (dateA > dateB) ? -1 : 0
+          })
+          break;
+      }
+  
+    }
+
+    changeSortReward() {
+      this.sortingReward = !this.sortingReward;
+  
+      switch (this.sortingReward) {
+        case true:
+          this.tasks?.sort((a, b) => {
+            var numberA = Number(a.aantalpuntenwaard);
+            var numberB = Number(b.aantalpuntenwaard);
+            return (numberA < numberB) ? -1 : (numberA > numberB) ? 1 : 0
+          })
+          break;
+        case false:
+          this.tasks?.sort((a, b) => {
+            var numberA = Number(a.aantalpuntenwaard);
+            var numberB = Number(b.aantalpuntenwaard);
+            return (numberA < numberB) ? 1 : (numberA > numberB) ? -1 : 0
+          })
+          break;
+      }
+  
+    }
+
+    changeSortExecuted() {
+      this.sortingExecuted = !this.sortingExecuted;
+  
+      switch (this.sortingExecuted) {
+        case true:
+          this.tasks?.sort((a, b) => {
+            var dateA = new Date(a.datumuitgevoerd);
+            var dateB = new Date(b.datumuitgevoerd);
+            return (dateA < dateB) ? -1 : (dateA > dateB) ? 1 : 0
+          })
+          break;
+        case false:
+          this.tasks?.sort((a, b) => {
+            var dateA = new Date(a.datumuitgevoerd);
+            var dateB = new Date(b.datumuitgevoerd);
+            return (dateA < dateB) ? 1 : (dateA > dateB) ? -1 : 0
+          })
+          break;
+      }
+  
     }
   }
