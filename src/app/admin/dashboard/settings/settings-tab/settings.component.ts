@@ -48,6 +48,7 @@ showPasswordCheck() {
     if (cityId != null){
         this.cityService.getCityById(cityId).subscribe(res => {
           this.thisCity = res.data[0];
+          console.log("########", this.thisCity)
           this.pictureURL = this.thisCity.picture;
 
           if (this.pictureURL == null) {
