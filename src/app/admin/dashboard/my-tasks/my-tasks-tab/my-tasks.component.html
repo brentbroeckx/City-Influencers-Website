@@ -58,8 +58,9 @@
                                                   <div class="relative w-full h-52 rounded-full flex justify-center items-center">
                                                     <div  class="absolute">
                                                       <div class="z-10 flex flex-col items-center"> 
-                                                        <img id="imageURL" class="rounded-full w-52 h-52" src="{{pictureURL}}" alt="task picture">
-                                                      </div>
+                                                        <img *ngIf="pictureURL" id="imageURL" class="rounded-3xl w-10/12 my-2" src="{{pictureURL}}" alt="task picture">
+                                                        <img *ngIf="!pictureURL" id="imageURL" class="rounded-3xl w-10/12 my-2" src="../../../../../assets/images/influencer.jpg" alt="task picture">
+                                                    </div>
                                                     </div> 
                                                     <button id="upload_widget" class="z-50 opacity-0 cloudinary-button bg-red-500 h-52 w-52  rounded-full">Upload files</button>
                                                   </div>

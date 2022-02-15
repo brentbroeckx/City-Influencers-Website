@@ -1,6 +1,7 @@
-<div (click)="toDetailPage(influencer.id)" class="w-44 md:w-40 shadow-lg my-5 mx-5 rounded-3xl rounded-br-none">
-    <img class="rounded-t-3xl" src="../../../../../assets/images/influencerProfilePlaceholder.jpg" alt="Influencer profile foto">
-    <div class="ml-2 mt-3 pb-5">
+<div (click)="toDetailPage(influencer.id)" class="w-44 h-50 md:w-50 shadow-lg my-5 mx-5 rounded-3xl rounded-br-none">
+    <img *ngIf="influencer.profielfoto.includes('foto') && influencer.profielfoto.includes('.jpg') || influencer.profielfoto==='TEST'" class="rounded-t-3xl h-1/2 w-full" src="../../../../../assets/images/influencerProfilePlaceholder.jpg" alt="Influencer profile foto">
+    <img *ngIf="!influencer.profielfoto.includes('foto') && influencer.profielfoto.includes('.jpg')" class="rounded-t-3xl h-1/2 w-full" src="{{influencer.profielfoto}}" alt="Influencer profile foto">
+    <div class="ml-2 mt-3 pb-5 h-1/2">
         <p class="ml-2">{{ influencer.voornaam}} {{ influencer.familienaam}}</p>
         <div>
             <div class="text-gray-500 text-sm ">

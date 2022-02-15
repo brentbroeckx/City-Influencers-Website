@@ -94,7 +94,7 @@ export class MyTasksComponent implements OnInit {
       var myWidget = cloudinary.createUploadWidget({
         cloudName: 'dbyo9rarj', 
         uploadPreset: 'CI-img-upload', 
-        folder: 'Cities',
+        folder: 'Tasks',
         maxImageFileSize: 10000000,
         cropping: true
         }, (error, result) => { 

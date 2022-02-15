@@ -30,10 +30,11 @@ export class SettingsComponent implements OnInit {
     passwordCheck: new FormControl('', [Validators.required, matchValidator('password')]),
     postcode: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
+    nonWinnerReward: new FormControl(''),
     image: new FormControl('')
   })
   
-  thisCity: City = {id: "", naam: "", gebruikersnaam:"", wachtwoord: "", postcode: "", picture: "", isactief: "", emailadres: "", isnew: ""}
+  thisCity: City = {id: "", naam: "", gebruikersnaam:"", wachtwoord: "", postcode: "", picture: "", isactief: "", emailadres: "", isnew: "", nietwinnaarreward: ""}
   show: boolean = false;
   showCheck: boolean = false;
   constructor(private _renderer2: Renderer2, @Inject(DOCUMENT) private _document: Document, private cityService: CityService, private toastr: ToastrService ) { }
@@ -56,7 +57,6 @@ export class SettingsComponent implements OnInit {
     if (cityId != null){
         this.cityService.getCityById(cityId).subscribe(res => {
           this.thisCity = res.data[0];
-          console.log("########", this.thisCity)
           this.pictureURL = this.thisCity.picture;
 
           if (this.pictureURL == null) {
@@ -71,6 +71,7 @@ export class SettingsComponent implements OnInit {
           this.settingsForm.controls.username.setValue(this.thisCity.gebruikersnaam);
           this.settingsForm.controls.postcode.setValue(this.thisCity.postcode);
           this.settingsForm.controls.city.setValue(this.thisCity.naam);
+          this.settingsForm.controls.nonWinnerReward.setValue(this.thisCity.nietwinnaarreward)
           this.loading = false;
       })
     }
@@ -144,7 +145,8 @@ export class SettingsComponent implements OnInit {
           name: this.settingsForm.controls.city.value,
           postcode: this.settingsForm.controls.postcode.value,
           emailadres: this.settingsForm.controls.email.value,
-          picture: pictureURL
+          picture: pictureURL,
+          notWinnerReward: this.settingsForm.controls.nonWinnerReward.value
         }
         this.cityService.changeCity(settingsChange).subscribe(res => {
         });
@@ -159,7 +161,8 @@ export class SettingsComponent implements OnInit {
             name: this.settingsForm.controls.city.value,
             postcode: this.settingsForm.controls.postcode.value,
             emailadres: this.settingsForm.controls.email.value,
-            picture: pictureURL
+            picture: pictureURL,
+            notWinnerReward: this.settingsForm.controls.nonWinnerReward.value
           }
           this.cityService.changeCity(settingsChange).subscribe(res => {
           });
@@ -197,6 +200,10 @@ export class SettingsComponent implements OnInit {
 
   get image() {
     return this.settingsForm.get('image');
+  }
+
+  get nonWinnerReward() {
+    return this.settingsForm.get('notwinnerreward');
   }
 
 
