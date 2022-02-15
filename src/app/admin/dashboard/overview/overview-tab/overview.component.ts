@@ -57,7 +57,7 @@ export class OverviewComponent implements OnInit {
     if (this.cityID){    
       this.cityService.getCityById(this.cityID).subscribe(res => 
         {this.totalInfluencers = Number(res.data[0].influencercount)
-          console.log( this.totalInfluencers)
+          
       })
     }
 
@@ -83,7 +83,7 @@ export class OverviewComponent implements OnInit {
         }
         
       });
-      console.log (this.totalOpenTasks, this.totalCompletedTasks)}
+      }
      
     });
 
@@ -115,7 +115,7 @@ export class OverviewComponent implements OnInit {
       this.categories.forEach(category => {
         source.push([category.naam, Number(category.influencercount), Number(category.opentaskcount), Number(category.closedtaskcount)]);
       })
-      console.log(source)
+
       this.option = {
         legend: {},
         tooltip: {},

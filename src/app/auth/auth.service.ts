@@ -41,25 +41,20 @@ export class AuthService {
 
   reRouteNonAuth(type: string): any {
     this.validateToken().subscribe(res => {
-      console.log(res);
       if (res.error == "AuthTokenExpire") {
-        console.log("token expired")
         this.toastr.error("Your login session as expired", "Expired Login")
         this.router.navigateByUrl('/login')
         return true;
       } else if (res.error == "AuthTokenWrong") {
-        console.log("Wrong Auth Token!")
         this.toastr.error("Wrong token detected, try logging in again.")
         localStorage.removeItem("token");
         this.router.navigateByUrl('/login')
         return true;
       }
       else if (res.data.type != type) {
-        console.log("Trying to access route not meant for: " + res.data.type)
         this.router.navigateByUrl('/')
         return true;
       } else {
-        console.log("Verified!")
         return false;
       }
 

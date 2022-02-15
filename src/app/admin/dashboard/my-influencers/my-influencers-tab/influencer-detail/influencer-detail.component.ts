@@ -23,7 +23,6 @@ export class InfluencerDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const influencerId = this.route.snapshot.paramMap.get('id');
-    console.log(influencerId)
     if (influencerId != null) {
       this.influencersService.getInfluencerById(influencerId).subscribe(res => {
         this.influencer = res.data[0];
@@ -45,7 +44,6 @@ export class InfluencerDetailComponent implements OnInit {
 
         this.postsService.getPostsByInfluencerId(this.influencer.id).subscribe(res => {
           res.data.forEach(post => {
-            console.log(post)
 
             if (post.aantallikes > this.mostLikes) {
               this.mostLikes = post.aantallikes;

@@ -12,7 +12,7 @@ export class DashboardHeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.headerTitle)
+   
   }
 
 }
