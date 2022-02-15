@@ -11,6 +11,7 @@ export class PostsService {
 
   constructor(private httpClient: HttpClient) { }
 
+  
   getPostsByInfluencerId(id: String) {
     const bearer = localStorage.getItem('token');
 
