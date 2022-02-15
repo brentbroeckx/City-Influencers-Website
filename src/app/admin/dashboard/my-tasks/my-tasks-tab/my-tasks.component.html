@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         
-                        <div class="flex md:flex-row mx-auto justify-center md:justify-center height-80 md:h-2/3 w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
+                        <div class="flex md:flex-row mx-auto justify-center md:justify-center height-80 maxmodelsize w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
                             <div class="hidden py-12 transition duration-150 ease-in-out" style="width: 50vw;" id="modal">
                                 <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                                     <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
@@ -83,7 +83,7 @@
                                             <textarea formControlName="description" class="no-resize appearance-none block w-full h-48 resize-none mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal p-3 text-sm border-gray-300 rounded border" id="description">Write your description about the task here.</textarea>            
                                             <label for="reward" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Reward</label>
                                             <input type="number" formControlName="reward" id="reward" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"/>
-                                            <div class="flex items-center justify-start w-full">
+                                            <div class="flex flex-col md:flex-row items-center justify-start w-full">
                                                 <button class="focus:outline-none transition duration-150 ease-in-out theme_button_color text-black rounded px-8 py-2 text-sm" (click)="createTask()">Submit</button>
                                                 <button class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" (click)="modalHandler(false)">Cancel</button>
                                             </div>
