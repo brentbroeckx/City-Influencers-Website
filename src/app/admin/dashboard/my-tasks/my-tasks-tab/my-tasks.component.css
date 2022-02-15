@@ -25,3 +25,7 @@ input:checked ~ .line {
 .dot {
   background-color: #ff0000;
 }
+
+.maxmodelsize {
+  max-height: 90vh;
+}
