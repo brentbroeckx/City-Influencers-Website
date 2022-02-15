@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { CountUpModule } from "ngx-countup";
 import { NgxEchartsModule } from 'ngx-echarts';
 import { SharedModule } from "src/app/shared/shared.module";
 import { DashboardHeaderComponent } from "../dashboard-header/dashboard-header.component";
@@ -7,12 +8,10 @@ import { SideNavigationComponent } from "../navigation/side-navigation.component
 import { SidenavigationModule } from "../navigation/side-navigation.module";
 import { OverviewRoutingModule } from "./overview-routing.module";
 import { OverviewComponent } from "./overview-tab/overview.component";
-import { CountComponent } from './count/count.component';
 
 @NgModule({
     declarations: [
         OverviewComponent,
-        CountComponent,
         
     ],
     imports: [
@@ -23,6 +22,7 @@ import { CountComponent } from './count/count.component';
         NgxEchartsModule.forRoot({
             echarts: () => import('echarts')
         }),
+        CountUpModule
     ],
     exports: [
         OverviewComponent,

@@ -14,6 +14,11 @@
     transition-timing-function: ease-in-out;
 }
 
+.banner {
+    z-index: 50;
+    height: 2s00px;
+}
+
 .nav {
     clip-path: polygon(0 100%, 0 100%, 0 0, 0 0);
     opacity: 0;

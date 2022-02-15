@@ -31,6 +31,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
 import { Cloudinary } from 'cloudinary-core';
+import { CountUpModule } from 'ngx-countup';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,8 @@ import { Cloudinary } from 'cloudinary-core';
     BrowserAnimationsModule,
     NgMultiSelectDropDownModule.forRoot(),
     CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'dbyo9rarj'} as CloudinaryConfiguration),
+    CountUpModule,
+    
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
