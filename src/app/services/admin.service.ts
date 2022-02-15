@@ -48,4 +48,34 @@ export class AdminService {
 
     return this.httpClient.post<any>( environment.API_URL + "accounts", createParam, {headers: headers});
   }
+
+  changeStatusAdmin(id: String, status: boolean){
+    const createParam = {
+      id: id,
+      isactive: status
+    }
+
+    const bearer = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${bearer}`
+    })
+
+    return this.httpClient.put<any>( environment.API_URL + "admins", createParam, {headers: headers});
+  }
+
+  changeSuperAdmin(id: String, status: boolean){
+    const createParam = {
+      id: id,
+      issuper: status
+    }
+
+    const bearer = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${bearer}`
+    })
+
+    return this.httpClient.put<any>( environment.API_URL + "admins", createParam, {headers: headers});
+  }
 }

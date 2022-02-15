@@ -110,22 +110,20 @@ export class SettingsComponent implements OnInit {
     if (admin.isactief == "f") {
       // change to true
       admin.isactief = "t";
-      /* this.ad.changeCityStatus(city.id, true).subscribe(res => {
-        this.toastr.success("Succesfully activated city", "Admin");
+      this.adminService.changeStatusAdmin(admin.id, true).subscribe(res => {
+        this.toastr.success("Succesfully activated admin", "Admin");
         return;
-      }); */
-      this.toastr.success("Succesfully activated admin", "Admin");
+      });
+      
     } else {
       // change to false
       admin.isactief = "f";
-      /* this.cityService.changeCityStatus(city.id, false).subscribe(res => {
-        this.toastr.success("Succesfully deactivated city", "Admin");
+      this.adminService.changeStatusAdmin(admin.id, false).subscribe(res => {
+        this.toastr.success("Succesfully deactivated admin", "Admin");
         return;
-      }); */
-      this.toastr.success("Succesfully deactivated admin", "Admin");
-    }
-
-    
+      });
+      
+    }    
   }
 
   changeStatusSuper(admin: Admin) {
@@ -133,19 +131,18 @@ export class SettingsComponent implements OnInit {
     if (admin.issuper == "f") {
       // change to true
       admin.issuper = "t";
-      /* this.ad.changeCityStatus(city.id, true).subscribe(res => {
-        this.toastr.success("Succesfully activated city", "Admin");
+      this.adminService.changeSuperAdmin(admin.id, true).subscribe(res => {
+        this.toastr.success("Succesfully activated super-admin", "Admin");
         return;
-      }); */
-      this.toastr.success("Succesfully activated super-admin", "Admin");
+      }); 
+      
     } else {
       // change to false
       admin.issuper = "f";
-      /* this.cityService.changeCityStatus(city.id, false).subscribe(res => {
-        this.toastr.success("Succesfully deactivated city", "Admin");
+      this.adminService.changeSuperAdmin(admin.id, false).subscribe(res => {
+        this.toastr.success("Succesfully deactivated super-admin", "Admin");
         return;
-      }); */
-      this.toastr.success("Succesfully deactivated super-admin", "Admin");
+      }); 
     }
 
     
