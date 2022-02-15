@@ -10,6 +10,6 @@ export interface Task {
     titel: string,
     winnaarid: string,
     postcount: string,
-    categories: string
+    categories: Array<String>
 
 } 

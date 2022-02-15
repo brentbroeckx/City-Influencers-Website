@@ -28,7 +28,7 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 
 export class MyTasksDetailComponent implements OnInit {
-  task: Task = {aantalpuntenwaard: "", datumopgegeven: "", datumuitgevoerd: "", foto: "", id: "", isuitgevoerd: "", omschrijving: "", stadid: "", titel: "", winnaarid: "", postcount: "", categories: ""}
+  task: Task = {aantalpuntenwaard: "", datumopgegeven: "", datumuitgevoerd: "", foto: "", id: "", isuitgevoerd: "", omschrijving: "", stadid: "", titel: "", winnaarid: "", postcount: "", categories: []}
 
   posts: Post[] | undefined;
 
@@ -139,23 +139,22 @@ selectedItems: any[] = [];
   onSubmitDescription() {
     const taskId = this.route.snapshot.paramMap.get('id');
     if(taskId){
-      var cat: Array<String> = [];
-      this.descriptionForm.controls.categories.value.forEach((category: {id: any, naam: any; }) => {
-        cat.push(category.naam)
-      }); 
+      var categories: Array<String> = [];
+      this.descriptionForm.controls.categories.value.forEach((category: { id: string; naam: string; }) => {
+        categories.push(category.naam)
+      });
 
       var settingsChange: TaskChange = {
         taskid: taskId,
         description: this.descriptionForm.controls.description.value,
         title: this.descriptionForm.controls.title.value,
-        categories: cat.toString()
+        categories: categories
       }
 
       this.taskService.changeTask(settingsChange).subscribe(res => {
         this.modalHandler(false, 'modal2');
         this.toastr.success("Succesfully changed task", "City");
         location.reload();
-
       });
     }
   }

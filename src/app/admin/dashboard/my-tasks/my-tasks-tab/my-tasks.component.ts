@@ -29,11 +29,12 @@ export class MyTasksComponent implements OnInit {
   taskForm = new FormGroup({
     description: new FormControl('', [Validators.required]),
     title: new FormControl('', [Validators.required]),
-    reward: new FormControl('', [Validators.required])
-
+    reward: new FormControl('', [Validators.required]),
+    categories: new FormControl('', [Validators.required]),
   })
 
   constructor(private _renderer2: Renderer2, @Inject(DOCUMENT) private _document: Document, private router: Router, private taskService: TaskService, private toastr: ToastrService, private categoryService: CategoryService) { }
+
 
 
   public modalHandler(val: boolean) {
@@ -68,6 +69,7 @@ export class MyTasksComponent implements OnInit {
     this.modalHandler(false);
     this.taskService.getAllTasks().subscribe(res => {
       this.tasks = res.data;
+      console.log(this.tasks)
       this.tasks.forEach(task => {
         if(task.foto == null){
           task.foto = "../../../../../assets/images/influencer.jpg"
@@ -126,12 +128,17 @@ export class MyTasksComponent implements OnInit {
     var element = document.getElementById("imageURL")?.attributes
     var srcURL = element?.getNamedItem("src")?.textContent;
     var pictureURL = srcURL || undefined;
-    
+    var categories: Array<String> = [];
+    this.taskForm.controls.categories.value.forEach((categorie: { id: string; naam: string; }) => {
+      categories.push(categorie.naam)
+    });
+    console.log(categories)
       var create: TaskChange = {
         totalpointsworth: this.taskForm.controls.reward.value,
         description: this.taskForm.controls.description.value,
         title: this.taskForm.controls.title.value,
-        picture: pictureURL
+        picture: pictureURL,
+        categories: categories
       }
       this.taskService.createTask(create).subscribe(res => {
         this.modalHandler(false)
