@@ -20,6 +20,7 @@ export class MyInfluencersComponent implements OnInit {
   sorting: Boolean = false;
   isFiltering: Boolean = false;
   allCategories: Category[] | undefined;
+  testId = localStorage.getItem('id');
 
   // AGE SLIDER VALUES
   minValue = 18;

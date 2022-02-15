@@ -51,6 +51,9 @@
                            
                         </div>
                     </div>
+
+                    
+
                     <div *ngIf="errormessage == ''" class="flex md:flex-row justify-center height-80 md:h-2/3 w-full md:w-full flex-wrap overflow-scroll scrollbar-hidden">
                         <div *ngFor="let influencer of influencers">
                             <app-influencer-card [influencer]="influencer" style="cursor: pointer;"></app-influencer-card>
