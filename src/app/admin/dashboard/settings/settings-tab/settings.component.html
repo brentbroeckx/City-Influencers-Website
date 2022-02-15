@@ -95,6 +95,11 @@
                                 </div>
                               </div>
                             </div>
+                            <div class="px-3 mb-6 md:mb-0 mt-5">
+                              <label for="nonWinnerReward" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Non winners reward</label>
+                                <input formControlName="nonWinnerReward" [class.border-red-500]="nonWinnerReward?.invalid && nonWinnerReward?.touched" class="shadow inputshadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Non winners reward">
+                                <div *ngIf="nonWinnerReward?.invalid && nonWinnerReward?.touched" class="text-red-500">Non winners reward is invalid</div>
+                            </div>
                       </div>
                       
                         <button (click)="onSubmit()" type="submit" class="theme_button_color font-bold py-3 px-12 rounded-full focus:outline-none focus:shadow-outline my-5" >

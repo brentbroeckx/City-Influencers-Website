@@ -57,6 +57,7 @@ export class CityService {
 
   changeCity(city: CityChange){
     console.log(city.picture?.toString)
+    console.log("###",city.notWinnerReward)
     const changeParam = {
       type: "stad",
       id: city.id,
@@ -67,6 +68,7 @@ export class CityService {
       email: city.emailadres,
       isactief: city.isactief,
       picture: city.picture,
+      notwinnerreward: city.notWinnerReward
     }
 
     const bearer = localStorage.getItem('token');
