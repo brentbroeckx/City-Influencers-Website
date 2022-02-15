@@ -105,6 +105,9 @@ selectedItems: any[] = [];
     if (taskId != null ){
       this.taskService.getTaskById(taskId).subscribe(res => {
         this.task = res.data[0];
+        if(this.task.foto == null){
+          this.task.foto = "../../../../../assets/images/influencer.jpg"
+        }
         console.log(this.task)
         Array.from(this.task.categories).forEach(category => {
             let index = this.dropdownList.findIndex(x => x.naam === category)+1;
