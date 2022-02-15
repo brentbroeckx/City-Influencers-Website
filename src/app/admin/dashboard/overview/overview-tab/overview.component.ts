@@ -18,6 +18,8 @@ import { Task } from 'src/app/models/task';
 import { TaskService } from 'src/app/services/task.service';
 import { Post } from 'src/app/models/post';
 import { PostsService } from 'src/app/services/posts.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { Category } from 'src/app/models/category';
 
 
 @Component({
@@ -27,7 +29,7 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class OverviewComponent implements OnInit {
   
-  constructor(private authService: AuthService, private elRef: ElementRef, private cityService: CityService, private influencerService: InfluencerService, private taskService: TaskService, private postsService: PostsService) {}
+  constructor(private authService: AuthService, private elRef: ElementRef, private cityService: CityService, private influencerService: InfluencerService, private taskService: TaskService, private postsService: PostsService, private categoryService: CategoryService) {}
   
    option: any;
    
@@ -43,6 +45,9 @@ export class OverviewComponent implements OnInit {
    influencer: Influencer[] | undefined;
    posts: Post[] | undefined;
    cityID: string | null | undefined;
+   categories: Category[] | undefined;
+
+   source!: [];
 
   
   ngOnInit(): void {
@@ -64,9 +69,7 @@ export class OverviewComponent implements OnInit {
 
 
 
-    // this.postsService.getAllPosts().subscribe(res => {
-    //   this.posts = res.data;
-    // });
+    
 
     this.taskService.getAllTasks().subscribe(res => {
       this.task = res.data;
@@ -105,31 +108,33 @@ export class OverviewComponent implements OnInit {
       myChart = echarts.init(chartDom);
     }
 
-    console.log(this.totalOpenTasks, '###########')
+    this.categoryService.getAllCategories().subscribe(res => {
+      this.categories = res.data;
+      var source = [];
+      source.push(['Category', 'Influencers', 'Open tasks', 'Closed tasks'])
+      this.categories.forEach(category => {
+        source.push([category.naam, Number(category.influencercount), Number(category.opentaskcount), Number(category.closedtaskcount)]);
+      })
+      console.log(source)
+      this.option = {
+        legend: {},
+        tooltip: {},
+        dataset: {
+          source: source
+        },
+        xAxis: { type: 'category' },
+        yAxis: {},
+        // Declare several bar series, each will be mapped
+        // to a column of dataset.source by default.
+        series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+      };
+      if (typeof this.option !== 'undefined'){
+        this.option && myChart.setOption(this.option);
+      }
+    });
+
     
-    this.option = {
-      legend: {},
-      tooltip: {},
-      dataset: {
-        source: [
-          ['Category', 'Influencers', 'Tasks', 'Tasks done'],
-          ['Travel', this.totalOpenTasks, 85, 93],
-          ['Food', 54, 73.4, 55],
-          ['Sport', 5, 65.2, 82],
-          ['Clothes', 35, 53.9, 39.1],
-          ['Lifestyle', 3, 52, 39.1],
-          ['DJ', 37, 53.9, 39.1],
-        ]
-      },
-      xAxis: { type: 'category' },
-      yAxis: {},
-      // Declare several bar series, each will be mapped
-      // to a column of dataset.source by default.
-      series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
-    };
-    if (typeof this.option !== 'undefined'){
-      this.option && myChart.setOption(this.option);
-    }
+    
   }
 }
 
