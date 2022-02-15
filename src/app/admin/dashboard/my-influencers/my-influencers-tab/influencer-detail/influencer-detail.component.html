@@ -189,15 +189,18 @@
                                 Completed Tasks
                             </div>
                             <div class="text-gray-500 text-sm">
-                                Total: 240
+                                Total posts: {{influencer.totalposts}}
                             </div>
                             <div class="flex flex-col mt-3">
                                 <div>
-                                   <span class="text-red-500">42</span> Open
+                                   <span class="text-green-500">{{influencer.taskwincount}}</span> Posts won
                                 </div>
                                 <div>
-                                   <span class="text-green-500">123</span> Completed
+                                   <span class="text-yellow-600">{{influencer.approvedposts}}</span> Approved posts
                                 </div>
+                                <div>
+                                    <span class="text-red-500">{{influencer.unapprovedposts}}</span> Unapproved posts
+                                 </div>
                             </div>
                             
                         </div>

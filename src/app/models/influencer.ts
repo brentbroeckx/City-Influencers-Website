@@ -21,5 +21,9 @@ export interface Influencer {
     badge: string;
     aantalPunten: string;
     categories: [];
+    taskwincount?: string;
+    totalposts?: string;
+    approvedposts?: string;
+    unapprovedposts?: string;
 
 }

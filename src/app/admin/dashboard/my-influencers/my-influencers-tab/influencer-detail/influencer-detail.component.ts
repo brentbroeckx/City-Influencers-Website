@@ -12,7 +12,7 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class InfluencerDetailComponent implements OnInit {
 
-  influencer: Influencer = {id: "", voornaam: "", familienaam: "", geslacht: "", gebruikersnaam: "", profielfoto: "", adres: "", postcode: "", stad: "", geboortedatum: "", telefoonnummer: "", emailadres: "", gebruikersnaaminstagram: "", gebruikersnaamfacebook: "", gebruikersnaamtiktok: "", infoovervolgers: "", badge: "", aantalPunten: "", categories: [], aantalvolgersfacebook: "", aantalvolgersinstagram: "", aantalvolgerstiktok: ""};
+  influencer: Influencer = {id: "", voornaam: "", familienaam: "", geslacht: "", gebruikersnaam: "", profielfoto: "", adres: "", postcode: "", stad: "", geboortedatum: "", telefoonnummer: "", emailadres: "", gebruikersnaaminstagram: "", gebruikersnaamfacebook: "", gebruikersnaamtiktok: "", infoovervolgers: "", badge: "", aantalPunten: "", categories: [], aantalvolgersfacebook: "", aantalvolgersinstagram: "", aantalvolgerstiktok: "", taskwincount: "", totalposts: "", approvedposts: "", unapprovedposts: ""};
   influencerFullName: String = "";
   highestFollowCount: String = "";
   mostLikes: string = "";
