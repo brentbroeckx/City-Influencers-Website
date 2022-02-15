@@ -11,6 +11,7 @@ import { CityService } from 'src/app/services/city.service';
 export class RequestsComponent implements OnInit {
 
   cities: City[] | undefined;
+  sortingCity: Boolean = false;
 
   constructor(private cityService: CityService, private toastr: ToastrService) { }
 
@@ -23,13 +24,35 @@ export class RequestsComponent implements OnInit {
 
   }
 
+  changeSortCity() {
+    this.sortingCity = !this.sortingCity;
+
+    switch (this.sortingCity) {
+      case true:
+        this.cities?.sort((a, b) => {
+          var textA = a.naam.toLowerCase();
+          var textB = b.naam.toLowerCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+        })
+        break;
+      case false:
+        this.cities?.sort((a, b) => {
+          var textA = a.naam.toLowerCase();
+          var textB = b.naam.toLowerCase();
+          return (textA < textB) ? 1 : (textA > textB) ? -1 : 0
+        })
+        break;
+    }
+
+  }
+
   changeStatus(city: City) {
     if (city.isactief == "f") {
       // change to true
       city.isactief = "t";
       this.cityService.changeCityStatus(city.id, true).subscribe(res => {
         this.toastr.success("Succesfully activated city", "Admin");
-        window.location.reload();
+        location.reload();
         return;
       });
     } else {
@@ -37,7 +60,7 @@ export class RequestsComponent implements OnInit {
       city.isactief = "f";
       this.cityService.changeCityStatus(city.id, false).subscribe(res => {
         this.toastr.success("Succesfully deactivated city", "Admin");
-        window.location.reload();
+        location.reload();
         return;
       });
     }

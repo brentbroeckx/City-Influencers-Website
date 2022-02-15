@@ -13,6 +13,7 @@ export class CityCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

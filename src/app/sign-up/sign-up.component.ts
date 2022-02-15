@@ -20,7 +20,7 @@ import { keyframes } from '@angular/animations';
 export class SignUpComponent implements OnInit {
   show: boolean = false;
   showCheck: boolean = false;
-  zipcodes: [] | undefined;
+  zipcodes: string[] | undefined;
   cities: string[] | undefined;
 
 
@@ -37,25 +37,20 @@ export class SignUpComponent implements OnInit {
   
   showPassword() {
     this.show = !this.show;
-}
+  }
 
-showPasswordCheck() {
-  this.showCheck = !this.showCheck;
-}
-  
+  showPasswordCheck() {
+    this.showCheck = !this.showCheck;
+  }
+    
   ngOnInit(): void {
     this.cityService.getListCities().subscribe(res => {
-      console.log(Object.keys(res.data).find(key => res.data[key] == "1000"))
-
-
       this.cities = Object.keys(res.data);
-      console.log(this.cities)
+      this.zipcodes = Object.values(res.data);      
     })
   }
 
   onSubmit() {
-    console.log("registering button clicked")
-
     var password = this.registerForm.controls.password.value;
     var encryptedPass = sha256(password).then(res => {
       var cityRegister: CityRegister = {
@@ -67,15 +62,28 @@ showPasswordCheck() {
         type: "stad"
       }  
       this.signUpSerivce.processLogin(cityRegister).subscribe(res => {
-        console.log(res)
-        this.toastr.success("Successful registration, you will hear from us soon", "City")
+        this.toastr.success("Successful registration, you will hear from us soon", "City");
         this.router.navigateByUrl('');
-
       });
 
     })
+
+   
   }
 
+  selectZip() {
+    var zip = this.registerForm.controls.postcode.value
+    this.cityService.getListCities().subscribe(res => {
+      this.registerForm.controls.city.setValue(Object.keys(res.data).find(key => res.data[key] == zip))   
+    })
+  }
+
+  selectCity() {
+    var city = this.registerForm.controls.city.value
+    this.cityService.getListCities().subscribe(res => {    
+      this.registerForm.controls.postcode.setValue(res.data[city]);
+    })
+  }
   get email() {
     return this.registerForm.get('email');
   }

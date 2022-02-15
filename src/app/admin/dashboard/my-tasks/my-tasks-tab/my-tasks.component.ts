@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/models/category';
 import { Task } from 'src/app/models/task';
 import { TaskChange } from 'src/app/models/taskChange';
+import { CategoryService } from 'src/app/services/category.service';
 import { TaskService } from 'src/app/services/task.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-my-tasks',
@@ -13,6 +17,14 @@ import { TaskService } from 'src/app/services/task.service';
 export class MyTasksComponent implements OnInit {
 
   tasks: Task[] | undefined;
+  categories: Category[] | undefined;
+  pictureURL: any;
+  loading: boolean = true;
+  sortingTitle: Boolean = false;
+  sortingPosts: Boolean = false;
+  sortingGiven: Boolean = false;
+  sortingReward: Boolean = false;
+  sortingExecuted: Boolean = false;
 
   taskForm = new FormGroup({
     description: new FormControl('', [Validators.required]),
@@ -21,7 +33,7 @@ export class MyTasksComponent implements OnInit {
 
   })
 
-  constructor(private router: Router, private taskService: TaskService) { }
+  constructor(private _renderer2: Renderer2, @Inject(DOCUMENT) private _document: Document, private router: Router, private taskService: TaskService, private toastr: ToastrService, private categoryService: CategoryService) { }
 
 
   public modalHandler(val: boolean) {
@@ -38,58 +50,71 @@ export class MyTasksComponent implements OnInit {
       }
     }
 
-    dropdownList: [
-      { item_id: 1, item_text: 'All' },
-      { item_id: 2, item_text: 'Travel' },
-      { item_id: 3, item_text: 'Food' },
-      { item_id: 4, item_text: 'Sport' },
-      { item_id: 5, item_text: 'Clothes' },
-      { item_id: 6, item_text: 'Lifestyle' },
-      { item_id: 7, item_text: 'DJ' }
-    ];
-    selectedItems: [
-      { item_id: 3, item_text: 'Food' },
-      { item_id: 4, item_text: 'Sport' }
-    ];
+    dropdownList: any[] = []; 
+
+    selectedItems: any[] = [];
     dropdownSettings = {
-          singleSelection: false,
-          idField: 'item_id',
-          textField: 'item_text',
-          selectAllText: 'Select All',
-          unSelectAllText: 'Unselect All',
-          itemsShowLimit: 3,
-          allowSearchFilter: true
-        };
+      singleSelection: false,
+      idField: 'id',
+      textField: 'naam',
+      selectAllText: 'Select all',
+      unSelectAllText: 'Unselect all',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
 
   ngOnInit(): void {
 
     this.modalHandler(false);
     this.taskService.getAllTasks().subscribe(res => {
       this.tasks = res.data;
-      console.log(this.tasks)
+      this.tasks.forEach(task => {
+        if(task.foto == null){
+          task.foto = "../../../../../assets/images/influencer.jpg"
+        }
+      });
+      this.loading=false;
     });
-    this.dropdownList = [
-      { item_id: 1, item_text: 'All' },
-      { item_id: 2, item_text: 'Travel' },
-      { item_id: 3, item_text: 'Food' },
-      { item_id: 4, item_text: 'Sport' },
-      { item_id: 5, item_text: 'Clothes' },
-      { item_id: 6, item_text: 'Lifestyle' },
-      { item_id: 7, item_text: 'DJ' }
-    ];
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Food' },
-      { item_id: 4, item_text: 'Sport' }
-    ]; 
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
+    this.categoryService.getAllCategories().subscribe(res => {
+      this.categories = res.data;
+      this.dropdownList = this.categories;
+    });
+
+    let script = this._renderer2.createElement('script');
+    script.type = `text/javascript`;
+    script.text = `
+    {
+      function success() {
+        var data = JSON.parse(this.responseText);
+      }
+    
+      function error(err) {
+      }
+
+      var myWidget = cloudinary.createUploadWidget({
+        cloudName: 'dbyo9rarj', 
+        uploadPreset: 'CI-img-upload', 
+        folder: 'Tasks',
+        maxImageFileSize: 10000000,
+        cropping: true
+        }, (error, result) => { 
+          if (!error && result && result.event === "success") { 
+            var url = result.info.url;
+
+            var imageURL = document.getElementById("imageURL").src = url;
+          }
+        }
+      )
+    
+      document.getElementById("upload_widget")?.addEventListener("click", function(){
+          myWidget.open();
+        }, false);
+    }
+    
+    `;
+
+
+    this._renderer2.appendChild(this._document.body, script);
   }
 
 
@@ -98,15 +123,130 @@ export class MyTasksComponent implements OnInit {
   }
 
   createTask() {
+    var element = document.getElementById("imageURL")?.attributes
+    var srcURL = element?.getNamedItem("src")?.textContent;
+    var pictureURL = srcURL || undefined;
     
       var create: TaskChange = {
         totalpointsworth: this.taskForm.controls.reward.value,
         description: this.taskForm.controls.description.value,
-        title: this.taskForm.controls.title.value
+        title: this.taskForm.controls.title.value,
+        picture: pictureURL
       }
       this.taskService.createTask(create).subscribe(res => {
         this.modalHandler(false)
-        window.location.reload()
+        this.toastr.success("Succesfully added task", "City");
+        location.reload();
       });
+    }
+  
+    changeSortTitle() {
+      this.sortingTitle = !this.sortingTitle;
+  
+      switch (this.sortingTitle) {
+        case true:
+          this.tasks?.sort((a, b) => {
+            var textA = a.titel.toLowerCase();
+            var textB = b.titel.toLowerCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+          })
+          break;
+        case false:
+          this.tasks?.sort((a, b) => {
+            var textA = a.titel.toLowerCase();
+            var textB = b.titel.toLowerCase();
+            return (textA < textB) ? 1 : (textA > textB) ? -1 : 0
+          })
+          break;
+      }
+  
+    }
+
+    changeSortPosts() {
+      this.sortingPosts = !this.sortingPosts;
+  
+      switch (this.sortingPosts) {
+        case true:
+          this.tasks?.sort((a, b) => {
+            var numberA = Number(a.postcount);
+            var numberB = Number(b.postcount);
+            return (numberA < numberB) ? -1 : (numberA > numberB) ? 1 : 0
+          })
+          break;
+        case false:
+          this.tasks?.sort((a, b) => {
+            var numberA = Number(a.postcount);
+            var numberB = Number(b.postcount);
+            return (numberA < numberB) ? 1 : (numberA > numberB) ? -1 : 0
+          })
+          break;
+      }
+  
+    }
+
+    changeSortGiven() {
+      this.sortingGiven = !this.sortingGiven;
+  
+      switch (this.sortingGiven) {
+        case true:
+          this.tasks?.sort((a, b) => {
+            var dateA = new Date(a.datumopgegeven);
+            var dateB = new Date(b.datumopgegeven);
+            return (dateA < dateB) ? -1 : (dateA > dateB) ? 1 : 0
+          })
+          break;
+        case false:
+          this.tasks?.sort((a, b) => {
+            var dateA = new Date(a.datumopgegeven);
+            var dateB = new Date(b.datumopgegeven);
+            return (dateA < dateB) ? 1 : (dateA > dateB) ? -1 : 0
+          })
+          break;
+      }
+  
+    }
+
+    changeSortReward() {
+      this.sortingReward = !this.sortingReward;
+  
+      switch (this.sortingReward) {
+        case true:
+          this.tasks?.sort((a, b) => {
+            var numberA = Number(a.aantalpuntenwaard);
+            var numberB = Number(b.aantalpuntenwaard);
+            return (numberA < numberB) ? -1 : (numberA > numberB) ? 1 : 0
+          })
+          break;
+        case false:
+          this.tasks?.sort((a, b) => {
+            var numberA = Number(a.aantalpuntenwaard);
+            var numberB = Number(b.aantalpuntenwaard);
+            return (numberA < numberB) ? 1 : (numberA > numberB) ? -1 : 0
+          })
+          break;
+      }
+  
+    }
+
+    changeSortExecuted() {
+      this.sortingExecuted = !this.sortingExecuted;
+  
+      switch (this.sortingExecuted) {
+        case true:
+          this.tasks?.sort((a, b) => {
+            var dateA = new Date(a.datumuitgevoerd);
+            var dateB = new Date(b.datumuitgevoerd);
+            return (dateA < dateB) ? -1 : (dateA > dateB) ? 1 : 0
+          })
+          break;
+        case false:
+          this.tasks?.sort((a, b) => {
+            var dateA = new Date(a.datumuitgevoerd);
+            var dateB = new Date(b.datumuitgevoerd);
+            return (dateA < dateB) ? 1 : (dateA > dateB) ? -1 : 0
+          })
+          break;
+      }
+  
     }
   }

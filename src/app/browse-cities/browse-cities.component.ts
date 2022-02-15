@@ -18,10 +18,10 @@ export class BrowseCitiesComponent implements OnInit {
 
     this.cityService.getAllCities().subscribe(res => {
       res.data.forEach(city => {
-
-        var randomImage = Math.floor(Math.random() * (5 - 1 + 1) + 1);
-
-        city.picture = "../../../../assets/images/city-profile-picture-" + randomImage + ".jpg"
+        if(city.picture == null){
+          var randomImage = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+          city.picture = "../../../../assets/images/city-profile-picture-" + randomImage + ".jpg"
+        }
       });
 
       this.cities = res.data;

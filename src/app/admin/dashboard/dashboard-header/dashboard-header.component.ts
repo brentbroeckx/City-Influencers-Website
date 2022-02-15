@@ -17,12 +17,14 @@ export class DashboardHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.validateToken().subscribe(res =>{
-      if (this.authService.reRouteNonAuth("stad") == false) {
-        console.log("auth verified")
-        this.cityService.getCityById(res.data.id).subscribe(res => {
-          this.city = res.data[0];
-        })
-      }
+      
+      this.cityService.getCityById(res.data.id).subscribe(res => {
+        this.city = res.data[0];
+        if(this.city.picture == null){
+          var randomImage = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+          this.city.picture = "../../../../assets/images/city-profile-picture-" + randomImage + ".jpg"
+        }
+      })
 
       
     })

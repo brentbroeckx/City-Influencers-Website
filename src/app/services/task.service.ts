@@ -18,7 +18,8 @@ export class TaskService {
       description: task.description,
       totalpointsworth: task.totalpointsworth,
       picture: task.picture,
-      winnerid: task.winnerid
+      winnerid: task.winnerid,
+      categories: task.categories
     }
 
     const bearer = localStorage.getItem('token');

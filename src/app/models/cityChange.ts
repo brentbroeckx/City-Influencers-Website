@@ -9,4 +9,5 @@ export interface CityChange {
     emailadres?: string;
     isnew?: string;
     picture?: string;
+    notWinnerReward?: string;
 }

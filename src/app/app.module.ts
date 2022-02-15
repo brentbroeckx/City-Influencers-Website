@@ -32,6 +32,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
 import { Cloudinary } from 'cloudinary-core';
 import { CountUpModule } from 'ngx-countup';
+import { QRComponent } from './qr-handler/qr.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { CountUpModule } from 'ngx-countup';
     ServiceUnavailableComponent,
     TimeOutComponent,
     FaqComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    QRComponent
 
   ],
   imports: [
