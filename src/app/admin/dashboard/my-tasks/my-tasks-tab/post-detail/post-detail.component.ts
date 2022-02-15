@@ -84,7 +84,7 @@ export class PostDetailComponent implements OnInit {
     }
   
       this.postsService.changePost(this.post.id, this.post.opdrachtid, approved, comment).subscribe(res => {
-        console.log(res)
+        
       }); 
       this.toastr.success("Succesfully updated post", "City")
       history.back()    

@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
           return;
         }
   
-        console.log(res);
   
         if (res.data.token != null) {
           localStorage.setItem('token', res.data.token)
@@ -52,7 +51,6 @@ export class LoginComponent implements OnInit {
           this.authService.validateToken().subscribe(res => {
             localStorage.setItem('id', res.data.id)
   
-            console.log(res.data)
   
             if (res.data.isSuper || res.data.type == "admin") {
               this.toastr.success("Succesfully logged in", "Admin")

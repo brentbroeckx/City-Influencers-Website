@@ -108,7 +108,6 @@ selectedItems: any[] = [];
         if(this.task.foto == null){
           this.task.foto = "../../../../../assets/images/influencer.jpg"
         }
-        console.log(this.task)
         Array.from(this.task.categories).forEach(category => {
             let index = this.dropdownList.findIndex(x => x.naam === category)+1;
             this.selectedItems.push( { id: index.toString(), naam: category })
@@ -167,7 +166,6 @@ selectedItems: any[] = [];
         totalpointsworth: this.rewardForm.controls.reward.value
       }
 
-      console.log(settingsChange)
       this.taskService.changeTask(settingsChange).subscribe(res => {
         this.modalHandler(false, 'modal1');
         this.toastr.success("Succesfully changed task", "City");

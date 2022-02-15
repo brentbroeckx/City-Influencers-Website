@@ -69,7 +69,6 @@ export class MyTasksComponent implements OnInit {
     this.modalHandler(false);
     this.taskService.getAllTasks().subscribe(res => {
       this.tasks = res.data;
-      console.log(this.tasks)
       this.tasks.forEach(task => {
         if(task.foto == null){
           task.foto = "../../../../../assets/images/influencer.jpg"
@@ -132,7 +131,6 @@ export class MyTasksComponent implements OnInit {
     this.taskForm.controls.categories.value.forEach((categorie: { id: string; naam: string; }) => {
       categories.push(categorie.naam)
     });
-    console.log(categories)
       var create: TaskChange = {
         totalpointsworth: this.taskForm.controls.reward.value,
         description: this.taskForm.controls.description.value,

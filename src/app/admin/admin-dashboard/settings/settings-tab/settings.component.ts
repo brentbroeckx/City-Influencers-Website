@@ -93,7 +93,6 @@ export class SettingsComponent implements OnInit {
         email: this.adminForm.controls.email.value,
         password: res
       }
-      console.log(create)
       this.adminService.createAdmin(create).subscribe(res => {
         this.modalHandler(false)
         this.toastr.success("Succesfully added admin", "Admin");
