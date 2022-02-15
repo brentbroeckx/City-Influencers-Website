@@ -5,5 +5,5 @@ export interface TaskChange {
     totalpointsworth?: string;
     picture?: string;
     winnerid?: string;
-    categories?: string;
+    categories?: Array<String>;
 }
